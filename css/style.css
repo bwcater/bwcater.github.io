@@ -728,8 +728,6 @@
 
 @media only screen and (max-width: 600px) 
 {
-
-
     html {
         scroll-behavior: smooth;
     }
@@ -870,7 +868,7 @@
 
     .social {
         width: 100%;
-        height: 13em; 
+        height: 17em; 
     }
     .social-icon {
         float: left;
@@ -883,7 +881,10 @@
         height: 64px;
     }
 
-
+    /* .contact {
+        height: 20em;
+        margin-bottom: 1em;
+    } */
     .how-to-contact-me {
         width: 80%;
         height: 10em;
