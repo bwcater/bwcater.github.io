@@ -911,8 +911,7 @@
     }
 
     .back-to-top a {
-       
-        margin: -18px 0px;
+        margin: 10px 20px;
         float:right; 
         color: #fff;
         text-decoration: none;
