@@ -758,15 +758,15 @@
         color: #fff;
     }
     .header .site-title {
-        margin-top: 8.75em;
-        margin-left: .3em;
-        font-size: 275%;
+        margin-top: 14.75em;
+        margin-left: 1em;
+        font-size: 175%;
         
     }
     .header .site-by-line {
-        margin-top: -2em;
-        margin-left: .75em;
-        font-size: 155%;
+        margin-top: -1.75em;
+        margin-left: 2em;
+        font-size: 95%;
     }
 
     ul {
