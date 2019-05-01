@@ -115,7 +115,8 @@
     }
     
     .cdbaby-player {
-        padding-left: 12%;
+        width: 75%;
+        margin: 0 auto;
     }
     /* .cdbaby-player {
         width: 100%;
@@ -294,7 +295,8 @@
     }
 
     .cdbaby-player {
-        padding-left: 12%;
+        width: 75%;
+        margin: 0 auto;
     }
 
     .full {
@@ -483,7 +485,8 @@
     }
 
     .cdbaby-player {
-         padding-left: 7%;
+        width: 75%;
+        margin: 0 auto;
     }
 
     .full {
@@ -674,8 +677,8 @@
     }
 
     .cdbaby-player {
-        width: 100%;
-        margin: 0;
+        width: 75%;
+        margin: 0 auto;
     }
 
     .full {
