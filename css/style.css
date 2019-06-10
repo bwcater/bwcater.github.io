@@ -1,1310 +1,340 @@
-/* style.css
-*/
+html {
+    scroll-behavior: smooth;
+}
 
-.full 
-{
-    width:100%;
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: underline;
+    color: navy;
+}
+
+.header {
+    margin-top: 0;
+    height: 600px;
+    background-image: url('../images/loon.jpg');
+    overflow:hidden;
+    background-repeat: no-repeat;  
+    background-size: cover; 
+    color: #fff;
+}
+.header .site-title {
+    margin-top: 8.75em;
+    margin-left: .5em;
+    font-size: 275%;
+    text-shadow: 2px 2px gray;
+    
+}
+.header .site-by-line {
+    margin-top: -2em;
+    margin-left: 1em;
+    font-size: 155%;
+    text-shadow: 2px 2px gray;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow:hidden; 
+    background-color: #000;
+    display: flex;
+    flex-direction: row;
+}
+
+li a {
+    display: block;
+    margin-left: 12px;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.art {
+    display:block;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+      
+.column {
+flex: 25%;
+max-width: 25%;
+padding: 0 4px;
+}
+
+.column img {
+margin-top: 8px;
+vertical-align: middle;
+}
+
+.music, .about, .social, .contact {
+    display:block;
+    width: 100%;
+    padding: 20px; 
+}
+.about, .footer {
+    background-color: darkgray;
+}
+
+.art h3, .music h3, .about h3, .social h3, .contact h3 {
+    font-size: 275%;
+    padding-left: .5em;
+}
+
+.art hr {
+    align-content: center;
+    width: 95%;
+
+    margin: 25px 20px;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+    
+}
+
+.row {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+padding: 0 4px;
+}
+  
+.column {
+flex: 20%;
+max-width: 18%;
+padding: 0 4px;
+}
+
+.column img {
+margin-top: 8px;
+vertical-align: middle;
+}
+
+.bayou-scene-video {
+   display: flex;
+   flex-direction: row;
+   margin-top: 40px;
+   justify-content: center;
+}
+.videos {
+    width: 560px;
+    height: 315px;
+}
+
+
+
+.music hr, .about hr, .social hr, .contact hr {
+    align-content: center;
+    width: 95%;
+    margin: 25px 0;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+    
+}
+
+.albums {
+    width: 90%;
+    margin: 3em 0 6em 13%;  
+}
+
+.albums a {
+    text-decoration: none !important;
+}
+
+.album {
+    border:1pt solid #000;
+    height: 200px;
+    width: 200px;
+    background-color: lightgray;
+    margin-right: 40px;
+}
+
+.cdbaby-player {
+    display: flex;
+    justify-content: center;
+}
+
+.full {
+    width:80%;
     height:520px;
     border:0px;
 }
 
+.cdbaby-player-small {
+    display:none;
+}
 
-@media screen and (min-width: 1200px) {
+.about-content {
+    width: 90%;
+    margin-left: 1.75em;
+    align-content: center;
+}
 
-    html {
-        scroll-behavior: smooth;
+.about-pic {
+    float:right;
+    margin: 4px 80px 4px 10px;
+}
+
+.social {
+    width: 100%;
+    height: 15em; 
+}
+.social-icon {
+    float: left;
+    padding-left: 30px;
+}
+
+.social-icon img {
+    width: 64px;
+    height: 64px;
+}
+
+
+.how-to-contact-me {
+    width: 90%;
+    height: 10em;
+    margin-left: 1.75em;
+    align-content: center;
+}
+
+.footer {
+    height: 80px;
+    padding: 20px;
+    border-top: 5px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.copyright {
+    margin-left: 2em;
+    padding-top: 20px;
+}
+
+.back-to-top {
+    float:right;
+    color: #fff;
+}
+
+.back-to-top a {
+    margin: -20px 50px;
+    float:right;
+    color: #fff;
+    text-decoration: none;
+    text-decoration-color: #fff;
+}
+
+
+@media (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 45%;
     }
+  }
 
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        margin-top: 0;
-        height: 900px;
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
+  @media (max-width: 600px) {
+ 
     .header .site-title {
-        margin-top: 14em;
+        margin-top: 10.5em;
         margin-left: .5em;
-        font-size: 275%;
+        font-size: 225%;
+        text-shadow: 2px 2px gray;
         
     }
     .header .site-by-line {
         margin-top: -2em;
         margin-left: 1em;
-        font-size: 155%;
+        font-size: 110%;
+        text-shadow: 2px 2px gray;
     }
 
     ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
+        flex-direction: column;
     }
-    li {
-        float: left;
+    .art hr, .music hr, .about hr, .social hr, .contact hr {
+        width: 90% !important;
     }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
+    .column {
+      flex: 100%;
+      max-width: 100%;
     }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
+    .full {
+        display:none;
     }
-
-    .music, .about, .social, .contact {
-        width: 100%;
-        padding: 60px;
+    .cdbaby-player-small {
+        display:block;
     }
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 275%;
-        padding-left: .5em;
-    }
-    .music hr, .about hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 25px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-
-    .albums {
-        width: 90%;
-        margin: 3em 0 6em 13%;  
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-        margin-right: 40px;
+    .square {
+        margin-left: 1.75em;
+        justify-content: center;
+        width: 400px;
+        height: 425px;
     }
     
-    .cdbaby-player {
-        width: 75%;
-        margin: 0 auto;
-    }
-    /* .cdbaby-player {
-        width: 100%;
-        margin-left: 16em;
+    /* .bayou-scene-video {
+        margin-top: 40px;
+        width: 80%;
     } */
-
-    .about-content {
-        width: 90%;
-        margin-left: 1.75em;
-        align-content: center;
+    .album {
+        margin-top: 16px;
+        height: 300px;
+        width: 300px;
     }
-
+    .about-content {
+        width: 80%;
+    }
     .about-pic {
-        float:right;
+        width: 50%;
         margin: 4px 80px 4px 10px;
     }
 
     .social {
-        width: 100%;
-        height: 15em; 
+       height: 400px;
     }
     .social-icon {
-        float: left;
-        padding-left: 30px;
-    }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
-
-    .how-to-contact-me {
-        width: 90%;
-        height: 10em;
-        margin-left: 1.75em;
-        align-content: center;
-    }
-
-    .footer {
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-    }
-
-    .copyright {
-        margin-left: 2em;
         padding-top: 20px;
-    }
-
-    .back-to-top {
-        float:right;
-        color: #fff;
-    }
-
-    .back-to-top a {
-        margin: -20px 50px;
-        float:right;
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-
-}
-
-
-@media screen and (min-width: 992px) {
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        margin-top: 0;
-        height: 590px;
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
-    .header .site-title {
-        margin-top: 8.75em;
-        margin-left: .5em;
-        font-size: 275%;
-        
-    }
-    .header .site-by-line {
-        margin-top: -2em;
-        margin-left: 1em;
-        font-size: 155%;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
-    }
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    .music, .about, .social, .contact {
-        width: 100%;
-        padding: 30px;
-    }
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 275%;
-        padding-left: .5em;
-    }
-    .music hr, .about hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 25px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-
-    .albums {
-        width: 90%;
-        margin: 3em 0 4em 9%;  
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-        margin-right: 40px;
-    }
-
-    .albums a img {
-        margin-top: 2em;
-    }
-
-    .cdbaby-player {
-        width: 75%;
-        margin: 0 auto;
-    }
-
-    .full {
-        border: 0px;
-        -ms-zoom: 100;
-        -moz-transform: scale(1);
-        -moz-transform-origin: 0 0;
-        -o-transform: scale(1);
-        -o-transform-origin: 0 0;
-        -webkit-transform: scale(1);
-        -webkit-transform-origin: 0 0;
-    }
-
-    .about-content {
-        width: 90%;
-        margin-left: 1.75em;
-        align-content: center;
-    }
-
-    .about-pic {
-        float:right;
-        margin: 4px 80px 4px 10px;
-    }
-
-    .social {
-        width: 100%;
-        height: 15em; 
-    }
-    .social-icon {
-        float: left;
-        padding-top: 1.75em;
         padding-left: 30px;
     }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
-
-    .how-to-contact-me {
-        width: 90%;
-        height: 10em;
-        padding-top: 1em;
-        margin-left: 1.75em;
-        align-content: center;
-    }
-
-    .footer {
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-    }
-
-    .copyright {
-        margin-left: 2em;
-        padding-top: 20px;
-    }
-
-    .back-to-top {
-        float:right;
-        color: #fff;
-    }
-
-    .back-to-top a {
-        margin: -20px 50px;
-        float:right;
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-
-}
-
-@media only screen and (min-width: 768px)  
-{
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        /* width: 100%; */
-        margin-top: 0;
-        height: 485px;
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
-    .header .site-title {
-        margin-top: 6.25em;
-        margin-left: .5em;
-        font-size: 275%;
-        
-    }
-    .header .site-by-line {
-        margin-top: -2em;
-        margin-left: 1em;
-        font-size: 155%;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
-    }
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    .music, .about, .social, .contact {
-        width: 100%;
-        padding: 30px;
-    }
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 225%;
-        padding-left: .5em;
-    }
-    .music hr, .about hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 15px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-
-    .albums {
-        width: 100%;
-        margin: 2em 0 3em 9%; 
-        
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-        margin-right: 40px;
-    }
-
-    .albums a img {
-        margin-top: 2em;
-    }
-
-    .cdbaby-player {
-        width: 75%;
-        margin: 0 auto;
-    }
-
-    .full {
-        border: 0px;
-        -ms-zoom: 100;
-        -moz-transform: scale(1);
-        -moz-transform-origin: 0 0;
-        -o-transform: scale(1);
-        -o-transform-origin: 0 0;
-        -webkit-transform: scale(1);
-        -webkit-transform-origin: 0 0;
-    }
-
-
-    .about hr {
-        width: 90%;
-        margin-left: 1em;
-    }
-
-    .about-pic {
-        float:right;
-        margin: 4px 80px 4px 10px;
-    }
-
-    .about-content {
-        width: 90%;
-    }
-
-    .social {
-        width: 100%;
-        height: 15em; 
-    }
-    .social-icon {
-        float: left;
-        padding-top: 1.75em;
-        padding-left: 30px;
-    }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
-    .how-to-contact-me {
-        width: 100%;
-        height: 10em;
-        padding-top: 1em;
-        margin-left: 1.75em;
-        align-content: center;
-    }
-
-    .footer {
-        width: 100%;
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-    }
-
-    .copyright {
-        margin-left: 2em;
-        padding-top: 20px;
-    }
-
-    .back-to-top {
-        float:right;
-        color: #fff;
-    }
-
-    .back-to-top a {
-        margin: -20px 50px;
-        float:right;
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-
-}
-
- @media only screen and (min-width: 600px) 
-{
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        margin-top: 0;
-        height: 600px;
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
-    .header .site-title {
-        margin-top: 8.75em;
-        margin-left: .5em;
-        font-size: 275%;
-        
-    }
-    .header .site-by-line {
-        margin-top: -2em;
-        margin-left: 1em;
-        font-size: 155%;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
-    }
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    .music, .about, .social, .contact {
-        width: 100%;
-        padding: 30px;
-    }
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 225%;
-        padding-left: .5em;
-    }
-    .music hr, .about hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 15px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black)); 
-    }
-
-    .albums {
-        width: 90%;
-        margin: 2em 0 3em 9%;  
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-        margin-right: 40px;
-    }
-
-    .albums a img {
-        margin-top: 2em;
-    }
-
-    .cdbaby-player {
-        width: 75%;
-        margin: 0 auto;
-    }
-
-    .full {
-            -ms-zoom: 0.85;
-            -moz-transform: scale(0.85);
-            -moz-transform-origin: 0 0;
-            -o-transform: scale(0.85);
-            -o-transform-origin: 0 0;
-            -webkit-transform: scale(0.85);
-            -webkit-transform-origin: 0 0;
-    }
-
-    .social {
-        width: 100%;
-        height: 13em; 
-    }
-    .social-icon {
-        float: left;
-        padding-top: 1.75em;
-        padding-left: 30px;
-    }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
     
+    .social-icon img {
+        width: 82px;
+        height: 82px;
+    }
 
     .how-to-contact-me {
-        width: 90%;
+        width: 70%;
         height: 10em;
-        padding-top: 1em;
         margin-left: 1.75em;
         align-content: center;
     }
-
-    .footer {
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-    }
-
-    .copyright {
-        margin-left: 2em;
-        padding-top: 20px;
-    }
-
     .back-to-top {
-        float:right;
+        padding-top:30px;
+        align-content: right !important;
         color: #fff;
     }
-
-    .back-to-top a {
-        margin: -20px 50px;
-        float:right;
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-} 
-
-@media only screen and (max-width: 600px) 
-{
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        margin-top: 0;
-        height: 600px;
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
-    .header .site-title {
-        margin-top: 14.75em;
-        margin-left: 1em;
-        font-size: 175%;
-        
-    }
-    .header .site-by-line {
-        margin-top: -1.75em;
-        margin-left: 2em;
-        font-size: 95%;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
-    }
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    .music, .social, .contact {
-        width: 100%;
-        padding: 30px;
-    }
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 225%;
-        padding-left: .5em;
-    }
-    .music hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 15px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-
-    .albums {
-        width: 90%;
-        margin: 2em 0 3em 9%;  
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-        margin-right: 40px;
-    }
-
-    .albums a img {
-        margin-top: 2em;
-    }
-
-     .cdbaby-player {
-        display:none;
-    }
-
-    .about {
-        width: 100%;
-        padding: 10px;
-    }
-    .about hr {
-        margin: 5px 0;
-        align-content: center;
-        width: 90%;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-    .about-content {
-        width: 85%;
-        margin-left: 1.75em;
-        align-content: center;
-    }
-
-    .about-pic {
-        float:right;
-        margin: 4px 80px 4px 10px;
-        width: 36%;
-    }
-
-    .social {
-        width: 100%;
-        height: 17em; 
-    }
-    .social-icon {
-        float: left;
-        padding-top: 1.75em;
-        padding-left: 20px;
-    }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
-    /* .contact {
-        height: 20em;
-        margin-bottom: 1em;
-    } */
-    .how-to-contact-me {
-        width: 80%;
-        height: 10em;
-        padding-top: 1em;
-        margin-left: 1em;
-        align-content: center;
-    }
-
-    .footer {
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-
-        align-content: center;
-        font-size: 16px;
-    }
-
-    .back-to-top {
-        /* float:right; */
-        color: #fff;
-        
-    }
-
-    .back-to-top a {
-        margin: 10px 20px;
-        float:right; 
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-}
-
-@media only screen and (max-width: 400px) 
-{
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        margin-top: 0;
-        height: 500px;
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
-    .header .site-title {
-        margin-top: 13.75em;
-        margin-left: .3em;
-        font-size: 150%;
-        
-    }
-    .header .site-by-line {
-        margin-top: -1.5em;
-        margin-left: .575em;
-        font-size: 100%;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
-    }
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    .music, .social, .contact {
-        width: 100%;
-        padding: 30px;
-    }
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 225%;
-        padding-left: .5em;
-    }
-    .music hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 15px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-
-    .albums {
-        width: 90%;
-        margin: 2em 0 3em 9%;  
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-        margin-right: 40px;
-    }
-
-    .albums a img {
-        margin-top: 2em;
-    }
-
-     .cdbaby-player {
-        display:none;
-        
-    }
-
-    .about {
-        width: 100%;
-        padding: 10px;
-    }
-    .about hr {
-        margin: 5px 0;
-        align-content: center;
-        width: 90%;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-    .about-content {
-        width: 80%;
-        margin-left: 1em;
-        align-content: center;
-    }
-
-    .about-pic {
-        float:right;
-        margin: 4px 80px 4px 10px;
-        width: 36%;
-    }
-
-    .social {
-        width: 100%;
-        height: 15em; 
-    }
-    .social-icon {
-        float: left;
-        padding-top: 1.75em;
-        padding-left: 20px;
-    }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
-
-    .how-to-contact-me {
-        width: 80%;
-        height: 10em;
-        padding-top: 1em;
-        margin-left: 1em;
-        align-content: center;
-    }
-
-    .footer {
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-
-        align-content: center;
-    }
-
-    .back-to-top {
-        /* float:right; */
-        color: #fff;
-        
-    }
-
-    .back-to-top a {
-       
-        margin: -22px 0px;
-        float:right; 
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-}
-
-@media only screen and (max-width: 375px) {
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        width: 100%;
-        padding: 0;
-        margin: 0 auto;
-
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-    }
-
-    a {
-        text-decoration: underline;
-        color: navy;
-    }
-
-    .header {
-        margin-top: 0;
-        height: 395px;
-        
-        background-image: url('../images/acousticguitar.jpg');
-        overflow:hidden;
-        background-repeat: no-repeat;  
-        background-size: cover; 
-        color: #fff;
-    }
-    .header .site-title {
-        margin-top: 10em;
-        margin-left: .3em;
-        font-size: 150%;
-        
-    }
-    .header .site-by-line {
-        margin-top: -1.75em;
-        margin-left: .75em;
-        font-size: 90%;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow:hidden;
-        background-color: #000;
-    }
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        margin-left: 12px;
-        padding: 20px;
-        background-color: #000;
-        color: #fff;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: #fff;
-        color: #000;
-    }
-
-    .music, .social, .contact {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .about, .footer {
-        background-color: darkgray;
-    }
-    .music h3, .about h3, .social h3, .contact h3 {
-        font-size: 155%;
-        padding-left: .5em;
-    }
-    .music hr, .social hr, .contact hr {
-        align-content: center;
-        width: 90%;
-
-        margin: 15px 0;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-
-    .albums {
-        width: 90%;
-        margin-left: 3.5em;
-    }
-
-    .albums a {
-        text-decoration: none !important;
-    }
-
-    .album {
-        border:1pt solid #000;
-        height: 200px;
-        width: 200px;
-        background-color: lightgray;
-    }
-
-    .albums a img {
-        margin-top: 1em;
-    }
-
-    .cdbaby-player {
-        display:none;
-    }
-
-    .about {
-        width: 100%;
-        padding: 10px;
-    }
-    .about hr {
-        margin: 5px 0;
-        align-content: center;
-        width: 90%;
-        height: 1px;
-        background: black;
-        background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-        
-    }
-    .about-content {
-        width: 90%;
-        margin-left: .75em;
-        align-content: center;
-    }
-
-    .about-pic {
-        float:right;
-        margin: 4px 80px 4px 10px;
-        width: 38%;
-    }
-
-    .social {
-        width: 100%;
-        height: 18em; 
-    }
-    .social-icon {
-        float: left;
-        padding-top: 1.75em;
-        padding-left: 20px;
-    }
-
-    .social-icon img {
-        width: 64px;
-        height: 64px;
-    }
-
-    .how-to-contact-me {
-        width: 90%;
-        height: 10em;
-        padding-top: 1em;
-        margin-left: 1em;
-        align-content: center;
-    }
-
-    .footer {
-        height: 60px;
-        padding: 20px;
-        border-top: 5px solid #000;
-        background-color: #000;
-        color: #fff;
-
-        align-content: center;
-    }
-
-    .back-to-top {
-        color: #fff;
-        
-    }
-
-    .back-to-top a {
-        margin: -22px 0px;
-        float:right; 
-        color: #fff;
-        text-decoration: none;
-        text-decoration-color: #fff;
-    }
-}
+  }
