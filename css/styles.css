@@ -25,21 +25,21 @@ a {
 .header {
     margin-top: 0;
     height: 600px;
-    background-image: url('../images/loon.jpg');
+    background-image: url('../images/loonheader.jpg');
     overflow:hidden;
     background-repeat: no-repeat;  
     background-size: cover; 
     color: #fff;
 }
 .header .site-title {
-    margin-top: 8.75em;
+    margin-top: 7.75em;
     margin-left: .5em;
     font-size: 275%;
     text-shadow: 2px 2px gray;
     
 }
 .header .site-by-line {
-    margin-top: -2em;
+    margin-top: -1.5em;
     margin-left: 1em;
     font-size: 155%;
     text-shadow: 2px 2px gray;
@@ -260,7 +260,7 @@ vertical-align: middle;
   @media (max-width: 600px) {
  
     .header .site-title {
-        margin-top: 10.5em;
+        margin-top: 11em;
         margin-left: .5em;
         font-size: 225%;
         text-shadow: 2px 2px gray;
@@ -287,10 +287,11 @@ vertical-align: middle;
         display:none;
     }
     .cdbaby-player-small {
+
         display:block;
     }
     .square {
-        margin-left: 1.75em;
+        
         justify-content: center;
         width: 400px;
         height: 425px;
@@ -332,9 +333,15 @@ vertical-align: middle;
         margin-left: 1.75em;
         align-content: center;
     }
+    .copyright {
+        margin-top: -1rem;
+        margin-left: .5em;
+        font-size: 16px;
+    }
     .back-to-top {
-        padding-top:20px;
+        padding-top:40px; 
         align-content: right !important;
         color: #fff;
+
     }
   }
