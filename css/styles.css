@@ -25,7 +25,7 @@ a {
 .header {
     margin-top: 0;
     height: 600px;
-    background-image: url('../images/loonheader.jpg');
+    background-image: url('../images/acousticguitar.jpg');
     overflow:hidden;
     background-repeat: no-repeat;  
     background-size: cover; 
@@ -72,6 +72,7 @@ li a:hover {
 .art {
     display:block;
     width: 100%;
+    padding-bottom: 50px;
 }
 
 .row {
@@ -97,11 +98,17 @@ vertical-align: middle;
     width: 100%;
     padding: 20px; 
 }
+
 .about, .footer {
     background-color: darkgray;
 }
 
-.art h3, .music h3, .about h3, .social h3, .contact h3 {
+.art h3 {
+    font-size: 275%;
+    padding-left: 1em;
+}
+
+.music h3, .about h3, .social h3, .contact h3 {
     font-size: 275%;
     padding-left: .5em;
 }
@@ -218,9 +225,13 @@ vertical-align: middle;
 
 .how-to-contact-me {
     width: 90%;
-    height: 10em;
+    height: 8em;
     margin-left: 1.75em;
     align-content: center;
+}
+
+.how-to-contact-me p {
+    padding-top: 3rem;
 }
 
 .footer {
@@ -328,11 +339,15 @@ vertical-align: middle;
     }
 
     .how-to-contact-me {
+        padding-top: 1rem;
         width: 70%;
-        height: 10em;
+        height: 8em;
         margin-left: 1.75em;
         align-content: center;
     }
+    .how-to-contact-me p {
+        padding-top: 1rem;
+    } 
     .copyright {
         margin-top: -1rem;
         margin-left: .5em;
@@ -345,3 +360,4 @@ vertical-align: middle;
 
     }
   }
+
