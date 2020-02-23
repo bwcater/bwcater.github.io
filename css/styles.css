@@ -45,7 +45,7 @@ a {
     text-shadow: 2px 2px gray;
 }
 
-ul {
+ul.mainmenu {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -55,7 +55,7 @@ ul {
     flex-direction: row;
 }
 
-li a {
+ul.mainmenu li a {
     display: block;
     margin-left: 12px;
     padding: 20px;
@@ -64,9 +64,13 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+ul.mainmenu li a:hover {
     background-color: #fff;
     color: #000;
+}
+
+ul.musiclinks li {
+    padding-top: 10px;
 }
 
 .art {
@@ -284,7 +288,7 @@ vertical-align: middle;
         text-shadow: 2px 2px gray;
     }
 
-    ul {
+    ul.mainmenu {
         flex-direction: column;
     }
     .art hr, .music hr, .about hr, .social hr, .contact hr {
