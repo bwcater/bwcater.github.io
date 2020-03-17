@@ -186,19 +186,10 @@ vertical-align: middle;
     margin-right: 40px;
 }
 
-.cdbaby-player {
-    display: flex;
-    justify-content: center;
-}
-
 .full {
     width:80%;
     height:520px;
     border:0px;
-}
-
-.cdbaby-player-small {
-    display:none;
 }
 
 .about-content {
