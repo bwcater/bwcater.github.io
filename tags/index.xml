@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Wayne Cater</title>
-    <link>http://waynecater.com/tags/</link>
+    <link>https://waynecater.com/tags/</link>
     <description>Recent content in Tags on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 16 Aug 2020 20:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://waynecater.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://waynecater.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>pleasant surprise, art</title>
-      <link>http://waynecater.com/tags/pleasant-surprise-art/</link>
+      <link>https://waynecater.com/tags/pleasant-surprise-art/</link>
       <pubDate>Sun, 16 Aug 2020 20:00:00 +0000</pubDate>
       
-      <guid>http://waynecater.com/tags/pleasant-surprise-art/</guid>
+      <guid>https://waynecater.com/tags/pleasant-surprise-art/</guid>
       <description></description>
     </item>
     
     <item>
       <title>writing, self</title>
-      <link>http://waynecater.com/tags/writing-self/</link>
+      <link>https://waynecater.com/tags/writing-self/</link>
       <pubDate>Sun, 09 Aug 2020 15:16:00 +0000</pubDate>
       
-      <guid>http://waynecater.com/tags/writing-self/</guid>
+      <guid>https://waynecater.com/tags/writing-self/</guid>
       <description></description>
     </item>
     
     <item>
       <title>new site, hugo</title>
-      <link>http://waynecater.com/tags/new-site-hugo/</link>
+      <link>https://waynecater.com/tags/new-site-hugo/</link>
       <pubDate>Thu, 06 Aug 2020 20:40:00 +0000</pubDate>
       
-      <guid>http://waynecater.com/tags/new-site-hugo/</guid>
+      <guid>https://waynecater.com/tags/new-site-hugo/</guid>
       <description></description>
     </item>
     
