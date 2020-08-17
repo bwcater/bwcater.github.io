@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://waynecater.com/</loc>
+    <lastmod>2020-08-16T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/posts/pleasant-surprise/</loc>
+    <lastmod>2020-08-16T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/tags/pleasant-surprise-art/</loc>
+    <lastmod>2020-08-16T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/tags/</loc>
+    <lastmod>2020-08-16T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/posts/about-ones-self/</loc>
+    <lastmod>2020-08-09T15:16:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/tags/writing-self/</loc>
+    <lastmod>2020-08-09T15:16:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/posts/a-new-start/</loc>
+    <lastmod>2020-08-06T20:40:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/tags/new-site-hugo/</loc>
+    <lastmod>2020-08-06T20:40:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/art/</loc>
+    <lastmod>2020-08-06T12:01:36-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/music/</loc>
+    <lastmod>2020-08-06T12:01:29-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/contact/</loc>
+    <lastmod>2020-08-06T11:59:46-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/about/</loc>
+    <lastmod>2020-08-06T11:59:28-05:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/posts/</loc>
+    <lastmod>2020-08-01T12:00:00-06:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://waynecater.com/categories/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
