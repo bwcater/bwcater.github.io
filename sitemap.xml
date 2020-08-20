@@ -4,7 +4,28 @@
   
   <url>
     <loc>https://waynecater.com/</loc>
-    <lastmod>2020-08-17T18:43:00+00:00</lastmod>
+    <lastmod>2020-08-19T19:45:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://waynecater.com/posts/a-game-engine/</loc>
+    <lastmod>2020-08-19T19:45:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://waynecater.com/tags/games-programming-pixijs-javascript-ct.js/</loc>
+    <lastmod>2020-08-19T19:45:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://waynecater.com/tags/</loc>
+    <lastmod>2020-08-19T19:45:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -18,13 +39,6 @@
   
   <url>
     <loc>https://waynecater.com/posts/some-photography/</loc>
-    <lastmod>2020-08-17T18:43:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://waynecater.com/tags/</loc>
     <lastmod>2020-08-17T18:43:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
