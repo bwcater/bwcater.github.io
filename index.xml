@@ -6,10 +6,20 @@
     <description>Recent content in   on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Aug 2020 19:45:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 29 Aug 2020 17:10:00 +0000</lastBuildDate>
     
 	<atom:link href="https://waynecater.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Learning Ionic</title>
+      <link>https://waynecater.com/posts/ionic-app-dev/</link>
+      <pubDate>Sat, 29 Aug 2020 17:10:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/posts/ionic-app-dev/</guid>
+      <description>In my day job I write web applications using Angular and .Net that run on Azure. Since I work in Angular by day it is a pretty easy jump to tinker using it in mobile development.
+In my spare time I was playing around with NativeScript using Angular.One day at the office a coworker challenged me to consider Ionic using Angular. I told him I had read about Ionic a few years back, but the comments of slowness on a device kept me from considering it.</description>
+    </item>
     
     <item>
       <title>A Game Engine</title>
