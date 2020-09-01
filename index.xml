@@ -6,10 +6,22 @@
     <description>Recent content in   on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Aug 2020 17:10:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2020 20:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://waynecater.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Task List - Ionic based PWA</title>
+      <link>https://waynecater.com/posts/ionic-app-pwa/</link>
+      <pubDate>Mon, 31 Aug 2020 20:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/posts/ionic-app-pwa/</guid>
+      <description>Turning the Task List application was not hard at all! If you&amp;rsquo;re interested, or need some guidance about how to do so, be sure to checkout the Ionic documentation.
+After building the PWA code base, I had to modify the
+ &amp;lt;base href /&amp;gt;
+ in the index.html file. I also had to modify paths in the manifest.webmanifest file to work with my website.</description>
+    </item>
     
     <item>
       <title>Learning Ionic</title>

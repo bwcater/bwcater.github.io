@@ -4,7 +4,28 @@
   
   <url>
     <loc>https://waynecater.com/</loc>
-    <lastmod>2020-08-29T17:10:00+00:00</lastmod>
+    <lastmod>2020-08-31T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://waynecater.com/tags/ionic-framework-app-angular-mobile-development-pwa/</loc>
+    <lastmod>2020-08-31T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://waynecater.com/tags/</loc>
+    <lastmod>2020-08-31T20:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://waynecater.com/posts/ionic-app-pwa/</loc>
+    <lastmod>2020-08-31T20:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -18,13 +39,6 @@
   
   <url>
     <loc>https://waynecater.com/posts/ionic-app-dev/</loc>
-    <lastmod>2020-08-29T17:10:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://waynecater.com/tags/</loc>
     <lastmod>2020-08-29T17:10:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
