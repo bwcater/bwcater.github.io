@@ -1,0 +1,363 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: underline;
+    color: navy;
+}
+
+.header {
+    margin-top: 0;
+    height: 600px;
+    background-image: url('../images/acousticguitar.jpg');
+    overflow:hidden;
+    background-repeat: no-repeat;  
+    background-size: cover; 
+    color: #fff;
+}
+.header .site-title {
+    margin-top: 7.75em;
+    margin-left: .5em;
+    font-size: 275%;
+    text-shadow: 2px 2px gray;
+    
+}
+.header .site-by-line {
+    margin-top: -1.5em;
+    margin-left: 1em;
+    font-size: 155%;
+    text-shadow: 2px 2px gray;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow:hidden; 
+    background-color: #000;
+    display: flex;
+    flex-direction: row;
+}
+
+li a {
+    display: block;
+    margin-left: 12px;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.art {
+    display:block;
+    width: 100%;
+    padding-bottom: 50px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+      
+.column {
+flex: 25%;
+max-width: 25%;
+padding: 0 4px;
+}
+
+.column img {
+margin-top: 8px;
+vertical-align: middle;
+}
+
+.music, .about, .social, .contact {
+    display:block;
+    width: 100%;
+    padding: 20px; 
+}
+
+.about, .footer {
+    background-color: darkgray;
+}
+
+.art h3 {
+    font-size: 275%;
+    padding-left: 1em;
+}
+
+.music h3, .about h3, .social h3, .contact h3 {
+    font-size: 275%;
+    padding-left: .5em;
+}
+
+.art hr {
+    align-content: center;
+    width: 95%;
+
+    margin: 25px 20px;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+    
+}
+
+.row {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+padding: 0 4px;
+}
+  
+.column {
+flex: 20%;
+max-width: 18%;
+padding: 0 4px;
+}
+
+.column img {
+margin-top: 8px;
+vertical-align: middle;
+}
+
+.bayou-scene-video {
+   display: flex;
+   flex-direction: row;
+   margin-top: 40px;
+   justify-content: center;
+}
+.videos {
+    width: 560px;
+    height: 315px;
+}
+
+
+
+.music hr, .about hr, .social hr, .contact hr {
+    align-content: center;
+    width: 95%;
+    margin: 25px 0;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+    
+}
+
+.albums {
+    width: 90%;
+    margin: 3em 0 6em 13%;  
+}
+
+.albums a {
+    text-decoration: none !important;
+}
+
+.album {
+    border:1pt solid #000;
+    height: 200px;
+    width: 200px;
+    background-color: lightgray;
+    margin-right: 40px;
+}
+
+.cdbaby-player {
+    display: flex;
+    justify-content: center;
+}
+
+.full {
+    width:80%;
+    height:520px;
+    border:0px;
+}
+
+.cdbaby-player-small {
+    display:none;
+}
+
+.about-content {
+    width: 90%;
+    margin-left: 1.75em;
+    align-content: center;
+}
+
+.about-pic {
+    float:right;
+    margin: 4px 80px 4px 10px;
+}
+
+.social {
+    width: 100%;
+    height: 15em; 
+}
+.social-icon {
+    float: left;
+    padding-left: 30px;
+}
+
+.social-icon img {
+    width: 64px;
+    height: 64px;
+}
+
+
+.how-to-contact-me {
+    width: 90%;
+    height: 8em;
+    margin-left: 1.75em;
+    align-content: center;
+}
+
+.how-to-contact-me p {
+    padding-top: 3rem;
+}
+
+.footer {
+    height: 80px;
+    padding: 20px;
+    border-top: 5px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.copyright {
+    margin-left: 2em;
+    padding-top: 20px;
+}
+
+.back-to-top {
+    float:right;
+    color: #fff;
+}
+
+.back-to-top a {
+    margin: -20px 50px;
+    float:right;
+    color: #fff;
+    text-decoration: none;
+    text-decoration-color: #fff;
+}
+
+
+@media (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 45%;
+    }
+  }
+
+  @media (max-width: 600px) {
+ 
+    .header .site-title {
+        margin-top: 11em;
+        margin-left: .5em;
+        font-size: 225%;
+        text-shadow: 2px 2px gray;
+        
+    }
+    .header .site-by-line {
+        margin-top: -2em;
+        margin-left: 1.25em;
+        font-size: 110%;
+        text-shadow: 2px 2px gray;
+    }
+
+    ul {
+        flex-direction: column;
+    }
+    .art hr, .music hr, .about hr, .social hr, .contact hr {
+        width: 90% !important;
+    }
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+    .full {
+        display:none;
+    }
+    .cdbaby-player-small {
+
+        display:block;
+    }
+    .square {
+        
+        justify-content: center;
+        width: 400px;
+        height: 425px;
+    }
+    
+    /* .bayou-scene-video {
+        margin-top: 40px;
+        width: 80%;
+    } */
+    .album {
+        margin-top: 16px;
+        height: 300px;
+        width: 300px;
+    }
+    .about-content {
+        width: 80%;
+    }
+    .about-pic {
+        width: 45%;
+        margin: 4px 60px 5px 10px;
+    }
+
+    .social {
+       height: 400px;
+    }
+    .social-icon {
+        padding-top: 20px;
+        padding-left: 30px;
+    }
+    
+    .social-icon img {
+        width: 82px;
+        height: 82px;
+    }
+
+    .how-to-contact-me {
+        padding-top: 1rem;
+        width: 70%;
+        height: 8em;
+        margin-left: 1.75em;
+        align-content: center;
+    }
+    .how-to-contact-me p {
+        padding-top: 1rem;
+    } 
+    .copyright {
+        margin-top: -1rem;
+        margin-left: .5em;
+        font-size: 16px;
+    }
+    .back-to-top {
+        padding-top:40px; 
+        align-content: right !important;
+        color: #fff;
+
+    }
+  }
+
