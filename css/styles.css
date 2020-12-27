@@ -1,9 +1,12 @@
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
 }
 
 body {
     width: 100%;
+    max-width: 100%;
     padding: 0;
     margin: 0 auto;
 
@@ -14,6 +17,7 @@ body {
 
 .container {
     width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -26,14 +30,14 @@ a {
 .header {
     margin-top: 0;
     background-image: url('../images/acousticguitar.jpg');
-    overflow:hidden;
     background-repeat: no-repeat;  
     background-size: cover; 
     color: #fff;
-
+    
     width: 100%; 
     width: 100vw;
-    /* height: 600px */
+    max-width: 100%;
+    overflow:hidden;
 }
 .header .site-title {
     margin-top: 7.75em;
@@ -99,10 +103,11 @@ margin-top: 8px;
 vertical-align: middle;
 }
 
-.music, .about, .social, .contact {
+.music, .about, .social, .contact, .reflections {
     display:block;
     width: 100%;
-    padding: 20px; 
+    padding-top: 20px;
+    padding-bottom: 20px; 
 }
 
 .about, .footer {
@@ -114,7 +119,7 @@ vertical-align: middle;
     padding-left: 1em;
 }
 
-.music h3, .about h3, .social h3, .contact h3 {
+.music h3, .about h3, .social h3, .contact h3, .reflections h3 {
     font-size: 275%;
     padding-left: .5em;
 }
@@ -161,7 +166,7 @@ vertical-align: middle;
 
 
 
-.music hr, .about hr, .social hr, .contact hr {
+.music hr, .about hr, .social hr, .contact hr, .reflections hr {
     align-content: center;
     width: 95%;
     height: 1px;
@@ -244,8 +249,9 @@ vertical-align: middle;
 
 .footer {
     width: 100%;
+    max-width: 100%;
     height: 80px;
-    padding: 20px;
+    /* padding: 20px; */
     border-top: 5px solid #000;
     background-color: #000;
     color: #fff;
@@ -269,6 +275,76 @@ vertical-align: middle;
     text-decoration-color: #fff;
 }
 
+.reflection-post {
+    /* margin: 3em auto; */
+    padding: 2em;
+}
+
+.reflection-post:nth-of-type(odd) {
+    background-color: #fff;
+}
+
+.reflection-post:nth-of-type(even) {
+    background-color: #ccc;
+    padding-top: 1.5em;
+    padding-bottom: 2.25em;
+}
+
+.reflection-title {
+    font-weight: bold;
+    font-size:large;
+}
+
+.reflection-title:hover {
+    cursor: pointer;
+}
+
+.reflection-date {
+    font-weight: normal;
+    font-size:small;
+    margin-top: -1em;
+}
+
+.reflection-tags {
+    font-weight: normal;
+    font-size:small;
+    margin-top: -1em;
+}
+
+.reflection-keys {
+    font-weight:bold;
+    font-size:small;
+}
+
+.reflection-img-right {
+    float:right;
+    margin: 20px 10px 10px 20px;
+}
+
+.reflection-img-left {
+    float:left;
+    margin: 20px 20px 20px 10px;
+}
+
+.reflection-entries {
+    font-size:medium;
+}
+
+.reflections-content {
+    width: 100%;
+    align-content: center;
+}
+
+.paging-buttons {
+    margin-top: 1.75em;
+    margin-left: 2em;
+}
+
+.btn {
+    width: 48px;
+    height: 48px;
+    font-size: large;
+}
 
 @media (max-width: 800px) {
     .column {
@@ -296,7 +372,7 @@ vertical-align: middle;
     ul {
         flex-direction: column;
     }
-    .art hr, .music hr, .about hr, .social hr, .contact hr {
+    .art hr, .music hr, .about hr, .social hr, .contact hr, .reflections hr {
         width: 90% !important;
     }
     .column {
@@ -326,9 +402,10 @@ vertical-align: middle;
         height: 300px;
         width: 300px;
     }
-    .about-content {
+    .about-content, .reflections-content {
         width: 80%;
     }
+
     .about-pic {
         width: 45%;
         margin: 4px 60px 5px 10px;

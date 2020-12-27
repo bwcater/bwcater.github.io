@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="The Music & Art of Wayne Cater">
+    <meta name="author" content="Wayne Cater">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW"> 
+    <!-- <link rel="icon" href="favicon.ico"> -->
+    <title>WayneCater.com</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+<div id="top" class="container">
+    <div class="header">
+        <h3 class="site-title">Wayne Cater</h3>
+        <h5 class="site-by-line">M u s i c  &nbsp; &  &nbsp; A r t </h5>
+    </div>
+    <ul>
+        <li><a href="index.html#Music">Music</a></li>
+        <li><a href="art.html#Art">Art</a></li>
+        <li><a href="index.html#About">About</a></li>
+        <li><a href="index.html#Social">Social</a></li>
+        <li><a href="index.html#Contact">Contact</a></li>
+        <li><a href="reflections.html#Reflections">Reflections</a></li>
+    </ul>
+
+    <div class="reflections">
+        <h3 id="Reflections">Reflections</h3>
+        <hr>
+
+        <div class="reflections-content">
+            <section class="reflection-post" v-for="(row, index) in selectedReflection" :key="row">
+                <p class="reflection-title">{{ row.title }}</p>
+                <p class="reflection-date">
+                    <span class="reflection-keys">Written </span> 
+                    <span> {{ row.writtenDate }}</span>
+                </p>
+                <p class="reflection-tags">
+                    <span class="reflection-keys">Tags: </span>
+                    <span v-for="tag in row.tags">
+                        {{ tag }} &nbsp;
+                    </span>
+                </p>
+                
+                <div v-for="content in row.content">
+                    <p class="reflection-entries" v-html="content">
+                        {{ content }}
+                    </p>
+                </div>
+                <div class="paging-buttons">
+                    <button type="button" class="btn" @click="getPrevious()" v-if="reflectionId > 0"> << </button>
+                    <button type="button" class="btn" @click="getNext()" v-if="(reflectionId + 1) < totalReflections"> >> </button>
+                </div>
+            </section>
+    </div>
+    
+    <div class="footer">
+        <div class="copyright">
+            &copy;Wayne Cater 2020 - 2021; All Rights Reserved;
+        </div>
+        <div class="back-to-top">
+            <a href="#top">^Back to top</a>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue-axios@2.1.4/dist/vue-axios.min.js"></script>
+<script src="scripts/vue/reflection.js"></script>
+</body>
+</html>

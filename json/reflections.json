@@ -1,0 +1,29 @@
+[
+	{
+		"id": 2,
+		"title": "Art & Piano (YouTube)",
+		"writtenDate": "12-27-2020 10:55am",
+		"content": [
+			"This short video was made in June 2018. It shows some of my art work progression and features a little music I wrote and recorded.",
+			"If you are interested in my art work be sure to check out my instagram page! You can follow me here: <a href=\"https://www.instagram.com/bwcater/\" target=\"_blank\">instagram.com/bwcater</a>",
+			"<iframe width=\"350\" height=\"225\" src=\"https://www.youtube.com/embed/de7EFor4UOw\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+		],
+		"tags": ["art", "watercolor", "draw", "sketch", "piano"],
+		"show": true,
+		"showOnDate": null
+	},
+	{
+		"id": 1,
+		"title": "The Plan",
+		"writtenDate": "12-27-2020 10:15am",
+		"content": [
+			"The page you are presently viewing uses <a href=\"https://vuejs.org/\" target=\"_blank\">Vue</a> to power the static blog like system.  A couple of years back, I was introduced to Vue while working for a Nashville based consulting firm. I went on to work heavily in Angular, but always looked back fondly at Vue. Today I am back working again with Vue.",
+			"I have tinkered with some of the more popular static site engines like Jekyll and Hugo.  They offer some great features and power. I am also aware of VuePress. While what I have put together here is not as feature rich, it meets what I wanted and needed.",
+			"The plan is to use this section, Reflections, to share my songs, art, and thoughts. I hope you will find useful stuff that will make you want to come along for the journey.",
+			"<br/><b>Special Note:</b> More recent posts will be shown from top to bottom; also you can click the title to view the specific reflection in its own page."
+		],
+		"tags": ["blog", "2020", "first post", "vue"],
+		"show": true,
+		"showOnDate": null
+	}
+]
