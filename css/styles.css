@@ -402,8 +402,12 @@ vertical-align: middle;
         height: 300px;
         width: 300px;
     }
-    .about-content, .reflections-content {
+    .about-content {
         width: 80%;
+    }
+
+    .reflections-content {
+        width:100%;
     }
 
     .about-pic {
