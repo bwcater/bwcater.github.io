@@ -1,5 +1,17 @@
 [
 	{
+		"id": 3,
+		"title": "I Still Love You (Acoustic version)",
+		"writtenDate": "12-27-2020 3:47pm",
+		"content": [
+			"Back on October 15, 2020, I recorded this acoustic version of my song, <a href=\"https://www.amazon.com/dp/B073X3YYJL/ref=dm_ws_tlw_trk5\" target=\"_blank\">I Still Love You</a>, on Facebook. A few people listened and responded. Fast forward to December 2020, and for some reason, people are now seeing it and responding to it. Laughingly, I say \"Who can understand the Facebook algorithms?\"",
+			"<iframe src=\"https://www.facebook.com/plugins/video.php?height=225&href=https%3A%2F%2Fwww.facebook.com%2Fwayne.cater%2Fvideos%2F10218533184626446%2F&show_text=false&width=350\" width=\"350\" height=\"225\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\" allowFullScreen=\"true\"></iframe>"
+		],
+		"tags": ["music", "acoustic", "songwriting", "facebook", "video"],
+		"show": true,
+		"showOnDate": null
+	},
+	{
 		"id": 2,
 		"title": "Art & Piano (YouTube)",
 		"writtenDate": "12-27-2020 10:55am",
