@@ -31,22 +31,24 @@
 
         <div class="reflections-content">
             <section class="reflection-post" v-for="(row, index) in displayedPosts" :key="row">
-                <p class="reflection-title" title="view this post" @click="openReflection(index)">{{ row.title }}</p>
-                <p class="reflection-date">
-                    <span class="reflection-keys">Written </span> 
-                    <span> {{ row.writtenDate }}</span>
-                </p>
-                <p class="reflection-tags">
-                    <span class="reflection-keys">Tags: </span>
-                    <span v-for="tag in row.tags">
-                        {{ tag }} &nbsp;
-                    </span>
-                </p>
-                
-                <div v-for="content in row.content">
-                    <p class="reflection-entries" v-html="content">
-                        {{ content }}
+                <div v-if="row.show != false && (row.showOnDate == null || (new Date(row.showOnDate) <= currentDate))">
+                    <p class="reflection-title" title="view this post" @click="openReflection(index)">{{ row.title }}</p>
+                    <p class="reflection-date">
+                        <span class="reflection-keys">Written </span> 
+                        <span> {{ row.writtenDate }}</span>
                     </p>
+                    <p class="reflection-tags">
+                        <span class="reflection-keys">Tags: </span>
+                        <span v-for="tag in row.tags">
+                            {{ tag }} &nbsp;
+                        </span>
+                    </p>
+                    
+                    <div v-for="content in row.content">
+                        <p class="reflection-entries" v-html="content">
+                            {{ content }}
+                        </p>
+                    </div>
                 </div>
             </section>
             <div class="paging-buttons" v-if="reflections.length > postsPerPage">
