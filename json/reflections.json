@@ -1,16 +1,5 @@
-[
-	{
-		"id": 5,
-		"title": "test",
-		"writtenDate": "01-23-2021 7:05am",
-		"content": [
-			"this is a test"
-		],
-		"tags": ["test"],
-		"show": true,
-		"showOnDate": "2021-01-24"
-		
-	},
+{
+    "entries": [
 	{
 		"id": 4,
 		"title": "Illustrations in progress...",
@@ -66,4 +55,6 @@
 		"show": true,
 		"showOnDate": null
 	}
-]
+],
+"recordIndex": 5
+}
