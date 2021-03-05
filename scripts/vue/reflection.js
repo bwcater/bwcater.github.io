@@ -37,7 +37,7 @@ Vue.createApp({
     mounted() {
         axios.get(this.jsonFile)
         .then((response) => {
-             this.reflections = response.data;
+             this.reflections = response.data.entries;
              this.totalReflections = this.reflections.length;
              this.getSelected();
         })
