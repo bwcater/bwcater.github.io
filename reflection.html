@@ -31,7 +31,7 @@
 
         <div class="reflections-content">
             <section class="reflection-post" v-for="(row, index) in selectedReflection" :key="row">
-                <div v-show="row.show != false && (row.showOnDate == null || (new Date(row.showOnDate) <= currentDate))">
+                <div v-if="row.show != false && (row.showOnDate == null || isTimeToShowIt(row.showOnDate))">
                
                 <p class="reflection-title">{{ row.title }}</p>
                 <p class="reflection-date">

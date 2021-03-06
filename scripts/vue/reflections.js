@@ -28,6 +28,7 @@ Vue.createApp({
             window.location.href = `reflection.html?pid=${index}#Reflections`;
         },
         loadReflection(index) {
+            index = (index*1);
             this.currentReflection = this.reflections[index];
         },
         isTimeToShowIt(showOnDate) {
