@@ -39,7 +39,7 @@
         {
             "id": "6",
             "title": "Sweet Conversation",
-            "show": "true",
+            "show": true,
             "showOnDate": "3/5/2021 18:14",
             "writtenDate": "3/5/2021 18:14",
             "tags": [
