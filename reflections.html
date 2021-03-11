@@ -52,9 +52,9 @@
                 </div>
             </section>
             <div class="paging-buttons" v-if="reflections.length > postsPerPage">
-                <button type="button" class="btn" v-if="page != 1" @click="page--"> << </button>
+                <button type="button" class="btn" v-if="page != 1" @click="page--"> < </button>
                 <button type="button" class="btn" v-for="pageNumber in pages.slice(page-1, page+postsPerPage)" @click="page = pageNumber"> {{pageNumber}} </button>
-                <button type="button" @click="page++" v-if="page < pages.length" class="btn"> >> </button>
+                <button type="button" @click="page++" v-if="page < pages.length" class="btn"> > </button>
             </div>
         </div>
     </div>
