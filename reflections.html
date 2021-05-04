@@ -31,7 +31,7 @@
 
         <div class="reflections-content">
             <section class="reflection-post" v-for="(row, index) in displayedPosts" :key="row">
-                <div v-if="row.show != false && (row.showOnDate == null || (new Date(row.showOnDate) <= currentDate))">
+                <div v-if="row.show != false && (row.showOnDate == null || isTimeToShowIt(row.showOnDate))">
                     <p class="reflection-title" title="view this post" @click="openReflection(index)">{{ row.title }}</p>
                     <p class="reflection-date">
                         <span class="reflection-keys">Written </span> 
@@ -52,9 +52,9 @@
                 </div>
             </section>
             <div class="paging-buttons" v-if="reflections.length > postsPerPage">
-                <button type="button" class="btn" v-if="page != 1" @click="page--"> << </button>
-                <button type="button" class="btn" v-for="pageNumber in pages.slice(page-1, page+5)" @click="page = pageNumber"> {{pageNumber}} </button>
-                <button type="button" @click="page++" v-if="page < pages.length" class="btn"> >> </button>
+                <button type="button" class="btn" v-if="page != 1" @click="page--"> < </button>
+                <button type="button" class="btn" v-for="pageNumber in pages.slice(page-1, page+postsPerPage)" @click="page = pageNumber"> {{pageNumber}} </button>
+                <button type="button" @click="page++" v-if="page < pages.length" class="btn"> > </button>
             </div>
         </div>
     </div>

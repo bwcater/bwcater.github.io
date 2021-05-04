@@ -3,7 +3,7 @@ Vue.createApp({
     return {
        reflections: [],
        pages: [],
-       postsPerPage: 4,
+       postsPerPage: 3,
        page: 1,
        //jsonFile: 'http://localhost:3000/json/reflections.json',
        jsonFile: '../../json/reflections.json',
@@ -28,7 +28,22 @@ Vue.createApp({
             window.location.href = `reflection.html?pid=${index}#Reflections`;
         },
         loadReflection(index) {
+            index = (index*1);
             this.currentReflection = this.reflections[index];
+        },
+        isTimeToShowIt(showOnDate) {
+            if (showOnDate == null) return true;
+
+            let currentDate = new Date();
+            let showDate = new Date(showOnDate);
+
+            console.log('curr: ' + currentDate, ' showDate: ' + showDate);
+            
+            if (showDate <= currentDate) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
     computed: {
@@ -44,7 +59,9 @@ Vue.createApp({
     mounted() {
         axios.get(this.jsonFile)
         .then((response) => {
-            this.reflections = response.data;
+            this.reflections  = response.data.entries.filter( (row) => {
+                return this.isTimeToShowIt(row.showOnDate) && row.show;
+            });
         })
 
         var urlParams = new URLSearchParams(window.location.search);
