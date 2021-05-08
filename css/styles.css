@@ -103,7 +103,7 @@ margin-top: 8px;
 vertical-align: middle;
 }
 
-.music, .about, .social, .contact, .reflections {
+.news, .music, .about, .social, .contact, .reflections {
     display:block;
     width: 100%;
     padding-top: 20px;
@@ -119,9 +119,17 @@ vertical-align: middle;
     padding-left: 1em;
 }
 
-.music h3, .about h3, .social h3, .contact h3, .reflections h3 {
+.news h3, .music h3, .about h3, .social h3, .contact h3, .reflections h3 {
     font-size: 275%;
     padding-left: .5em;
+}
+
+.news-content {
+    width: 90%;
+    min-height: 400px;
+    margin-top: 2em;
+    margin-left: 2.75em;
+    align-content: center;
 }
 
 .art hr {
@@ -132,7 +140,6 @@ vertical-align: middle;
     height: 1px;
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-    
 }
 
 .row {
@@ -165,15 +172,12 @@ vertical-align: middle;
     height: 315px;
 }
 
-
-
-.music hr, .about hr, .social hr, .contact hr, .reflections hr {
+.news hr, .music hr, .about hr, .social hr, .contact hr, .reflections hr {
     align-content: center;
     width: 95%;
     height: 1px;
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-    
 }
 
 .albums {
@@ -373,7 +377,8 @@ vertical-align: middle;
     ul {
         flex-direction: column;
     }
-    .art hr, .music hr, .about hr, .social hr, .contact hr, .reflections hr {
+
+    .news hr, .art hr, .music hr, .about hr, .social hr, .contact hr, .reflections hr {
         width: 90% !important;
     }
     .column {
@@ -388,7 +393,6 @@ vertical-align: middle;
         display:block;
     }
     .square {
-        
         justify-content: center;
         width: 400px;
         height: 425px;
@@ -400,11 +404,18 @@ vertical-align: middle;
     } */
     .album {
         margin-top: 16px;
-        height: 300px;
-        width: 300px;
+        height: 200px;
+        width: 200px;
     }
+    
     .about-content {
         width: 80%;
+    }
+
+    .news-content {
+        width: 80%;
+        margin-left: 1.75em;
+        align-content: center;
     }
 
     .reflections-content {
@@ -418,7 +429,7 @@ vertical-align: middle;
     }
 
     .social {
-       height: 400px;
+       height: 475px;
     }
     .social-icon {
         padding-top: 20px;
@@ -446,9 +457,10 @@ vertical-align: middle;
         font-size: 16px;
     }
     .back-to-top {
-        padding-top:40px; 
+        padding-top:30px; 
         align-content: right !important;
         color: #fff;
+        font-size: smaller;
 
     }
   }
