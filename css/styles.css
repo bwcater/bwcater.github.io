@@ -181,10 +181,11 @@ vertical-align: middle;
 }
 
 .albums {
+    height: 1900px;
     width: 100%;
     text-align: center;
-    padding-top: 6em;
-    padding-bottom: 6em;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .albums a {
