@@ -225,7 +225,8 @@ vertical-align: middle;
 
 .about-pic {
     float:right;
-    margin: 4px 80px 4px 10px;
+    padding: 20px;
+    /* margin: 4px 80px 4px 10px; */
 }
 
 .social {
@@ -432,9 +433,8 @@ vertical-align: middle;
     }
 
     .about-pic {
-        text-align: center;
-        width: 75%;
-        margin: 4px 60px 5px 10px;
+        width: 80%;
+        padding: 20px;
     }
 
     .social {
