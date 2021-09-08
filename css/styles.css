@@ -40,10 +40,13 @@ a {
     overflow:hidden;
 }
 .header .site-title {
-    margin-top: .25em;
+    /* margin-top: .25em; */
     font-size: 575%;
     text-shadow: 2px 2px gray;  
-    
+}
+
+.site-title {
+    margin-top: 2.25em;  
 }
 
 .header .site-by-line {
@@ -124,6 +127,10 @@ vertical-align: middle;
     font-size: 275%;
     padding-left: .5em;
 }
+
+/* .reflections a {
+    color: #000;
+} */
 
 .news-content {
     width: 90%;
@@ -298,7 +305,8 @@ vertical-align: middle;
 
 .reflection-title {
     font-weight: bold;
-    font-size:large;
+    font-size: 150%;
+
 }
 
 .reflection-title:hover {
@@ -307,19 +315,19 @@ vertical-align: middle;
 
 .reflection-date {
     font-weight: normal;
-    font-size:small;
+    font-size:90%;
     margin-top: -1em;
 }
 
 .reflection-tags {
     font-weight: normal;
-    font-size:small;
+    font-size: 90%;
     margin-top: -1em;
 }
 
 .reflection-keys {
     font-weight:bold;
-    font-size:small;
+    font-size: 95%;
 }
 
 .reflection-img-right {
@@ -333,7 +341,7 @@ vertical-align: middle;
 }
 
 .reflection-entries {
-    font-size:medium;
+    font-size:95%;
 }
 
 .reflections-content {
@@ -342,12 +350,19 @@ vertical-align: middle;
 }
 
 .paging-buttons {
-    margin-top: 1.75em;
+    margin-top: 1em;
     margin-left: 2em;
+    margin-bottom: .75em;
 }
 
 .btn {
     width: 48px;
+    height: 48px;
+    font-size: large;
+}
+
+.btn-previous, .btn-next {
+    width: 65px;
     height: 48px;
     font-size: large;
 }

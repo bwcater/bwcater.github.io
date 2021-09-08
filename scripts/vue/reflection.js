@@ -6,6 +6,8 @@ Vue.createApp({
        jsonFile: '../../json/reflections.json',
        totalReflections: 0,
        reflectionId: 0,
+       selectedRecord: [],
+       index: 0
     }
 },
     methods: {  
@@ -13,20 +15,39 @@ Vue.createApp({
             var urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('pid')) {
                 this.reflectionId = ((urlParams.get('pid')*1));
-                this.selectedReflection = this.reflections.splice(this.reflectionId,1);
+                this.selectedRecord = this.reflections.find(r => r.id == this.reflectionId);
+            } else {
+                return [];
             }
         },
         getNext() {
-            if ((this.reflectionId + 1) < this.totalReflections) {
-                this.openReflection((this.reflectionId *1)+1);
+            if ((this.reflectionId + 1) <= this.totalReflections) {
+                let entry = this.reflections.find(r => r.id == (this.reflectionId + 1));
+
+                if (!entry || !entry.show) {
+                    this.reflectionId++;
+                    this.getNext();
+                } else {
+                    this.openReflection((this.reflectionId *1)+1);
+                }
+
+                
             }
         },
         openReflection(index) {
-            window.location.href = `reflection.html?pid=${index}#Reflections`;
+            window.location.href = `reflection.html?pid=${index}`;
         },
         getPrevious() {
-            if ((this.reflectionId <= this.totalReflections)  && this.reflectionId > -1) {
-                this.openReflection((this.reflectionId*1)-1);
+            
+            if (this.reflectionId > -1) {
+                let entry = this.reflections.find(r => r.id == (this.reflectionId - 1));
+                
+                if (!entry || !entry.show) {
+                    this.reflectionId--;
+                    this.getPrevious();
+                } else {
+                    this.openReflection((this.reflectionId*1)-1);
+                }
             }
         },
         isTimeToShowIt(showOnDate) {
@@ -35,8 +56,6 @@ Vue.createApp({
             let currentDate = new Date();
             let showDate = new Date(showOnDate);
 
-            console.log('curr: ' + currentDate, ' showDate: ' + showDate);
-            
             if (showDate <= currentDate) {
                 return true;
             } else {
@@ -45,6 +64,13 @@ Vue.createApp({
         }
     },
     computed: {
+        openLastPage() {
+            this.openReflection(this.reflections.length);
+        },
+        getRecord() {
+            this.reflectionId = this.selectedRecord.id;
+            return this.selectedRecord;
+        }
     },
     watch: {
     },

@@ -3,11 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="The Music & Art of Wayne Cater">
+    <meta name="description" content="Read more from Wayne Cater via his personal blog regarding art, photography, music, and life in general.">
     <meta name="author" content="Wayne Cater">
     <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW"> 
     <!-- <link rel="icon" href="favicon.ico"> -->
-    <title>WayneCater.com</title>
+    <title>WayneCater.com Blog</title>
     <link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
@@ -21,19 +21,16 @@
         <li><a href="index.html#About">About</a></li>
         <li><a href="index.html#Social">Social</a></li>
         <li><a href="index.html#Contact">Contact</a></li>
-        <li><a href="reflections.html#Reflections">Reflections</a></li>
+        <li><a href="reflections.html">Reflections</a></li>
     </ul>
 
     <div class="reflections">
-        <h3 id="Reflections">Reflections</h3>
-        <hr>
-
         <div class="reflections-content">
             <section class="reflection-post" v-for="(row, index) in displayedPosts" :key="row">
                 <div v-if="row.show != false && (row.showOnDate == null || isTimeToShowIt(row.showOnDate))">
-                    <p class="reflection-title" title="view this post" @click="openReflection(index)">{{ row.title }}</p>
+                    <p class="reflection-title" title="view this post" @click="openReflection(row.id)"><u>{{ row.title }}</u></p>
                     <p class="reflection-date">
-                        <span class="reflection-keys">Written </span> 
+                        <span class="reflection-keys">Written: </span> 
                         <span> {{ row.writtenDate }}</span>
                     </p>
                     <p class="reflection-tags">
@@ -51,9 +48,11 @@
                 </div>
             </section>
             <div class="paging-buttons" v-if="reflections.length > postsPerPage">
-                <button type="button" class="btn" v-if="page != 1" @click="page--"> < </button>
+                <button title="first page" type="button" @click="page = 1" class="btn btn-previous" v-if="page != 1" @click="page--"> << </button>
+                <button title="previous page" type="button" class="btn btn-previous" v-if="page != 1" @click="page--"> < </button>
                 <button type="button" class="btn" v-for="pageNumber in pages.slice(page-1, page+postsPerPage)" @click="page = pageNumber"> {{pageNumber}} </button>
-                <button type="button" @click="page++" v-if="page < pages.length" class="btn"> > </button>
+                <button title="next page" type="button" @click="page++" v-if="page < pages.length" class="btn btn-next"> > </button>
+                <button title="last page" type="button" @click="page = lastPage" v-if="page < pages.length" class="btn btn-next"> >> </button>
             </div>
         </div>
     </div>

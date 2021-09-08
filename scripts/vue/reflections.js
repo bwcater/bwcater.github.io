@@ -5,7 +5,6 @@ Vue.createApp({
        pages: [],
        postsPerPage: 3,
        page: 1,
-       //jsonFile: 'http://localhost:3000/json/reflections.json',
        jsonFile: '../../json/reflections.json',
        currentReflection: []
     }
@@ -24,11 +23,11 @@ Vue.createApp({
             let to = (page * perPage);
             return  reflections.slice(from, to);
         },
-        openReflection(index) {
-            window.location.href = `reflection.html?pid=${index}#Reflections`;
+        openReflection(page) {
+            window.location.href = `reflection.html?pid=${page}`;  //#Reflections`;
         },
-        loadReflection(index) {
-            index = (index*1);
+        loadReflection(page) {
+            index = (page*1);
             this.currentReflection = this.reflections[index];
         },
         isTimeToShowIt(showOnDate) {
@@ -36,9 +35,7 @@ Vue.createApp({
 
             let currentDate = new Date();
             let showDate = new Date(showOnDate);
-
-            console.log('curr: ' + currentDate, ' showDate: ' + showDate);
-            
+         
             if (showDate <= currentDate) {
                 return true;
             } else {
@@ -49,6 +46,9 @@ Vue.createApp({
     computed: {
         displayedPosts () {
             return this.paginate(this.reflections);
+        },
+        lastPage() {
+            return Math.ceil(this.reflections.length / this.postsPerPage)
         }
     },
     watch: {

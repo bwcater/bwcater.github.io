@@ -21,40 +21,42 @@
         <li><a href="index.html#About">About</a></li>
         <li><a href="index.html#Social">Social</a></li>
         <li><a href="index.html#Contact">Contact</a></li>
-        <li><a href="reflections.html#Reflections">Reflections</a></li>
+        <li><a href="reflections.html">Reflections</a></li>
     </ul>
 
     <div class="reflections">
-        <h3 id="Reflections">Reflections</h3>
-        <hr>
-
         <div class="reflections-content">
-            <section class="reflection-post" v-for="(row, index) in selectedReflection" :key="row">
-                <div v-if="row.show != false && (row.showOnDate == null || isTimeToShowIt(row.showOnDate))">
+            <section class="reflection-post">
+            
+                <div v-if="selectedRecord.show != false && (selectedRecord.showOnDate == null || isTimeToShowIt(selectedRecord.showOnDate))">
                
-                <p class="reflection-title">{{ row.title }}</p>
+                <h2 class="reflection-title">{{ selectedRecord.title }}</h2>
                 <p class="reflection-date">
-                    <span class="reflection-keys">Written </span> 
-                    <span> {{ row.writtenDate }}</span>
+                    <span class="reflection-keys">Written: </span> 
+                    <span> {{ selectedRecord.writtenDate }}</span>
                 </p>
                     <p class="reflection-tags">
                         <span class="reflection-keys">Tags: </span>
-                        <span v-for="tag in row.tags">
+                        <span v-for="tag in selectedRecord.tags">
                             {{ tag }} &nbsp;
                         </span>
                     </p>
                     
-                    <div v-for="content in row.content">
+                    <div v-for="content in selectedRecord.content">
                         <p class="reflection-entries" v-html="content">
                             {{ content }}
                         </p>
                     </div>
                 </div>
-                <div class="paging-buttons">
-                    <button type="button" class="btn" @click="getPrevious()" v-if="reflectionId > 0"> < </button>
-                    <button type="button" class="btn" @click="getNext()" v-if="(reflectionId + 1) < totalReflections"> ></button>
-                </div>
             </section>
+
+                <div class="paging-buttons">
+                    <button title="first" type="button" class="btn btn.previous" @click="openReflection(1)" v-if="reflectionId > 0"> << </button>
+                    <button title="previous" type="button" class="btn" @click="getPrevious()" v-if="reflectionId >= 1"> < </button>
+                    <button title="next" type="button" class="btn" @click="getNext()" v-if="(reflectionId + 1) <= totalReflections"> ></button>
+                    <button title="last" type="button" class="btn" @click="openLastPage()" v-if="(reflectionId + 1) <= totalReflections && reflectionId != totalReflections"> >></button>
+                
+                </div>
     </div>
     
     <div class="footer">
