@@ -16,7 +16,9 @@ Vue.createApp({
             if (urlParams.has('pid')) {
                 this.reflectionId = ((urlParams.get('pid')*1));
                 this.selectedRecord = this.reflections.find(r => r.id == this.reflectionId);
+                document.querySelector('meta[name="description"]').content = this.selectedRecord.description;
             } else {
+                document.querySelector('meta[name="description"]').content = "Wayne Cater's Blog";
                 return [];
             }
         },
@@ -30,8 +32,6 @@ Vue.createApp({
                 } else {
                     this.openReflection((this.reflectionId *1)+1);
                 }
-
-                
             }
         },
         openReflection(index) {

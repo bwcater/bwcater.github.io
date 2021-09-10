@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="The Music & Art of Wayne Cater">
+    <meta name="description" content="Wayne Cater's Blog">
     <meta name="author" content="Wayne Cater">
     <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW"> 
     <!-- <link rel="icon" href="favicon.ico"> -->
@@ -55,7 +55,6 @@
                     <button title="previous" type="button" class="btn" @click="getPrevious()" v-if="reflectionId >= 1"> < </button>
                     <button title="next" type="button" class="btn" @click="getNext()" v-if="(reflectionId + 1) <= totalReflections"> ></button>
                     <button title="last" type="button" class="btn" @click="openLastPage()" v-if="(reflectionId + 1) <= totalReflections && reflectionId != totalReflections"> >></button>
-                
                 </div>
     </div>
     
