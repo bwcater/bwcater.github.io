@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Sep 2021 06:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Sep 2021 12:15:42 -0500</lastBuildDate><atom:link href="https://waynecater.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New Look and Feel</title>
+      <link>https://waynecater.com/posts/new-look-and-feel/</link>
+      <pubDate>Fri, 24 Sep 2021 12:15:42 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/new-look-and-feel/</guid>
+      <description>I am in a mode of trying to simplify my life. One such way of doing that is going back to using Hugo for my website. The elegance of using Markdown syntax coupled with the ability to quickly grasp the structure of Hugo and the Go Language syntax makes it a clear winner in my opinion. Mix in the available themes offered and it is a home run!
+I hope you find the website easier to navigate and to find what you want!</description>
+    </item>
+    
     <item>
       <title>Download Free Colorsheets</title>
       <link>https://waynecater.com/posts/colorsheets/</link>
