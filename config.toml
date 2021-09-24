@@ -1,5 +1,5 @@
 
-baseURL = "https://waynecater.com/public/"
+baseURL = "https://waynecater.com/public"
 languageCode = "en-us"
 title = "Wayne Cater"
 theme = "minimal"
