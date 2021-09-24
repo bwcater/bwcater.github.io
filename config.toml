@@ -1,5 +1,5 @@
 
-baseURL = "https://waynecater.com/public"
+baseURL = "https://waynecater.com"
 languageCode = "en-us"
 title = "Wayne Cater"
 theme = "minimal"
@@ -10,7 +10,7 @@ theme = "minimal"
     author = "Wayne Cater"
     description = "a simple guy with some creative passions"
     #description = "Artist, Author, Creative, Software Developer, Songwriter"
-    githubUsername = "#"
+    githubUsername = "bwcater"
     accent = "black"
     showBorder = false
     backgroundColor = "white"
