@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>release on Wayne Cater</title>
-    <link>https://waynecater.com/public/tags/release/</link>
+    <link>https://waynecater.com/tags/release/</link>
     <description>Recent content in release on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 May 2021 07:16:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/public/tags/release/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 May 2021 07:16:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/tags/release/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tomorrow</title>
-      <link>https://waynecater.com/public/posts/tomorrow/</link>
+      <link>https://waynecater.com/posts/tomorrow/</link>
       <pubDate>Wed, 12 May 2021 07:16:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/public/posts/tomorrow/</guid>
+      <guid>https://waynecater.com/posts/tomorrow/</guid>
       <description>Recently, I shared this tune with a friend of mine in New Orleans. He told me it was a perfect song for the times.
 Perhaps Tomorrow is a song I might give to my younger self given the chance. Life can be hard and doesn’t pull punches. One makes mistakes, but tomorrow is a new day! It’s a chance to heal, to move on, to go a new direction.</description>
     </item>
