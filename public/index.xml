@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wayne Cater</title>
-    <link>https://waynecater.com/</link>
+    <link>https://waynecater.com/public/</link>
     <description>Recent content on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Sep 2021 12:15:42 -0500</lastBuildDate><atom:link href="https://waynecater.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Sep 2021 12:15:42 -0500</lastBuildDate><atom:link href="https://waynecater.com/public/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Looking for Friends in My Backyard</title>
-      <link>https://waynecater.com/books/</link>
+      <link>https://waynecater.com/public/books/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/books/</guid>
+      <guid>https://waynecater.com/public/books/</guid>
       <description>My first children&amp;rsquo;s book, Looking for Friends in My Backyard is a story I wrote and illustrated with my grandsons in mind. It covers a day in the life of a little boy exploring his own backyard. Come along for the adventure!
 
 Check it out:
@@ -25,10 +25,10 @@ Walmart</description>
     
     <item>
       <title>Tomorrow</title>
-      <link>https://waynecater.com/recordings/tomorrow/</link>
+      <link>https://waynecater.com/public/recordings/tomorrow/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/recordings/tomorrow/</guid>
+      <guid>https://waynecater.com/public/recordings/tomorrow/</guid>
       <description>Simple piano and raspy vocals underpin a soulful ballad about keeping the faith and not giving up on tomorrow!
 
 Check it out:
@@ -39,10 +39,10 @@ YouTube</description>
     
     <item>
       <title>Dawn of a New Day</title>
-      <link>https://waynecater.com/recordings/dawnofanewday/</link>
+      <link>https://waynecater.com/public/recordings/dawnofanewday/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/recordings/dawnofanewday/</guid>
+      <guid>https://waynecater.com/public/recordings/dawnofanewday/</guid>
       <description>Dawn of a New Day is a keyboard / synthesizer based instrumental work with cinematic overtones. Inspired by the thought that the future is still ahead, the past is behind! Seize the dawn of a new day&amp;hellip;
 
 Check it out:
@@ -53,10 +53,10 @@ YouTube</description>
     
     <item>
       <title>Unfinished Business</title>
-      <link>https://waynecater.com/recordings/unfinishedbusiness/</link>
+      <link>https://waynecater.com/public/recordings/unfinishedbusiness/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/recordings/unfinishedbusiness/</guid>
+      <guid>https://waynecater.com/public/recordings/unfinishedbusiness/</guid>
       <description>Released in September 2018, Unfinished Business was a labor of love featuring 7 original piano based works. Tracks that appeared to interest listeners were On Hold, Workin&#39; Toward Something, and Pillow Fight.
 
 Check it out:
@@ -67,10 +67,10 @@ YouTube</description>
     
     <item>
       <title>No Where Fast</title>
-      <link>https://waynecater.com/recordings/nowherefast/</link>
+      <link>https://waynecater.com/public/recordings/nowherefast/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/recordings/nowherefast/</guid>
+      <guid>https://waynecater.com/public/recordings/nowherefast/</guid>
       <description>No Where Fast released in March 2018, arrived with 10 original songs! Some of the fan favorites are &amp;hellip;
 Pretty Little Lies &amp;ndash; a cynical commentary of the times, Now I Do, a ballad about the blessings of small town life, and Road To Amarillo, a guitar grooving instrumental!
 
@@ -82,10 +82,10 @@ YouTube</description>
     
     <item>
       <title>Long Way from Home</title>
-      <link>https://waynecater.com/recordings/longwayfromhome/</link>
+      <link>https://waynecater.com/public/recordings/longwayfromhome/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/recordings/longwayfromhome/</guid>
+      <guid>https://waynecater.com/public/recordings/longwayfromhome/</guid>
       <description>Containing 12 original songs and recorded in 2017, Long Way from Home features a mix of songs ranging from warm ballads like Don&amp;rsquo;t Go Away to upbeat Goin&#39; Down This Road. Thought provoking lyrical tracks like Things to Think About remind one of what is important at the end of the day! There is an underlying feel to much of this recording that is Eagle&amp;rsquo;s like.
 
 Check it out:</description>
@@ -93,40 +93,40 @@ Check it out:</description>
     
     <item>
       <title>New Look and Feel</title>
-      <link>https://waynecater.com/posts/new-look-and-feel/</link>
+      <link>https://waynecater.com/public/posts/new-look-and-feel/</link>
       <pubDate>Fri, 24 Sep 2021 12:15:42 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/new-look-and-feel/</guid>
+      <guid>https://waynecater.com/public/posts/new-look-and-feel/</guid>
       <description>I am in a mode of trying to simplify my life. One such way of doing that is going back to using Hugo for my website. The elegance of using Markdown syntax coupled with the ability to quickly grasp the structure of Hugo and the Go Language syntax makes it a clear winner in my opinion. Mix in the available themes offered and it is a home run!
 I hope you find the website easier to navigate and to find what you want!</description>
     </item>
     
     <item>
       <title>Download Free Colorsheets</title>
-      <link>https://waynecater.com/posts/colorsheets/</link>
+      <link>https://waynecater.com/public/posts/colorsheets/</link>
       <pubDate>Fri, 24 Sep 2021 06:00:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/colorsheets/</guid>
+      <guid>https://waynecater.com/public/posts/colorsheets/</guid>
       <description>You can download the following items for FREE! You don&amp;rsquo;t have to purchase my book, Looking For Friends In My Backyard, in order to enjoy some colorsheets I created these based on the artwork from the book. Simply click the image of the sheet, or sheets, you wish to download and print. Enjoy!!!
 Note: When you click one of the images to download, it will open in a new tab!</description>
     </item>
     
     <item>
       <title>Tomorrow</title>
-      <link>https://waynecater.com/posts/tomorrow/</link>
+      <link>https://waynecater.com/public/posts/tomorrow/</link>
       <pubDate>Wed, 12 May 2021 07:16:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/tomorrow/</guid>
+      <guid>https://waynecater.com/public/posts/tomorrow/</guid>
       <description>Recently, I shared this tune with a friend of mine in New Orleans. He told me it was a perfect song for the times.
 Perhaps Tomorrow is a song I might give to my younger self given the chance. Life can be hard and doesn’t pull punches. One makes mistakes, but tomorrow is a new day! It’s a chance to heal, to move on, to go a new direction.</description>
     </item>
     
     <item>
       <title>Looking For Friends In My Backyard</title>
-      <link>https://waynecater.com/posts/lookingforfriends/</link>
+      <link>https://waynecater.com/public/posts/lookingforfriends/</link>
       <pubDate>Tue, 04 May 2021 17:25:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/lookingforfriends/</guid>
+      <guid>https://waynecater.com/public/posts/lookingforfriends/</guid>
       <description>I am excited to share that I have a new children&amp;rsquo;s book &amp;ndash; Looking For Friends In My Backyard.
 Looking For Friends In My Backyard is about a day in the life of a little boy exploring his backyard! The illustrations are watercolor pieces that I did myself.
 
@@ -136,70 +136,70 @@ You can order your copy today on Amazon.com!
     
     <item>
       <title>Midiman driver for Mac OS Catalina and Big Sur</title>
-      <link>https://waynecater.com/posts/midimanonmacos/</link>
+      <link>https://waynecater.com/public/posts/midimanonmacos/</link>
       <pubDate>Sat, 13 Mar 2021 07:57:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/midimanonmacos/</guid>
+      <guid>https://waynecater.com/public/posts/midimanonmacos/</guid>
       <description>I&amp;rsquo;ve got a little Midiman 1x1 Sport that I love using. It uses phantom power and is small enough to haul around if needed. I have other gear that I can use to replace it, but I wanted to keep using this device.
 The Midiman 1x1 Sport does NOT work with Mac OS Catalina, or Big Sur without a 64 bit driver update. There is NO updated driver from the manufacturer.</description>
     </item>
     
     <item>
       <title>Chasing the Wind</title>
-      <link>https://waynecater.com/posts/chasingthewind/</link>
+      <link>https://waynecater.com/public/posts/chasingthewind/</link>
       <pubDate>Thu, 11 Mar 2021 21:36:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/chasingthewind/</guid>
+      <guid>https://waynecater.com/public/posts/chasingthewind/</guid>
       <description>A little something from 2 years back&amp;hellip;
  </description>
     </item>
     
     <item>
       <title>Slowin&#39; Down</title>
-      <link>https://waynecater.com/posts/slowindown/</link>
+      <link>https://waynecater.com/public/posts/slowindown/</link>
       <pubDate>Tue, 09 Mar 2021 07:10:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/slowindown/</guid>
+      <guid>https://waynecater.com/public/posts/slowindown/</guid>
       <description>I&amp;rsquo;d like to be slowing down much of the time so that I could enjoy the little things in life. Like so many of us, I find myself pulled in a number of directions trying to keep it all moving in the right direction. I&amp;rsquo;d like to practice what I preach, but in honesty, the only slowing down I might do today would be to share this track!
 This is a simple instrumental with a little vocal harmony near the end; I recorded it at home using Logic Pro X, a Focusrite 18i8, a tele custom, and a Shure SM58; I hope you like it.</description>
     </item>
     
     <item>
       <title>It Begins</title>
-      <link>https://waynecater.com/posts/itbegins/</link>
+      <link>https://waynecater.com/public/posts/itbegins/</link>
       <pubDate>Sun, 07 Mar 2021 18:29:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/itbegins/</guid>
+      <guid>https://waynecater.com/public/posts/itbegins/</guid>
       <description>Last year when Covid hit and most of us found ourselves working at home, my wife, a school teacher, and I started a garden. It became one of the things that we both found ourselves looking forward to daily. Now a year later, we have begun our planning for this year&amp;rsquo;s garden!
 The excitement and anticipation of the Cater Garden 2021, is upon us! We look forward to Spring and the days ahead!</description>
     </item>
     
     <item>
       <title>Sweet Conversation</title>
-      <link>https://waynecater.com/posts/sweetconversation/</link>
+      <link>https://waynecater.com/public/posts/sweetconversation/</link>
       <pubDate>Fri, 05 Mar 2021 18:14:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/sweetconversation/</guid>
+      <guid>https://waynecater.com/public/posts/sweetconversation/</guid>
       <description>I recently sat down here at home and recorded this calming jazz piano piece. I hope you like it!
  </description>
     </item>
     
     <item>
       <title>Illustrations In Progress</title>
-      <link>https://waynecater.com/posts/illustrationsinprogress/</link>
+      <link>https://waynecater.com/public/posts/illustrationsinprogress/</link>
       <pubDate>Fri, 01 Jan 2021 20:50:00 -0500</pubDate>
       
-      <guid>https://waynecater.com/posts/illustrationsinprogress/</guid>
+      <guid>https://waynecater.com/public/posts/illustrationsinprogress/</guid>
       <description>Last year I wrote a little poem from the perspective of my youngest grandson. My family and some friends fell in love with the story.
 I started sketching and watercoloring the illustrations for it. After working through a number of the illustrations, I shared electronic copies of the work with a few folks. The illustrations were well received, but I wanted to do a little better. The holidays came, and I got busy with my day job, so I put the illustration work on hold.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://waynecater.com/about/</link>
+      <link>https://waynecater.com/public/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://waynecater.com/about/</guid>
+      <guid>https://waynecater.com/public/about/</guid>
       <description>I am Billy Wayne Cater. My friends call me Wayne!
 &#34;
 I am a songwriter, but isn’t everyone in Nashville? I play guitar and tinker with other instruments &amp;ndash; piano / keyboard, and bass guitar. I am an ASCAP member. You can find some of my music work on Apple Music, Amazon Music, Spotify, and others.
