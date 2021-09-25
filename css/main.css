@@ -130,3 +130,8 @@ img[alt$=">"] {
   .thumbnails {
     float:left !important;
   }
+
+   .art {
+    /* float:left !important; */
+    padding: 10px; 
+  } 
