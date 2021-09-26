@@ -135,3 +135,11 @@ img[alt$=">"] {
     /* float:left !important; */
     padding: 10px; 
   } 
+
+  .bio-pic {
+    float: right;
+    padding: 15px;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+  }
