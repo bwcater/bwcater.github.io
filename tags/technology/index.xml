@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>technology on Wayne Cater</title>
+    <link>https://waynecater.com/tags/technology/</link>
+    <description>Recent content in technology on Wayne Cater</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Nov 2021 05:53:37 -0600</lastBuildDate><atom:link href="https://waynecater.com/tags/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Something New Something Old</title>
+      <link>https://waynecater.com/posts/something-new-something-old/</link>
+      <pubDate>Sun, 07 Nov 2021 05:53:37 -0600</pubDate>
+      
+      <guid>https://waynecater.com/posts/something-new-something-old/</guid>
+      <description>Working with technology in my day job, I enjoy reading various sources and learning what others are doing with technologies they use in their day jobs and lives. Two sites that I frequent are Hacker News and Slashdot.org.
+On Hacker News I have noticed links about a technology called Elixir. Candidly, I skipped over them because there are so many technologies available these days, and only so many hours a day!</description>
+    </item>
+    
+  </channel>
+</rss>
