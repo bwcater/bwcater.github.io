@@ -11,7 +11,7 @@ body {
 
 main {
     margin: auto;
-    padding: 25px;
+    padding: 15px;
     flex: 1 0 auto;
     max-width: 750px;
 }
@@ -28,7 +28,7 @@ img {
 
 .intro > h1 {
     color: #212121;
-    font-size: 12vh;
+    font-size: 9vh;
 }
 
 .intro > h2 {
@@ -49,8 +49,9 @@ img {
 /* Profile picture */
 
 .profile {
-    width: 10vh;
-    height: 10vh;
+    margin-top: -10rem;
+    width: 25vh;
+    height: 25wh;
     border-radius: 50%;
 }
 
@@ -108,6 +109,7 @@ a:hover {
 }
 
 footer {
+    font-size: 85%;
     border-bottom: var(--border-width) solid var(--accent);
 }
 
@@ -142,8 +144,10 @@ img[alt$=">"] {
 
   .bio-pic {
     float: right;
-    padding: 10px;
-    max-width: 100%;
-    height: auto;
-    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    height: 30vh;
+    width: 30vh;
+    margin-top: -30px;
   }
