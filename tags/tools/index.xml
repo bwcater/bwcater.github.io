@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tools on Wayne Cater</title>
+    <link>https://waynecater.com/tags/tools/</link>
+    <description>Recent content in tools on Wayne Cater</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Aug 2023 06:36:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software I Use</title>
+      <link>https://waynecater.com/posts/software-i-use/</link>
+      <pubDate>Tue, 01 Aug 2023 06:36:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/software-i-use/</guid>
+      <description>In an era not so far away I once purchased and used expensive software to edit images and build web site animations. I am looking at you Adobe Photoshop and Macromedia Flash. I bought updates over the years excited to get some new feature that promised to wow my customers and make my life easier and building output faster.
+I was hooked until the subscription service model became the standard. I didn&amp;rsquo;t like buying use of something I would technically never own.</description>
+    </item>
+    
+  </channel>
+</rss>
