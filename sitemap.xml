@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://waynecater.com/recordings/afterhours/</loc>
+  </url><url>
     <loc>https://waynecater.com/art/</loc>
   </url><url>
     <loc>https://waynecater.com/books/</loc>
@@ -20,28 +22,40 @@
   </url><url>
     <loc>https://waynecater.com/recordings/longwayfromhome/</loc>
   </url><url>
-    <loc>https://waynecater.com/tags/guitar/</loc>
-    <lastmod>2023-11-26T15:00:00-05:00</lastmod>
+    <loc>https://waynecater.com/tags/acoustic/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
   </url><url>
-    <loc>https://waynecater.com/tags/instrumental/</loc>
-    <lastmod>2023-11-26T15:00:00-05:00</lastmod>
+    <loc>https://waynecater.com/tags/christmas/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/posts/1978-copy/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/tags/guitar/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/tags/melody/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
   </url><url>
     <loc>https://waynecater.com/tags/music/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/posts/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/tags/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/</loc>
+    <lastmod>2023-12-24T09:10:00-05:00</lastmod>
+  </url><url>
+    <loc>https://waynecater.com/tags/instrumental/</loc>
     <lastmod>2023-11-26T15:00:00-05:00</lastmod>
   </url><url>
     <loc>https://waynecater.com/posts/new-music-12-2023/</loc>
     <lastmod>2023-11-26T15:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://waynecater.com/posts/</loc>
-    <lastmod>2023-11-26T15:00:00-05:00</lastmod>
-  </url><url>
     <loc>https://waynecater.com/tags/release/</loc>
-    <lastmod>2023-11-26T15:00:00-05:00</lastmod>
-  </url><url>
-    <loc>https://waynecater.com/tags/</loc>
-    <lastmod>2023-11-26T15:00:00-05:00</lastmod>
-  </url><url>
-    <loc>https://waynecater.com/</loc>
     <lastmod>2023-11-26T15:00:00-05:00</lastmod>
   </url><url>
     <loc>https://waynecater.com/tags/gretsch/</loc>
@@ -49,9 +63,6 @@
   </url><url>
     <loc>https://waynecater.com/posts/last-summer-thrill/</loc>
     <lastmod>2023-11-12T17:10:00-05:00</lastmod>
-  </url><url>
-    <loc>https://waynecater.com/tags/acoustic/</loc>
-    <lastmod>2023-10-21T08:10:00-05:00</lastmod>
   </url><url>
     <loc>https://waynecater.com/tags/autumn/</loc>
     <lastmod>2023-10-21T08:10:00-05:00</lastmod>
@@ -111,9 +122,6 @@
     <lastmod>2023-06-25T00:00:00-06:00</lastmod>
   </url><url>
     <loc>https://waynecater.com/tags/2022/</loc>
-    <lastmod>2022-12-24T00:00:00-06:00</lastmod>
-  </url><url>
-    <loc>https://waynecater.com/tags/christmas/</loc>
     <lastmod>2022-12-24T00:00:00-06:00</lastmod>
   </url><url>
     <loc>https://waynecater.com/posts/merry-christmas-2022/</loc>
