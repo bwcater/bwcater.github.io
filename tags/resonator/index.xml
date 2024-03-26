@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>resonator on Wayne Cater</title>
+    <link>https://waynecater.com/tags/resonator/</link>
+    <description>Recent content in resonator on Wayne Cater</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Mar 2024 20:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/tags/resonator/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Amazing Grace</title>
+      <link>https://waynecater.com/posts/gretsch-demo/</link>
+      <pubDate>Mon, 25 Mar 2024 20:00:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/gretsch-demo/</guid>
+      <description>This is a small test drive of a Gretsch 9220 Resonator guitar with all mahogany body. Though it has a mic pickup, I mic&amp;rsquo;d it with a Shure SM-57. I am no sound engineer, but I felt like this simple recording came out nicely.
+I hope you enjoy this short demo.
+  </description>
+    </item>
+    
+  </channel>
+</rss>
