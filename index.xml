@@ -6,7 +6,7 @@
     <description>Recent content on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Apr 2024 09:10:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Apr 2024 09:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>After Hours</title>
       <link>https://waynecater.com/recordings/afterhours/</link>
@@ -124,6 +124,16 @@ YouTube</description>
       <guid>https://waynecater.com/recordings/longwayfromhome/</guid>
       <description>Containing 12 original songs and recorded in 2017, Long Way from Home features a mix of songs ranging from warm ballads like Don&amp;rsquo;t Go Away to upbeat Goin&#39; Down This Road. Thought provoking lyrical tracks like Things to Think About remind one of what is important at the end of the day! There is an underlying feel to much of this recording that is Eagle&amp;rsquo;s like.
  Also find it here:</description>
+    </item>
+    
+    <item>
+      <title>Oh What a Savior (demo)</title>
+      <link>https://waynecater.com/posts/oh-what-a-savior/</link>
+      <pubDate>Sun, 21 Apr 2024 09:00:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/oh-what-a-savior/</guid>
+      <description>I wrote the first verse of this a couple of weeks back. I tinkered and toyed with it here and there as time allowed. Finally, this afternoon, I worked on it until it became what you hear in this video. I hope you like it.
+  </description>
     </item>
     
     <item>
@@ -481,16 +491,6 @@ I started sketching and watercoloring the illustrations for it. After working th
       <description>I am Billy Wayne Cater. My friends call me Wayne!
 I am a songwriter, but isn’t everyone in Nashville? I play guitar and tinker with other instruments &amp;ndash; piano / keyboard, and bass guitar. I am an ASCAP member. You can find my music work on Apple Music, Amazon Music, Spotify, and your favorite music service.
 I&amp;rsquo;ve got a day job too! I’ve been a software developer for 25+ years. These days I spend my time using C#.</description>
-    </item>
-    
-    <item>
-      <title>Oh What a Savior</title>
-      <link>https://waynecater.com/posts/oh-what-a-savior/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://waynecater.com/posts/oh-what-a-savior/</guid>
-      <description>I wrote the first verse of this a couple of weeks back. I tinkered and toyed with it here and there as time allowed. Finally, this afternoon, I worked on it until it became what you hear in this video. I hope you like it.
-  </description>
     </item>
     
   </channel>
