@@ -91,8 +91,15 @@ a:hover {
     padding: 10px 0;
 }
 
+
 .item-tag {
-    background-color: var(--accent);
+    /* background-color: var(--accent); */
+    background-color: #f6f6f6;
+    color: #000;
+    font-style: italic;
+}
+.item-tag::before {
+    content: "#";
 }
 
 /* Navigation icons */
