@@ -158,3 +158,19 @@ img[alt$=">"] {
     margin-top: -20px;
     margin-bottom: 12px;
   }
+
+  .embedded-video-16-9 {
+   width:  90vw; 
+  height: 50.625vw; /* 90*9/16 */
+  /* margin-left: 5vw;
+  margin-right: 5vw; */
+}
+
+@media (min-width: 893px) {
+  .embedded-video-16-9 {
+    width: 45vw;
+    height: 25.3125vw; /* 45*9/16 */
+    margin-left: 2vw;
+    margin-right: 2vw
+  }
+}
