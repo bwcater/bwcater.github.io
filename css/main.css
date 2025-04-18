@@ -20,6 +20,10 @@ img {
     max-width: 100%;
 }
 
+.half-img {
+    width: 50%;
+}
+
 /* Homepage */
 
 .intro {
