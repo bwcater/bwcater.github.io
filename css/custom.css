@@ -1,0 +1,77 @@
+/* ---- Recordings grid ---- */
+
+main.recordings-list {
+    max-width: 1000px;
+}
+
+.recordings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.recording-card {
+    display: block;
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.recording-card:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+.recording-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.recording-card h4 {
+    font-size: 1.84rem;
+    margin: 0.5rem 0 0.1rem;
+    line-height: 1.3;
+}
+
+.recording-card h5 {
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Mobile: vertical list */
+@media (max-width: 600px) {
+    .recordings-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .recording-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 12px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .recording-card img {
+        width: 70px;
+        height: 70px;
+        flex-shrink: 0;
+        aspect-ratio: auto;
+        border-radius: 2px;
+    }
+
+    .recording-card-info {
+        flex: 1;
+    }
+
+    .recording-card h4 {
+        margin-top: 0;
+    }
+}
