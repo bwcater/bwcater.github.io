@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apps on Wayne Cater</title>
+    <link>https://waynecater.com/apps/</link>
+    <description>Recent content in Apps on Wayne Cater</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://waynecater.com/apps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypoTheGame</title>
+      <link>https://waynecater.com/apps/typothegame/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/apps/typothegame/</guid>
+      <description>  Released in March 2026, TypoTheGame is a FREE MacOS desktop game that can turn practicing typing skills into fun! Typo runs on minimum macOS version 14.0 (Sonoma) to 26.3.1 (Tahoe).
+Want to see more details about TypoTheGame? Check out the readme.txt file.
+Download TypoTheGame </description>
+    </item>
+    
+  </channel>
+</rss>
