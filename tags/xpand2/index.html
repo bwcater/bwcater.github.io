@@ -7,16 +7,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>xpand!2</title>
         
-        <style>
+        <script>
+    (function() {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+</script>
+
+<style>
+
+     
+    :root {
+        --bg:           white;
+        --bg-card:      #f9f9f9;
+        --bg-subtle:    #f4f4f4;
+        --bg-featured:  #efefef;
+        --text:         #111;
+        --text-sec:     #555;
+        --text-muted:   #888;
+        --text-light:   #aaa;
+        --text-faint:   #bbb;
+        --border:       #ccc;
+        --border-light: #e0e0e0;
+        --border-faint: #e8e8e8;
+        --shadow-sm:    rgba(0,0,0,0.12);
+        --shadow-md:    rgba(0,0,0,0.10);
+        --shadow-lg:    rgba(0,0,0,0.15);
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+     
+    html[data-theme="dark"] {
+        --bg:           #1c1c1e;
+        --bg-card:      #2c2c2e;
+        --bg-subtle:    #323236;
+        --bg-featured:  #242426;
+        --text:         #e8e8e8;
+        --text-sec:     #bbb;
+        --text-muted:   #888;
+        --text-light:   #666;
+        --text-faint:   #555;
+        --border:       #444;
+        --border-light: #333;
+        --border-faint: #2a2a2a;
+        --shadow-sm:    rgba(0,0,0,0.4);
+        --shadow-md:    rgba(0,0,0,0.35);
+        --shadow-lg:    rgba(0,0,0,0.5);
+        --accent: white;
+    }
 
     html body {
         font-family: 'Open Sans', sans-serif;
-        background-color: white;
-    }
-
-    :root {
-        --accent: black;
-        --border-width:  0 ;
+        background-color: var(--bg);
+        color: var(--text);
     }
 
 </style>
@@ -87,8 +132,8 @@
                             
                         </ul>
                     
-                    
-                        <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                        
                             
                                 <li class="navbar-icon"><a href="mailto:wayne@waynecater.com"><i class="fas fa-envelope"></i></a></li>
                             
@@ -102,11 +147,18 @@
                             
                                 <li class="navbar-icon"><a href="https://open.spotify.com/artist/15Qa1FHy9KZjXyUqhOonxl"><i class="fab fa-spotify"></i></a></li>
                             
-                        </ul>
-                    
+                        
+                        <li>
+                            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                                <i class="fas fa-moon theme-icon-dark"></i>
+                                <i class="fas fa-sun theme-icon-light"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
+
 
 
 <main class="posts-list">
@@ -554,6 +606,29 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+
+
+<script>
+    (function() {
+        var btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var current = document.documentElement.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!localStorage.getItem('theme')) {
+                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    })();
+</script>
 
         
     </body>
