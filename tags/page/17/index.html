@@ -7,16 +7,61 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tags</title>
         
-        <style>
+        <script>
+    (function() {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+</script>
+
+<style>
+
+     
+    :root {
+        --bg:           white;
+        --bg-card:      #f9f9f9;
+        --bg-subtle:    #f4f4f4;
+        --bg-featured:  #efefef;
+        --text:         #111;
+        --text-sec:     #555;
+        --text-muted:   #888;
+        --text-light:   #aaa;
+        --text-faint:   #bbb;
+        --border:       #ccc;
+        --border-light: #e0e0e0;
+        --border-faint: #e8e8e8;
+        --shadow-sm:    rgba(0,0,0,0.12);
+        --shadow-md:    rgba(0,0,0,0.10);
+        --shadow-lg:    rgba(0,0,0,0.15);
+        --accent: black;
+        --border-width:  0 ;
+    }
+
+     
+    html[data-theme="dark"] {
+        --bg:           #1c1c1e;
+        --bg-card:      #2c2c2e;
+        --bg-subtle:    #323236;
+        --bg-featured:  #242426;
+        --text:         #e8e8e8;
+        --text-sec:     #bbb;
+        --text-muted:   #888;
+        --text-light:   #666;
+        --text-faint:   #555;
+        --border:       #444;
+        --border-light: #333;
+        --border-faint: #2a2a2a;
+        --shadow-sm:    rgba(0,0,0,0.4);
+        --shadow-md:    rgba(0,0,0,0.35);
+        --shadow-lg:    rgba(0,0,0,0.5);
+        --accent: white;
+    }
 
     html body {
         font-family: 'Open Sans', sans-serif;
-        background-color: white;
-    }
-
-    :root {
-        --accent: black;
-        --border-width:  0 ;
+        background-color: var(--bg);
+        color: var(--text);
     }
 
 </style>
@@ -38,25 +83,7 @@
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
- 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-
-
-
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
-<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.92.0" />
+  <meta name="generator" content="Hugo 0.92.0" />
         
             <link href="/tags/index.xml" rel="alternate" type="application/rss&#43;xml" title="Wayne Cater" />
             <link href="/tags/index.xml" rel="feed" type="application/rss&#43;xml" title="Wayne Cater" />
@@ -99,12 +126,14 @@
                             
                                 <li><a href="/books/">Books</a></li>
                             
+                                <li><a href="/apps/">Apps</a></li>
+                            
                                 <li><a href="/posts/">Posts</a></li>
                             
                         </ul>
                     
-                    
-                        <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
+                        
                             
                                 <li class="navbar-icon"><a href="mailto:wayne@waynecater.com"><i class="fas fa-envelope"></i></a></li>
                             
@@ -118,11 +147,18 @@
                             
                                 <li class="navbar-icon"><a href="https://open.spotify.com/artist/15Qa1FHy9KZjXyUqhOonxl"><i class="fab fa-spotify"></i></a></li>
                             
-                        </ul>
-                    
+                        
+                        <li>
+                            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+                                <i class="fas fa-moon theme-icon-dark"></i>
+                                <i class="fas fa-sun theme-icon-light"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
+
 
 
 <main>
@@ -130,60 +166,6 @@
     <h2>Tags</h2>
 
      <div class="item">
-
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/tags/spring/">spring</a></h4>
-    <h5>March 7, 2021</h5>
-    
-
-
-</div>
-  <div class="item">
-
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/tags/piano/">piano</a></h4>
-    <h5>March 5, 2021</h5>
-    
-
-
-</div>
-  <div class="item">
-
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/tags/soundcloud/">soundcloud</a></h4>
-    <h5>March 5, 2021</h5>
-    
-
-
-</div>
-  <div class="item">
 
    
     
@@ -207,25 +189,138 @@
 
 
 
-<div class="pages">
+<nav class="paginator">
 
     
-        <a class="icon pages-icon" href="/tags/page/16/" rel="prev">
-            <i class="fa fa-arrow-left"></i>
-        </a>
+    <a class="paginator-btn" href="/tags/page/16/#posts" rel="prev">← Prev</a>
     
 
+    <div class="paginator-pages">
+        
+        
+        <a class="paginator-page" href="/tags/#posts">1</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/2/#posts">2</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/3/#posts">3</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/4/#posts">4</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/5/#posts">5</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/6/#posts">6</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/7/#posts">7</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/8/#posts">8</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/9/#posts">9</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/10/#posts">10</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/11/#posts">11</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/12/#posts">12</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/13/#posts">13</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/14/#posts">14</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/15/#posts">15</a>
+        
+        
+        
+        <a class="paginator-page" href="/tags/page/16/#posts">16</a>
+        
+        
+        
+        <span class="paginator-page paginator-page-current">17</span>
+        
+        
+    </div>
+
+    <span class="paginator-info">Page 17 of 17</span>
+
+    
+    <span class="paginator-btn paginator-btn-disabled">Next →</span>
     
 
-</div>
-
+</nav>
 
 
         <footer>
-            <p class="copyright text-muted">©2021 - 2026 Wayne Cater, all rights reserved;</p>
+            <p class="copyright text-muted">©2016 - 2026 Wayne Cater, all rights reserved;</p>
         </footer>
 
         
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+
+
+<script>
+    (function() {
+        var btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var current = document.documentElement.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!localStorage.getItem('theme')) {
+                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+    })();
+</script>
 
         
     </body>
