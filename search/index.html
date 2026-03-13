@@ -5,7 +5,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Tomorrow</title>
+        <title>Search</title>
         
         <script>
     (function() {
@@ -102,7 +102,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">Tomorrow</a>
+                    <a class="navbar-brand visible-xs" href="#">Search</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -184,25 +184,93 @@
 
 
 <main>
-  
-    <div style="padding-top: 1rem;">
-        <h2>Tomorrow</h2>
-        <h5>May 2021 Single</h5>
-        
-
-    </div>
-
-    <div align="start" class="content"><p>Simple piano and raspy vocals underpin a soulful ballad about keeping the faith and not giving up on tomorrow!</p>
-<!-- ![Tomorrow alt ><](/images/tomorrowcover.jpg) -->
-<iframe allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="500" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/tomorrow-single/1567148740"></iframe>
-<p><strong>Also find it here:</strong></p>
-<!-- 
-[Apple Music](https://geo.music.apple.com/us/album/tomorrow-single/1567148740?itsct=music_box_link&itscg=30200&ls=1&app=music) -->
-<p><a href="https://open.spotify.com/album/6KuqxUQLqFJEWgoNmpU4Zv">Spotify</a></p>
-<p><a href="https://www.youtube.com/watch?v=vYn68nCkq1o&amp;list=OLAK5uy_mmExuzW4NlY5sCwt2qkf-iFk1cuR0a-8g">YouTube</a></p>
-</div>
-
+  <div style="padding-top: 1rem; max-width: 700px; text-align: left;">
+    <h2>Search Posts</h2>
+    <input
+      id="search-input"
+      type="search"
+      placeholder="Search..."
+      autocomplete="off"
+      style="width: 300px; padding: 0.5rem 0.75rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 1.5rem; background: var(--bg, #fff); color: var(--text, #000);"
+    />
+    <ul id="search-results" style="list-style: none; padding: 0; margin: 0;"></ul>
+    <p id="search-empty" style="display: none; color: #888;">No results found.</p>
+  </div>
 </main>
+
+<script>
+(function () {
+  var input = document.getElementById('search-input');
+  var resultsList = document.getElementById('search-results');
+  var emptyMsg = document.getElementById('search-empty');
+  var fuse;
+
+  fetch('/index.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      fuse = new Fuse(data, {
+        keys: [
+          { name: 'title', weight: 2 },
+          { name: 'tags', weight: 1.5 },
+          { name: 'summary', weight: 1 }
+        ],
+        threshold: 0.2,
+        minMatchCharLength: 3,
+        ignoreLocation: true
+      });
+
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('q')) {
+        input.value = params.get('q');
+        runSearch(params.get('q'));
+      }
+    });
+
+  input.addEventListener('input', function () {
+    runSearch(input.value.trim());
+  });
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function highlight(str, query) {
+    if (!str || !query) return esc(str);
+    var re = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    return esc(str).replace(re, function (m) { return '<mark>' + m + '</mark>'; });
+  }
+
+  function runSearch(query) {
+    resultsList.innerHTML = '';
+    emptyMsg.style.display = 'none';
+    if (!query || !fuse) return;
+
+    var results = fuse.search(query);
+    if (results.length === 0) {
+      emptyMsg.style.display = '';
+      return;
+    }
+
+    results.forEach(function (r) {
+      var item = r.item;
+      var li = document.createElement('li');
+      li.style.cssText = 'margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border, #eee);';
+
+      var tags = (item.tags || []).map(function (t) {
+        return '<span class="posts-tag" style="font-size: 1.1rem; padding: 4px 10px; border-radius: 3px;">' + highlight(t, query) + '</span>';
+      }).join('');
+
+      li.innerHTML =
+        '<a href="' + esc(item.url) + '" style="font-size: 1.8rem; font-weight: 600;">' + highlight(item.title, query) + '</a>' +
+        '<div style="font-size: 1.2rem; color: #888; margin: 4px 0 8px;">' + esc(item.date) + '</div>' +
+        (tags ? '<div style="margin-bottom: 8px;">' + tags + '</div>' : '') +
+        (item.summary ? '<div style="font-size: 1.25rem; color: var(--text, #333);">' + highlight(item.summary, query) + '</div>' : '');
+
+      resultsList.appendChild(li);
+    });
+  }
+})();
+</script>
 
         <footer>
             <p class="copyright text-muted">©2016 - 2026 Wayne Cater, all rights reserved;</p>

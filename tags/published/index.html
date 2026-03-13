@@ -116,19 +116,33 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="/">Home</a></li>
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
                             
-                                <li><a href="/about/">About</a></li>
+                                <li>
+                                    <a href="/about/">About</a>
+                                </li>
                             
-                                <li><a href="/recordings/">Music</a></li>
+                                <li>
+                                    <a href="/recordings/">Music</a>
+                                </li>
                             
-                                <li><a href="/art/">Art</a></li>
+                                <li>
+                                    <a href="/art/">Art</a>
+                                </li>
                             
-                                <li><a href="/books/">Books</a></li>
+                                <li>
+                                    <a href="/books/">Books</a>
+                                </li>
                             
-                                <li><a href="/apps/">Apps</a></li>
+                                <li>
+                                    <a href="/apps/">Apps</a>
+                                </li>
                             
-                                <li><a href="/posts/">Posts</a></li>
+                                <li>
+                                    <a href="/posts/">Posts</a><button id="search-toggle" class="search-toggle-btn" aria-label="Search posts"><i class="fas fa-search"></i></button>
+                                </li>
                             
                         </ul>
                     
@@ -158,6 +172,17 @@
                 </div>
             </div>
         </nav>
+
+        <div id="nav-search-panel" class="nav-search-panel">
+            <div class="nav-search-inner">
+                <div class="nav-search-input-wrap">
+                    <i class="fas fa-search"></i>
+                    <input id="nav-search-input" type="search" placeholder="Search posts..." autocomplete="off" />
+                </div>
+                <ul id="nav-search-results" class="nav-search-results"></ul>
+                <p id="nav-search-empty" class="nav-search-empty" style="display:none;">No results found.</p>
+            </div>
+        </div>
 
 
 
@@ -597,6 +622,106 @@ You can order your copy today on Amazon.com!</p>
         </footer>
 
         
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7/dist/fuse.min.js"></script>
+
+
+<script>
+(function () {
+  var panel     = document.getElementById('nav-search-panel');
+  var toggleBtn = document.getElementById('search-toggle');
+  var input     = document.getElementById('nav-search-input');
+  var results   = document.getElementById('nav-search-results');
+  var emptyMsg  = document.getElementById('nav-search-empty');
+  if (!panel || !toggleBtn) return;
+
+  var fuse, debounceTimer, indexLoaded = false;
+
+  function loadIndex() {
+    if (indexLoaded) return;
+    indexLoaded = true;
+    fetch('/index.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        fuse = new Fuse(data, {
+          keys: [
+            { name: 'title',   weight: 2   },
+            { name: 'tags',    weight: 1.5 },
+            { name: 'summary', weight: 1   }
+          ],
+          threshold: 0.2,
+          minMatchCharLength: 3,
+          ignoreLocation: true
+        });
+      });
+  }
+
+  toggleBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var opening = !panel.classList.contains('open');
+    panel.classList.toggle('open', opening);
+    if (opening) { loadIndex(); $('.navbar-collapse').collapse('hide'); setTimeout(function () { input.focus(); }, 50); }
+    else { clear(); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+      clear();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!panel.contains(e.target) && e.target !== toggleBtn) {
+      panel.classList.remove('open');
+      clear();
+    }
+  });
+
+  input.addEventListener('input', function () {
+    clearTimeout(debounceTimer);
+    var query = input.value.trim();
+    if (query.length < 3) { clear(); return; }
+    debounceTimer = setTimeout(function () { runSearch(query); }, 750);
+  });
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function highlight(str, query) {
+    if (!str || !query) return esc(str);
+    var re = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    return esc(str).replace(re, function (m) { return '<mark>' + m + '</mark>'; });
+  }
+
+  function clear() {
+    results.innerHTML = '';
+    emptyMsg.style.display = 'none';
+  }
+
+  function runSearch(query) {
+    clear();
+    if (!fuse) return;
+    var hits = fuse.search(query);
+    if (!hits.length) { emptyMsg.style.display = ''; return; }
+    hits.forEach(function (r) {
+      var item = r.item;
+      var li = document.createElement('li');
+      var tags = (item.tags || []).map(function (t) {
+        return '<span class="posts-tag" style="font-size:1.4rem;padding:4px 10px;border-radius:3px;">' + highlight(t, query) + '</span>';
+      }).join('');
+      li.innerHTML =
+        '<a href="' + esc(item.url) + '" style="font-size:1.8rem;font-weight:600;">' + highlight(item.title, query) + '</a>' +
+        '<div style="font-size:1.4rem;color:#888;margin:4px 0 8px;">' + esc(item.date) + '</div>' +
+        (tags ? '<div style="margin-bottom:8px;">' + tags + '</div>' : '') +
+        (item.summary ? '<div style="font-size:1.5rem;color:var(--text,#333);">' + highlight(item.summary, query) + '</div>' : '');
+      results.appendChild(li);
+    });
+  }
+})();
+</script>
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     

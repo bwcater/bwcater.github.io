@@ -415,5 +415,7 @@
     <loc>https://waynecater.com/categories/</loc>
   </url><url>
     <loc>https://waynecater.com/recordings/</loc>
+  </url><url>
+    <loc>https://waynecater.com/search/</loc>
   </url>
 </urlset>

@@ -541,7 +541,132 @@ html[data-theme="light"] .theme-icon-dark  { display: inline; }
 html[data-theme="dark"]  .theme-icon-dark  { display: none; }
 html[data-theme="dark"]  .theme-icon-light { display: inline; }
 
+/* ---- Nav search ---- */
+
+.nav.navbar-nav > li:has(#search-toggle) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-toggle-btn {
+    background: none;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 1.4rem;
+    line-height: 50px;
+    display: block;
+    opacity: 0.7;
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.search-toggle-btn:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.nav-search-panel {
+    position: fixed;
+    top: 55px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border, #ddd);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.nav-search-panel.open {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.nav-search-inner {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 1rem 15px;
+    text-align: left;
+}
+
+.nav-search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-search-input-wrap .fa-search {
+    position: absolute;
+    left: 1rem;
+    font-size: 1.6rem;
+    color: var(--text);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#nav-search-input {
+    width: 100%;
+    padding: 1.25rem 0.75rem 1.25rem 3.25rem;
+    font-size: 1.9rem;
+    border: 1px solid var(--border, #ccc);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+}
+
+.nav-search-results {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+
+.nav-search-results li {
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border, #eee);
+}
+
+.nav-search-empty {
+    padding: 0.5rem 0 1rem;
+    color: #888;
+}
+
+mark {
+    background: #373737 !important;
+    color: #fff !important;
+    border-radius: 2px;
+    padding: 0 2px;
+}
+
+[data-theme="dark"] mark {
+    background: #888 !important;
+    color: #fff !important;
+}
+
 /* ---- Navbar font size (desktop) ---- */
+
+@media (max-width: 767px) {
+    .navbar-collapse {
+        padding-bottom: 12px;
+    }
+    .navbar-right {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 0 !important;
+        float: none !important;
+        padding: 0 0 16px !important;
+    }
+    .navbar-right > li {
+        float: none !important;
+    }
+}
 
 @media (min-width: 768px) {
     .navbar-default .navbar-nav > li > a {
