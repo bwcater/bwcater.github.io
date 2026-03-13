@@ -140,7 +140,7 @@
                                     <a href="/apps/">Apps</a>
                                 </li>
                             
-                                <li>
+                                <li class="has-search">
                                     <a href="/posts/">Posts</a><button id="search-toggle" class="search-toggle-btn" aria-label="Search posts"><i class="fas fa-search"></i></button>
                                 </li>
                             
@@ -464,7 +464,8 @@
       var item = r.item;
       var li = document.createElement('li');
       var tags = (item.tags || []).map(function (t) {
-        return '<span class="posts-tag" style="font-size:1.4rem;padding:4px 10px;border-radius:3px;">' + highlight(t, query) + '</span>';
+        var slug = t.toLowerCase().replace(/\s+/g, '-');
+        return '<a href="/tags/' + slug + '/" class="posts-tag" style="font-size:1.4rem;padding:4px 10px;border-radius:3px;">' + highlight(t, query) + '</a>';
       }).join('');
       li.innerHTML =
         '<a href="' + esc(item.url) + '" style="font-size:1.8rem;font-weight:600;">' + highlight(item.title, query) + '</a>' +

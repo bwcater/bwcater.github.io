@@ -544,7 +544,7 @@ html[data-theme="dark"]  .theme-icon-light { display: inline; }
 
 /* ---- Nav search ---- */
 
-.nav.navbar-nav > li:has(#search-toggle) {
+.nav.navbar-nav > li.has-search {
     display: flex;
     align-items: center;
     justify-content: center;
