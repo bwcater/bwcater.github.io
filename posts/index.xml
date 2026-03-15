@@ -6,7 +6,17 @@
     <description>Recent content in Posts on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 12 Mar 2026 09:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Mar 2026 09:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Typo The Game</title>
+      <link>https://waynecater.com/posts/typo-the-game/</link>
+      <pubDate>Sun, 15 Mar 2026 09:00:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/typo-the-game/</guid>
+      <description>When my kids were younger I created a Javascript based game to make learning and practicing typing fun. It was not as cool and full featured as this version below in Swift language.
+Typo the game runs on MacOS Sierra through Tahoe; It is free to download without needing to give out your email or other info. You can see it in action below. The video does not go into all the of the features.</description>
+    </item>
+    
     <item>
       <title>Owe You Everything, A Prayer</title>
       <link>https://waynecater.com/posts/owe-you-everything/</link>
