@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privacies on Wayne Cater</title>
+    <link>https://waynecater.com/privacy/</link>
+    <description>Recent content in Privacies on Wayne Cater</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://waynecater.com/privacy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Privacy Policy for TypoTheGame</title>
+      <link>https://waynecater.com/privacy/typothegame/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/privacy/typothegame/</guid>
+      <description>Last updated: March 10, 2026
+Overview TypoTheGame (&amp;ldquo;the App&amp;rdquo;) is a macOS typing game developed by Wayne Cater. This policy describes how the App handles your data.
+Data Collection TypoTheGame does not collect, transmit, or share any personal data. All data stays on your device.
+The App stores the following data locally on your Mac using SwiftData:
+ Leaderboard entries — Player names and scores you choose to save Word list — Custom words you add or modify for gameplay  This data is stored only on your device and is never sent to any server or third party.</description>
+    </item>
+    
+  </channel>
+</rss>
