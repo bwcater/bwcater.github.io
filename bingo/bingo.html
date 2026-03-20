@@ -807,7 +807,7 @@
         <div class="settings-row-icon">📍</div>
         <div class="settings-row-label">
           <strong>Capture Location</strong>
-          <span>Record GPS when signs are found</span>
+          <span id="location-status">Record GPS when signs are found</span>
         </div>
         <input type="checkbox" class="toggle" id="toggle-location" onchange="onLocationToggle(this.checked)">
       </div>
@@ -1695,7 +1695,42 @@ function showSettings() {
   document.getElementById('toggle-sound').checked = settings.soundEnabled;
   document.getElementById('toggle-random-free').checked = settings.randomFreeSpace;
   document.getElementById('toggle-location').checked = settings.captureLocation;
+  updateLocationStatus();
   showView('settings-view');
+}
+
+function updateLocationStatus() {
+  const el = document.getElementById('location-status');
+  if (!el) return;
+
+  if (!navigator.geolocation) {
+    el.textContent = '⚠️ Not available (requires HTTPS)';
+    el.style.color = '#ef4444';
+    return;
+  }
+
+  if (!navigator.permissions) {
+    el.textContent = 'Record GPS when signs are found';
+    el.style.color = '';
+    return;
+  }
+
+  navigator.permissions.query({ name: 'geolocation' }).then(result => {
+    if (result.state === 'granted') {
+      el.textContent = '✓ Permission granted';
+      el.style.color = '#16a34a';
+    } else if (result.state === 'denied') {
+      el.textContent = '✕ Permission denied — enable in iOS Settings';
+      el.style.color = '#ef4444';
+      document.getElementById('toggle-location').checked = false;
+      settings.captureLocation = false;
+      saveSettings();
+    } else {
+      el.textContent = 'Tap toggle to request permission';
+      el.style.color = '#9ca3af';
+    }
+    result.onchange = updateLocationStatus;
+  });
 }
 
 function showAbout() {
