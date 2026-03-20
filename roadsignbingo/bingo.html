@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="RS Bingo">
+  <meta name="theme-color" content="#22c55e">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+  <title>Road Signs Bingo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #22c55e;
+      --green-dark: #16a34a;
+      --green-light: #dcfce7;
+      --red: #ef4444;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+      --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--gray-100);
+      color: var(--gray-800);
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ── Views ── */
+    .view {
+      display: none;
+      position: fixed;
+      inset: 0;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      flex-direction: column;
+      background: var(--gray-100);
+    }
+    .view.active { display: flex; }
+
+    /* ── Splash ── */
+    #splash {
+      background: white;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      transition: opacity 0.4s ease;
+    }
+    #splash.fade-out { opacity: 0; }
+    .splash-signs {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .splash-signs img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+    }
+    .splash-title {
+      text-align: center;
+    }
+    .splash-title .title1 {
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .splash-title .title2 {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.1;
+    }
+
+    /* ── Nav Bar ── */
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px 8px;
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+      min-height: 52px;
+      gap: 8px;
+    }
+    .nav-bar h1 {
+      font-size: 20px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--green);
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-btn:active { background: var(--gray-100); }
+    .nav-btn.icon-btn {
+      font-size: 22px;
+      padding: 4px 8px;
+    }
+    .nav-btn.destructive { color: var(--red); }
+
+    /* ── History View ── */
+    #history-view { background: var(--gray-100); }
+    .history-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .history-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--gray-400);
+      padding: 32px;
+      text-align: center;
+    }
+    .history-empty .empty-icon { font-size: 56px; }
+    .history-empty p { font-size: 16px; }
+    .game-row {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      -webkit-touch-callout: none;
+    }
+    .game-row:active { opacity: 0.7; }
+    .game-row-info { flex: 1; }
+    .game-row-date { font-size: 14px; color: var(--gray-600); margin-bottom: 2px; }
+    .game-row-stats { font-size: 17px; font-weight: 600; }
+    .bingo-badge {
+      background: var(--green);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .delete-btn {
+      background: none;
+      border: none;
+      color: var(--gray-400);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 8px;
+      line-height: 1;
+    }
+    .delete-btn:active { background: var(--gray-100); }
+    .new-game-fab {
+      margin: 12px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      letter-spacing: 0.3px;
+    }
+    .new-game-fab:active { background: var(--green-dark); }
+
+    /* ── Game View ── */
+    #game-view { background: white; }
+    .game-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px 8px;
+      background: white;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .counter-text {
+      flex: 1;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+    .grid-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      width: min(calc(100vw - 16px), calc(100vh - 180px));
+      aspect-ratio: 1;
+    }
+    .cell {
+      position: relative;
+      background: white;
+      border-radius: 8px;
+      aspect-ratio: 1;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--gray-200);
+      cursor: pointer;
+      -webkit-touch-callout: none;
+      transition: transform 0.08s ease;
+    }
+    .cell:active { transform: scale(0.94); }
+    .cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 5px;
+      display: block;
+      pointer-events: none;
+    }
+    .cell.tapped .cell-overlay {
+      display: block;
+    }
+    .cell-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      border-radius: 6px;
+    }
+    .cell-check {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      pointer-events: none;
+    }
+    .cell.tapped .cell-check { display: flex; }
+    .cell.free-space {
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+    .cell.free-space .cell-overlay { background: rgba(0,150,50,0.35); }
+    .free-label {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2px;
+      pointer-events: none;
+    }
+    .cell.free-space .free-label { display: flex; }
+    .free-label span {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--green-dark);
+      letter-spacing: 1px;
+    }
+    .cell.free-space img { opacity: 0.15; }
+    .bingo-banner {
+      display: none;
+      background: var(--green);
+      color: white;
+      text-align: center;
+      padding: 10px 12px 12px;
+      animation: bangBingo 0.4s ease;
+    }
+    .bingo-banner.show { display: block; }
+    .bingo-banner-text {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+    .bingo-actions {
+      display: flex;
+      gap: 10px;
+    }
+    @keyframes bangBingo {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.05); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .footer-btn {
+      flex: 1;
+      background: white;
+      color: var(--green-dark);
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .footer-btn:active { background: var(--green-light); }
+    .footer-btn.secondary {
+      background: rgba(255,255,255,0.25);
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+    .footer-btn.secondary:active { background: rgba(255,255,255,0.4); }
+
+    /* ── Settings View ── */
+    #settings-view { background: var(--gray-100); }
+    .settings-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .settings-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding-left: 4px;
+      margin-bottom: -8px;
+    }
+    .settings-group {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      padding: 14px 16px;
+      gap: 14px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-row-icon { font-size: 22px; width: 28px; text-align: center; }
+    .settings-row-label { flex: 1; }
+    .settings-row-label strong { font-size: 16px; display: block; }
+    .settings-row-label span { font-size: 13px; color: var(--gray-400); }
+    .toggle {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 51px;
+      height: 31px;
+      background: var(--gray-200);
+      border-radius: 100px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      width: 27px;
+      height: 27px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      transition: left 0.2s ease;
+    }
+    .toggle:checked { background: var(--green); }
+    .toggle:checked::after { left: 22px; }
+    .settings-action-btn {
+      background: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--green);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      width: 100%;
+      text-align: left;
+    }
+    .settings-action-btn:active { background: var(--gray-50); }
+    .settings-action-btn .btn-icon { font-size: 22px; }
+    /* ── About View ── */
+    #about-view { background: var(--gray-100); }
+    .about-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 32px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .about-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .about-icon-wrap {
+      width: 96px;
+      height: 96px;
+      background: var(--green-light);
+      border: 2px solid var(--green);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+    }
+    .about-icon {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+    .about-app-name {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .about-version-label {
+      font-size: 14px;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+    .about-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 400px;
+    }
+    .about-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .about-row:last-child { border-bottom: none; }
+    .about-row-label {
+      font-size: 15px;
+      color: var(--gray-600);
+    }
+    .about-row-value {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .about-copyright {
+      text-align: center;
+      color: var(--gray-400);
+      font-size: 12px;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .settings-footer-note {
+      font-size: 12px;
+      color: var(--gray-400);
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    /* ── Sign Modal ── */
+    #sign-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+    #sign-modal.show { display: flex; }
+    .sign-modal-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px 24px;
+      max-width: 320px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+    .sign-modal-img {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
+    }
+    .sign-modal-name {
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .sign-modal-category {
+      font-size: 14px;
+      color: var(--gray-400);
+      background: var(--gray-100);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .sign-modal-close {
+      width: 100%;
+      background: var(--gray-100);
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--gray-800);
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .sign-modal-close:active { background: var(--gray-200); }
+
+    /* ── Map Modal ── */
+    #map-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: white;
+      z-index: 100;
+      flex-direction: column;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+    }
+    #map-modal.show { display: flex; }
+    #leaflet-map {
+      flex: 1;
+    }
+    .map-notice {
+      padding: 8px 16px;
+      background: #fef9c3;
+      font-size: 13px;
+      color: #78350f;
+      text-align: center;
+      border-bottom: 1px solid #fde68a;
+    }
+    .map-empty {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--gray-400);
+      padding: 32px;
+      text-align: center;
+    }
+    .map-empty .empty-icon { font-size: 48px; }
+
+    /* ── Confetti ── */
+    #confetti-canvas {
+      display: none;
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body > *:not(#print-area) { display: none !important; }
+      #print-area {
+        display: block !important;
+        position: static;
+        width: 100%;
+      }
+      #print-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-family: -apple-system, sans-serif;
+      }
+      #print-subtitle {
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 16px;
+        font-family: -apple-system, sans-serif;
+      }
+      #print-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        width: 100%;
+        border: 2px solid #333;
+      }
+      .print-cell {
+        aspect-ratio: 1;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        overflow: hidden;
+      }
+      .print-cell img {
+        width: 80%;
+        height: 70%;
+        object-fit: contain;
+      }
+      .print-cell .print-name {
+        font-size: 7px;
+        text-align: center;
+        line-height: 1.1;
+        margin-top: 2px;
+        font-family: -apple-system, sans-serif;
+      }
+      .print-cell.print-free {
+        background: #dcfce7;
+        border: 2px solid #22c55e;
+      }
+      .print-cell.print-free .print-name {
+        font-weight: 700;
+        color: #16a34a;
+        font-size: 12px;
+      }
+      @page { size: letter portrait; margin: 0.5in; }
+    }
+
+    #print-area { display: none; }
+
+    /* ── Update Banner ── */
+    #update-banner {
+      display: none;
+      position: fixed;
+      bottom: calc(16px + var(--safe-bottom));
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gray-800);
+      color: white;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-lg);
+      z-index: 300;
+      white-space: nowrap;
+      animation: slideUp 0.3s ease;
+    }
+    #update-banner.show { display: flex; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+    #update-banner button {
+      background: var(--green);
+      border: none;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* ── Leaflet overrides ── */
+    .leaflet-pin-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .leaflet-pin-wrap img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      background: white;
+      border-radius: 6px;
+      padding: 2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .leaflet-pin-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
+      padding: 1px 6px;
+      border-radius: 10px;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .leaflet-pin-badge.start { background: #22c55e; }
+    .leaflet-pin-badge.finish { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+
+<!-- Splash -->
+<div id="splash" class="view active">
+  <div class="splash-signs">
+    <img src="./svgs/W03-03%20Signal%20Ahead%2036x36.svg" alt="Signal Ahead">
+    <img src="./svgs/W15-01%20Playground%2036x36.svg" alt="Playground">
+    <img src="./svgs/W02-06%20Intersection%20Warning%20-%20Circular%2036x36.svg" alt="Circular">
+  </div>
+  <div class="splash-title">
+    <div class="title1">Road Signs</div>
+    <div class="title2">Bingo</div>
+  </div>
+</div>
+
+<!-- History View -->
+<div id="history-view" class="view">
+  <div class="nav-bar">
+    <h1>Road Signs Bingo</h1>
+    <button class="nav-btn icon-btn" onclick="showSettings()" title="Settings">⚙️</button>
+  </div>
+  <div id="history-list" class="history-list"></div>
+  <button class="new-game-fab" onclick="startNewGame()">+ New Game</button>
+</div>
+
+<!-- Game View -->
+<div id="game-view" class="view">
+  <div class="game-header">
+    <button class="nav-btn" onclick="exitGame()">‹ Games</button>
+    <div class="counter-text" id="counter-text">0 / 25 Signs Found</div>
+    <button class="nav-btn icon-btn" onclick="showPrint()" title="Print Card">🖨️</button>
+  </div>
+  <div id="bingo-banner" class="bingo-banner">
+    <div class="bingo-banner-text">🎉 BINGO! 🎉</div>
+    <div class="bingo-actions">
+      <button class="footer-btn secondary" id="btn-map" onclick="showMap()">📍 View Map</button>
+      <button class="footer-btn" onclick="startNewGame()">New Game</button>
+    </div>
+  </div>
+  <div class="grid-container">
+    <div id="grid"></div>
+  </div>
+</div>
+
+<!-- Settings View -->
+<div id="settings-view" class="view">
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="showHistory()">‹ Back</button>
+    <h1>Settings</h1>
+  </div>
+  <div class="settings-list">
+    <div class="settings-section-title">Game Options</div>
+    <div class="settings-group">
+      <div class="settings-row">
+        <div class="settings-row-icon">🔊</div>
+        <div class="settings-row-label">
+          <strong>Sound Effects</strong>
+          <span>Tap and win sounds</span>
+        </div>
+        <input type="checkbox" class="toggle" id="toggle-sound" onchange="saveSetting('soundEnabled', this.checked)">
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-icon">🎲</div>
+        <div class="settings-row-label">
+          <strong>Random Free Space</strong>
+          <span>Free cell at random position instead of center</span>
+        </div>
+        <input type="checkbox" class="toggle" id="toggle-random-free" onchange="saveSetting('randomFreeSpace', this.checked)">
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-icon">📍</div>
+        <div class="settings-row-label">
+          <strong>Capture Location</strong>
+          <span>Record GPS when signs are found</span>
+        </div>
+        <input type="checkbox" class="toggle" id="toggle-location" onchange="onLocationToggle(this.checked)">
+      </div>
+    </div>
+
+    <div class="settings-section-title">Actions</div>
+    <div class="settings-group">
+      <div class="settings-row">
+        <button class="settings-action-btn" onclick="showPrint()" style="border:none;background:none;padding:0;width:100%;display:flex;align-items:center;gap:14px">
+          <div class="settings-row-icon">🖨️</div>
+          <div class="settings-row-label"><strong>Print / Share Bingo Card</strong></div>
+        </button>
+      </div>
+      <div class="settings-row">
+        <button class="settings-action-btn" onclick="confirmClearHistory()" style="border:none;background:none;padding:0;width:100%;display:flex;align-items:center;gap:14px;color:#ef4444">
+          <div class="settings-row-icon">🗑️</div>
+          <div class="settings-row-label" style="color:#ef4444"><strong>Clear All History</strong></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="settings-section-title">App</div>
+    <div class="settings-group">
+      <div class="settings-row">
+        <button class="settings-action-btn" onclick="showAbout()" style="border:none;background:none;padding:0;width:100%;display:flex;align-items:center;gap:14px">
+          <div class="settings-row-icon">ℹ️</div>
+          <div class="settings-row-label"><strong>About</strong></div>
+          <span style="color:var(--gray-400);font-size:18px">›</span>
+        </button>
+      </div>
+    </div>
+
+    <p class="settings-footer-note">
+      Settings take effect on the next new game.<br>
+      Game history may be cleared by iOS after extended inactivity.
+    </p>
+  </div>
+</div>
+
+<!-- About View -->
+<div id="about-view" class="view">
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="showSettings()">‹ Back</button>
+    <h1>About</h1>
+  </div>
+  <div class="about-body">
+    <div class="about-hero">
+      <div class="about-icon-wrap">
+        <img src="./svgs/W15-01%20Playground%2036x36.svg" alt="Road Signs Bingo" class="about-icon">
+      </div>
+      <div class="about-app-name">Road Signs Bingo</div>
+      <div class="about-version-label" id="about-version-label">Version 1.0</div>
+    </div>
+
+    <div class="about-card">
+      <div class="about-row">
+        <span class="about-row-label">Version</span>
+        <span class="about-row-value" id="about-version">1.0</span>
+      </div>
+      <div class="about-row">
+        <span class="about-row-label">Released</span>
+        <span class="about-row-value">March 2026</span>
+      </div>
+      <div class="about-row">
+        <span class="about-row-label">Signs</span>
+        <span class="about-row-value">270 U.S. Road Signs</span>
+      </div>
+      <div class="about-row">
+        <span class="about-row-label">Created by</span>
+        <span class="about-row-value">Wayne Cater / waynecater.com</span>
+      </div>
+    </div>
+
+    <div class="about-copyright">
+      <p>© 2026 Wayne Cater. All rights reserved.</p>
+      <p>Road sign images are official MUTCD signs<br>published by the U.S. Federal Highway Administration<br>and are in the public domain.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Sign Detail Modal -->
+<div id="sign-modal" onclick="closeSignModal()">
+  <div class="sign-modal-card" onclick="event.stopPropagation()">
+    <img id="sign-modal-img" class="sign-modal-img" src="" alt="">
+    <div id="sign-modal-name" class="sign-modal-name"></div>
+    <div id="sign-modal-category" class="sign-modal-category"></div>
+    <button class="sign-modal-close" onclick="closeSignModal()">Close</button>
+  </div>
+</div>
+
+<!-- Map Modal -->
+<div id="map-modal">
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="closeMap()">‹ Back</button>
+    <h1>Sign Locations</h1>
+  </div>
+  <div class="map-notice">Map tiles require an internet connection</div>
+  <div id="leaflet-map"></div>
+  <div id="map-empty" class="map-empty" style="display:none">
+    <div class="empty-icon">📍</div>
+    <p>No location data recorded for this game.</p>
+    <p style="font-size:13px">Enable "Capture Location" in Settings to track where you find signs.</p>
+  </div>
+</div>
+
+<!-- Confetti Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Print Area (hidden, shown only when printing) -->
+<div id="print-area">
+  <div id="print-title">Road Signs Bingo</div>
+  <div id="print-subtitle">Find the signs on your next road trip!</div>
+  <div id="print-grid"></div>
+</div>
+
+<!-- Update Banner -->
+<div id="update-banner">
+  🔄 Update available
+  <button onclick="location.reload()">Refresh</button>
+</div>
+
+<!-- Leaflet CSS loaded dynamically -->
+<script>
+'use strict';
+
+// ─── Data ───────────────────────────────────────────────────────────────────
+
+const ROAD_SIGNS = [
+  { name: "Exit Closed", img: "E05-02a Exit Closed 48x36", category: "Guide" },
+  { name: "Evacuation Route", img: "EM01-01 Evacuation Route 24x24", category: "Guide" },
+  { name: "Area Closed", img: "EM02-01 Area Closed 30x24", category: "Guide" },
+  { name: "Road Work Next XX Miles", img: "G20-01 Road Work Next XX Miles 36x18", category: "Guide" },
+  { name: "End Road Work", img: "G20-02 End Road Work 36x18", category: "Guide" },
+  { name: "Work Zone", img: "G20-05aP Work Zone (plaque) 36x24", category: "Guide" },
+  { name: "Airport", img: "I03-05 Airport 30x30", category: "Guide" },
+  { name: "Bus Station", img: "I03-06 Bus Station 30x30", category: "Guide" },
+  { name: "Train Station", img: "I03-07 Train Station 30x30", category: "Guide" },
+  { name: "Ferry Terminal", img: "I03-09 Vehicle Ferry Terminal 30x30", category: "Guide" },
+  { name: "Passengers Only Ferry Terminal", img: "I03-10 Passengers Only Ferry Terminal 30x30", category: "Guide" },
+  { name: "Library", img: "I04-01 Library 24x24", category: "Guide" },
+  { name: "Recycling Center", img: "I04-02 Recycling Center 30x36", category: "Guide" },
+  { name: "Interstate Route", img: "M01-01 Interstate Route (3 digits) 30x24", category: "Guide" },
+  { name: "U.S. Route", img: "M01-04 U.S. Route (1, 2 digits) - Independent Assembly Use 36x36", category: "Guide" },
+  { name: "Forest Route", img: "M01-07 Forest Route 36x36", category: "Guide" },
+  { name: "State Bicycle Route", img: "M01-08 State or Local Bicycle Route 18x24", category: "Guide" },
+  { name: "Eisenhower Interstate", img: "M01-10a Eisenhower Interstate System 36x36", category: "Guide" },
+  { name: "Junction", img: "M02-01P Junction (black white) 21x15", category: "Guide" },
+  { name: "North Direction", img: "M03-01P Cardinal Direction - North (plaque) (black white) 24x12", category: "Guide" },
+  { name: "East Direction", img: "M03-02P Cardinal Direction - East (black white) 36x18", category: "Guide" },
+  { name: "South Direction", img: "M03-03P Cardinal Direction -South (plaque) 36x18", category: "Guide" },
+  { name: "West Direction", img: "M03-04P Cardinal Direction - West (plaque) (black white)  36x18", category: "Guide" },
+  { name: "Business Route", img: "M04-03P Business (plaque) (white blue) 36x18", category: "Guide" },
+  { name: "Truck Route", img: "M04-04P Truck (plaque) (black white) 36x18", category: "Guide" },
+  { name: "Detour (small)", img: "M04-08P Detour 30x15", category: "Guide" },
+  { name: "End Detour", img: "M04-08a End Detour 24x18", category: "Guide" },
+  { name: "Detour (large)", img: "M04-10R Detour 48x18", category: "Guide" },
+  { name: "Toll Collector", img: "M04-17 Toll Collector Symbol Panel 48X48", category: "Guide" },
+  { name: "Exact Change Toll", img: "M04-18 Exact Change Symbol Panel 48X48", category: "Guide" },
+  { name: "Advance Turn Arrow Left", img: "M05-01PL Advance Turn Arrow (plaque) (black white) 30x21", category: "Guide" },
+  { name: "Advance Turn Arrow Right", img: "M05-01PR Advance Turn Arrow (plaque) (black white) 30x21", category: "Guide" },
+  { name: "Advance Turn Arrow Oblique", img: "M05-02PR Advance Turn Arrow - Oblique (plaque) (black white) 30x21", category: "Guide" },
+  { name: "Circular Intersection Arrow", img: "M05-03P Advance Turn Arrow - Circular Intersection (plaque) (white green) 30x21", category: "Guide" },
+  { name: "Right Lane Designation", img: "M05-06P Lane Designation - Right Lane (plaque) (black white) 36x24", category: "Guide" },
+  { name: "Directional Turn Arrow Left", img: "M06-01PL Directional Arrow - Turn (plaque) (black white) 30x21", category: "Guide" },
+  { name: "Directional Oblique Arrow Left", img: "M06-02PL Directional Arrow - Oblique (plaque) (black white) 21x15", category: "Guide" },
+  { name: "Directional Oblique Arrow Right", img: "M06-02PR Directional Arrow - Oblique (plaque) (black white) 30x21", category: "Guide" },
+  { name: "Directional Through Arrow", img: "M06-03P Directional Arrow - Through (plaque) (black white) 21x15", category: "Guide" },
+  { name: "National Scenic Byway", img: "M10-01 National Scenic Byway 24x24", category: "Guide" },
+  { name: "Scenic Byway", img: "M10-03bP Scenic Byway (plaque) 24x12", category: "Guide" },
+  { name: "National Historic Trail", img: "M11-1aP National Historic Trail - Historic Route (plaque) 24x12", category: "Guide" },
+  { name: "Object Marker Type 1", img: "OM01-02 Object Marker Type 1 18x18", category: "Warning" },
+  { name: "Object Marker Type 3", img: "OM03-C Object Marker Type 3 12x36", category: "Warning" },
+  { name: "Stop", img: "R01-01 Stop 36x36", category: "Regulatory" },
+  { name: "Yield", img: "R01-02 Yield 36x36x36", category: "Regulatory" },
+  { name: "Stop Here for Pedestrians", img: "R01-05bR Stop Here for Pedestrians 36x36", category: "Regulatory" },
+  { name: "In-Street Pedestrian Crossing", img: "R01-06 In-Street Pedestrian Crossing - Yield 12x36", category: "Regulatory" },
+  { name: "In-Street School Crossing", img: "R01-06b In-Street School Crossing - Yield 12x36", category: "Regulatory" },
+  { name: "Overhead Pedestrian Crossing", img: "R01-09 Overhead Pedestrian Crossing - Yield 90x24", category: "Regulatory" },
+  { name: "Speed Limit", img: "R02-01 Speed Limit 36x48", category: "Regulatory" },
+  { name: "Max & Min Speed Limits", img: "R02-04a Combined Maximum and Minimum Speed Limits 36x72", category: "Regulatory" },
+  { name: "Fines Double", img: "R02-06aP Fines Double (plaque) 36x24", category: "Regulatory" },
+  { name: "End Work Zone Speed Limit", img: "R02-12 End Work Zone Speed Limit 24x36", category: "Regulatory" },
+  { name: "No Right Turn", img: "R03-01 Movement Prohibition - No Right Turn 36x36", category: "Regulatory" },
+  { name: "No Left Turn", img: "R03-02 Movement Prohibition - No Left Turn 36x36", category: "Regulatory" },
+  { name: "No Turns", img: "R03-03 Movement Prohibition (No Turns) 36x36", category: "Regulatory" },
+  { name: "No U-Turn", img: "R03-04 Movement Prohibition (No U-Turn) 36x36", category: "Regulatory" },
+  { name: "Turn Only Lane", img: "R03-05L Mandatory Movement Lane Control - Turn Only 30x36", category: "Regulatory" },
+  { name: "Through Only Lane", img: "R03-05a Mandatory Movement Lane Control - Through Only 30x36", category: "Regulatory" },
+  { name: "HOV 2+ Lane", img: "R03-05cP HOV 2+ Lane (Plaque) 24x12", category: "Regulatory" },
+  { name: "Thru and Turn Lane", img: "R03-06R Optional Movement Lane Control - Thru and Turn 30x36", category: "Regulatory" },
+  { name: "Advance Lane Control", img: "R03-08aL Advance Intersection Lane Control (3 lanes) 60x36", category: "Regulatory" },
+  { name: "Two-Way Left Turn Only", img: "R03-09b Two-Way Left Turn Only (post-mounted) 24x36", category: "Regulatory" },
+  { name: "Reversible Lane (overhead)", img: "R03-09e Reversible Lane Control (overhead) 108x48", category: "Regulatory" },
+  { name: "Reversible Lane (post)", img: "R03-09f Reversible Lane Control (post-mounted) 36x54", category: "Regulatory" },
+  { name: "Bus Lane Ahead", img: "R03-12f Preferential Lane Ahead - Bus (post-mounted) 36x48", category: "Regulatory" },
+  { name: "Bike Lane", img: "R03-17 Bike Lane 24x18", category: "Regulatory" },
+  { name: "No U or Left Turn", img: "R03-18 Movement Prohibition - No U or Left Turn 36x36", category: "Regulatory" },
+  { name: "No Straight Through", img: "R03-27 Movement Prohibition - No Straight Through 36x36", category: "Regulatory" },
+  { name: "Pay Toll", img: "R03-29P Pay Toll (plaque) 24x18", category: "Regulatory" },
+  { name: "Left Lane Must Exit", img: "R03-33 Left Lane Must Exit 78x36", category: "Regulatory" },
+  { name: "Do Not Pass", img: "R04-01 Do Not Pass 36x48", category: "Regulatory" },
+  { name: "Pass With Care", img: "R04-02 Pass With Care 36x48", category: "Regulatory" },
+  { name: "Slower Traffic Keep Right", img: "R04-03 Slower Traffic Keep Right 36x48", category: "Regulatory" },
+  { name: "Trucks Use Right Lane", img: "R04-05 Trucks Use Right Lane 36x48", category: "Regulatory" },
+  { name: "Narrow Keep Left", img: "R04-08c Narrow Keep Left 18x30", category: "Regulatory" },
+  { name: "Stay In Lane", img: "R04-09 Stay In Lane 36x48", category: "Regulatory" },
+  { name: "Keep Right Except to Pass", img: "R04-16 Keep Right Except to Pass 36x48", category: "Regulatory" },
+  { name: "Do Not Enter", img: "R05-01 Do Not Enter 36x36", category: "Regulatory" },
+  { name: "Wrong Way", img: "R05-01a Wrong Way 36x24", category: "Regulatory" },
+  { name: "Bicycle Wrong Way", img: "R05-01b Bicycle Wrong Way 12x18", category: "Regulatory" },
+  { name: "No Trucks", img: "R05-02 No Trucks 36x36", category: "Regulatory" },
+  { name: "No Bicycles", img: "R05-06 No Bicycles 36x36", category: "Regulatory" },
+  { name: "No Pedestrians", img: "R05-10c No Pedestrians 24x12", category: "Regulatory" },
+  { name: "Authorized Vehicles Only", img: "R05-11 Authorized Vehicles Only 30x24", category: "Regulatory" },
+  { name: "No Parking Any Time", img: "R07-01 No Parking Any Time 12x18", category: "Regulatory" },
+  { name: "No Parking (Part-Time)", img: "R07-02 No Parking (Part-Time) 12x18", category: "Regulatory" },
+  { name: "No Parking (Part-Time) Alt", img: "R07-02a No Parking (Part-Time) 12x18", category: "Regulatory" },
+  { name: "No Parking Except Holidays", img: "R07-03 No Parking Except Sundays and Holidays 12x18", category: "Regulatory" },
+  { name: "No Standing Any Time", img: "R07-04 No Standing Any Time 12x18", category: "Regulatory" },
+  { name: "Parking Permitted", img: "R07-05 Parking Permitted (Time Limit) 12x18", category: "Regulatory" },
+  { name: "No Parking Loading Zone", img: "R07-06 No Parking Loading Zone 12x18", category: "Regulatory" },
+  { name: "Accessible Parking", img: "R07-08 Reserved Parking - Accessible 12x18", category: "Regulatory" },
+  { name: "Van Accessible", img: "R07-08aP Van Accessible (plaque) 12x6", category: "Regulatory" },
+  { name: "No Parking Bike Lane", img: "R07-09 No Parking Bike Lane 12x18", category: "Regulatory" },
+  { name: "No Parking Bike Lane Alt", img: "R07-09a No Parking Bike Lane 12x18", category: "Regulatory" },
+  { name: "No Parking Bus Stop", img: "R07-107 No Parking Bus Stop 12x18", category: "Regulatory" },
+  { name: "No Parking Bus Stop Alt", img: "R07-107a No Parking Bus Stop 12x24", category: "Regulatory" },
+  { name: "Parking Allowed (Time Limit)", img: "R07-108 Parking Allowed (Time Limit, Part-Time) 12x18", category: "Regulatory" },
+  { name: "No Parking (EV Charging)", img: "R07-113 No Parking Except While Charging 12x18", category: "Regulatory" },
+  { name: "Parking Fee Station", img: "R07-20 Parking Fee Station, Multispace Meter 24x18", category: "Regulatory" },
+  { name: "Tow Away Zone", img: "R07-201P Tow Away Zone (plaque) 12x6", category: "Regulatory" },
+  { name: "Tow Away Zone Alt", img: "R07-201aP Tow Away Zone (plaque) 12x6", category: "Regulatory" },
+  { name: "Snow Emergency Route", img: "R07-203 Snow Emergency Route 24x30", category: "Regulatory" },
+  { name: "Metered Parking", img: "R07-21 Metered Parking 12x18", category: "Regulatory" },
+  { name: "Metered Parking Alt", img: "R07-22 Metered Parking 12x18", category: "Regulatory" },
+  { name: "No Parking on Pavement", img: "R08-01 No Parking on Pavement 36x48", category: "Regulatory" },
+  { name: "No Parking Except on Shoulder", img: "R08-02 No Parking Except on Shoulder 36x48", category: "Regulatory" },
+  { name: "No Parking Symbol", img: "R08-03 No Parking (symbol) 36x36", category: "Regulatory" },
+  { name: "No Parking", img: "R08-03a No Parking 36x36", category: "Regulatory" },
+  { name: "No Parking on Bridge", img: "R08-03d No Parking (Symbol) On Bridge 36x54", category: "Regulatory" },
+  { name: "No Parking on Tracks", img: "R08-03e No Parking (Symbol) On Tracks 36x54", category: "Regulatory" },
+  { name: "Emergency Parking Only", img: "R08-04 Emergency Parking Only 48x36", category: "Regulatory" },
+  { name: "Stop Here When Flashing", img: "R08-10 Stop Here When Flashing 36x48", category: "Regulatory" },
+  { name: "No Pedestrian Crossing", img: "R09-03 No Pedestrian Crossing (symbol) 30x30", category: "Regulatory" },
+  { name: "No Hitchhiking", img: "R09-04 No Hitchhiking (symbol) 24x24", category: "Regulatory" },
+  { name: "Bicycles Yield to Pedestrians", img: "R09-06 Bicycles Yield to Pedestrians 12x18", category: "Regulatory" },
+  { name: "Shared-Use Path Restriction", img: "R09-07 Shared-Use Path Restriction 12x18", category: "Regulatory" },
+  { name: "No Skaters", img: "R09-13 No Skaters 30x30", category: "Regulatory" },
+  { name: "No Equestrians", img: "R09-14 No Equestrians 30x30", category: "Regulatory" },
+  { name: "No Snowmobiles", img: "R09-15 No Snowmobiles 30x30", category: "Regulatory" },
+  { name: "No ATVs", img: "R09-16 No All-Terrain Vehicles 30x30", category: "Regulatory" },
+  { name: "Bicycles Full Lane", img: "R09-20 Bicycles Allowed Use of Full Lane 30x30", category: "Regulatory" },
+  { name: "Cross Only on Green", img: "R10-01 Cross Only on Green 12x18", category: "Regulatory" },
+  { name: "Cross Only on Walk Signal", img: "R10-02 Cross Only on Walk Signal 9x12", category: "Regulatory" },
+  { name: "Push Button Walk Signal", img: "R10-03 Push Button for Walk Signal 9x12", category: "Regulatory" },
+  { name: "Push Button for Green", img: "R10-04 Push Button for Green 9x12", category: "Regulatory" },
+  { name: "Stop Here on Red", img: "R10-06 Stop Here on Red 24x36", category: "Regulatory" },
+  { name: "No Turn on Circular Red", img: "R10-11a No Turn on Circular Red 36x48", category: "Regulatory" },
+  { name: "No Turn on Red", img: "R10-11b No Turn on Red 36x36", category: "Regulatory" },
+  { name: "Turning Vehicles Yield", img: "R10-15R Turning Vehicles Yield to Pedestrians 30x30", category: "Regulatory" },
+  { name: "Photo Enforced", img: "R10-18 Traffic Laws Photo Enforced 54x36", category: "Regulatory" },
+  { name: "Photo Enforced (plaque)", img: "R10-19P Photo Enforced (symbol plaque) 48x24", category: "Regulatory" },
+  { name: "Move Over or Reduce Speed", img: "R16-03 Move Over or Reduce Speed 60x48", category: "Regulatory" },
+  { name: "No Phone Use While Driving", img: "R16-15 No Hand-Held Phone Use By Driver 72x48", category: "Regulatory" },
+  { name: "School", img: "S01-01 School 36x36", category: "School" },
+  { name: "School Bus Stop Ahead", img: "S03-01 School Bus Stop Ahead 36x36", category: "School" },
+  { name: "School (plaque)", img: "S04-03P School 36x12", category: "School" },
+  { name: "Reduced School Speed Limit", img: "S04-05a Reduced School Speed Limit Ahead 36x36", category: "School" },
+  { name: "End School Zone", img: "S05-02 End School Zone 36x48", category: "School" },
+  { name: "Curve Left", img: "W01-02L Horizontal Alignment - Curve 36x36 2024", category: "Warning" },
+  { name: "Curve Right", img: "W01-02R Horizontal Alignment - Curve 36x36 2024", category: "Warning" },
+  { name: "Reverse Turn Left", img: "W01-03L Horizontal Alignment - Reverse Turn 36x36 2024", category: "Warning" },
+  { name: "Reverse Turn Right", img: "W01-03R Horizontal Alignment - Reverse Turn 36x36 2024", category: "Warning" },
+  { name: "Reverse Curve Left", img: "W01-04L Horizontal Alignment - Reverse Curve 36x36 2024", category: "Warning" },
+  { name: "Reverse Curve Right", img: "W01-04R Horizontal Alignment - Reverse Curve 36x36 2024", category: "Warning" },
+  { name: "Reverse Curve Left (3 lanes)", img: "W01-04cL Reverse Curve (3 lanes) 36x36 2024", category: "Warning" },
+  { name: "Reverse Curve Right (3 lanes)", img: "W01-04cR Reverse Curve (3 lanes) 36x36 2024", category: "Warning" },
+  { name: "Winding Road Left", img: "W01-05L Horizontal Alignment - Winding Road 36x36", category: "Warning" },
+  { name: "Chevron Alignment Left", img: "W01-08L Chevron Alignment 30x36", category: "Warning" },
+  { name: "Chevron Alignment Right", img: "W01-08R Chevron Alignment 30x36", category: "Warning" },
+  { name: "Curve with T Left", img: "W01-10L Combination Horizontal Alignment Intersection - Curve with T 36x36 2024", category: "Warning" },
+  { name: "Curve with T Right", img: "W01-10R Combination Horizontal Alignment Intersection - Curve with T 36x36 2024", category: "Warning" },
+  { name: "Curve After 4-Way Left", img: "W01-10aL Combination Horizontal Alignment Intersection - Curve After 4-Way Intersection 36x36 2024", category: "Warning" },
+  { name: "Curve with Side Street Left", img: "W01-10bL Combination Horizontal Alignment Intersection - Curve with Minor Street Straight Ahead 36x36 2024", category: "Warning" },
+  { name: "Curve with Side Street Right", img: "W01-10bR Combination Horizontal Alignment Intersection - Curve with Minor Street Straight Ahead 36x36 2024", category: "Warning" },
+  { name: "Curve Into Side Street Left", img: "W01-10cL Combination Horizontal Alignment Intersection - Curve Into Minor Street 36x36 2024", category: "Warning" },
+  { name: "Curve Into Side Street Right", img: "W01-10cR Combination Horizontal Alignment Intersection - Curve Into Minor Street 36x36 2024", category: "Warning" },
+  { name: "Reverse Curve with T Left", img: "W01-10dL Combination Horizontal Alignment Intersection - Reverse Curve with T-Intersection 36x36", category: "Warning" },
+  { name: "Reverse Curve with T Right", img: "W01-10dR Combination Horizontal Alignment Intersection - Reverse Curve with T-Intersection 36x36", category: "Warning" },
+  { name: "Reverse Curve with 4-Way Left", img: "W01-10eL Combination Horizontal Alignment Intersection - Reverse Curve with 4-Way Intersection 36x36", category: "Warning" },
+  { name: "Reverse Curve with 4-Way Right", img: "W01-10eR Combination Horizontal Alignment Intersection - Reverse Curve with 4-Way Intersection 36x36", category: "Warning" },
+  { name: "Hairpin Curve", img: "W01-11R Hairpin Curve 36x36", category: "Warning" },
+  { name: "Truck Rollover", img: "W01-13R Truck Rollover 36x36", category: "Warning" },
+  { name: "Oblique Side Road", img: "W02-03aL Intersection Warning - Oblique Side Road (Acute) 36x36", category: "Warning" },
+  { name: "Y-Intersection", img: "W02-05 Intersection Warning - Y-Intersection 36x36", category: "Warning" },
+  { name: "Circular Intersection", img: "W02-06 Intersection Warning - Circular 36x36", category: "Warning" },
+  { name: "Offset Side Roads Left", img: "W02-07L Intersection Warning - Offset Side Roads 36x36", category: "Warning" },
+  { name: "Offset Side Roads Right", img: "W02-07R Intersection Warning - Offset Side Roads 36x36", category: "Warning" },
+  { name: "Side Road Left", img: "W02-08L Intersection Warning - Side Roads 36x36", category: "Warning" },
+  { name: "Side Road Right", img: "W02-08R Intersection Warning - Side Roads 36x36", category: "Warning" },
+  { name: "Traffic Entering When Flashing", img: "W02-10 Traffic Entering When Flashing 36x36", category: "Warning" },
+  { name: "Traffic Approaching When Flashing", img: "W02-11 Traffic Approaching When Flashing 36x36", category: "Warning" },
+  { name: "Stop Ahead", img: "W03-01 Stop Ahead 36x36", category: "Warning" },
+  { name: "Yield Ahead", img: "W03-02 Yield Ahead 36x36", category: "Warning" },
+  { name: "Signal Ahead", img: "W03-03 Signal Ahead 36x36", category: "Warning" },
+  { name: "Be Prepared to Stop", img: "W03-04 Be Prepared to Stop 36x36", category: "Warning" },
+  { name: "Reduced Speed Limit Ahead", img: "W03-05 Reduced Speed Limit Ahead 36x36", category: "Warning" },
+  { name: "Draw Bridge", img: "W03-06 Draw Bridge 36x36", category: "Warning" },
+  { name: "Traffic Using Shoulder", img: "W03-09 Traffic Using Shoulder 36x48", category: "Warning" },
+  { name: "Merge Left", img: "W04-01L Merge 36x36", category: "Warning" },
+  { name: "Merge Right", img: "W04-01R Merge 36x36", category: "Warning" },
+  { name: "Lane Ends", img: "W04-02R Lane Ends 36x36", category: "Warning" },
+  { name: "Added Lane Left", img: "W04-03L Added Lane 36x36", category: "Warning" },
+  { name: "Added Lane Right", img: "W04-03R Added Lane 36x36", category: "Warning" },
+  { name: "Cross Traffic Does Not Stop", img: "W04-04P Cross Traffic Does Not Stop (plaque) 36x18", category: "Warning" },
+  { name: "Entering Roadway Merge Left", img: "W04-05L Entering Roadway Merge 36x36", category: "Warning" },
+  { name: "Entering Roadway Merge Right", img: "W04-05R Entering Roadway Merge 36x36", category: "Warning" },
+  { name: "Entering Roadway Added Lane Left", img: "W04-06L Entering Roadway Added Lane 36x36", category: "Warning" },
+  { name: "Entering Roadway Added Lane Right", img: "W04-06R Entering Roadway Added Lane 36x36", category: "Warning" },
+  { name: "Single-Lane Transition", img: "W04-08 Single-Lane Transition 36x36", category: "Warning" },
+  { name: "Narrow Underpass", img: "W05-02a Narrow Underpass 36x36", category: "Warning" },
+  { name: "One Lane Bridge", img: "W05-03 One Lane Bridge 36x36", category: "Warning" },
+  { name: "One Lane Underpass", img: "W05-03a One Lane Underpass 36x36", category: "Warning" },
+  { name: "Divided Highway", img: "W06-01 Divided Highway 36x36", category: "Warning" },
+  { name: "Divided Highway Ends", img: "W06-02 Divided Highway Ends 36x36", category: "Warning" },
+  { name: "Two-Way Traffic", img: "W06-03 Two-Way Traffic 36x36", category: "Warning" },
+  { name: "Hill", img: "W07-01 Hill 36x36", category: "Warning" },
+  { name: "Hill with Grade", img: "W07-01a Hill with Grade 36x36", category: "Warning" },
+  { name: "Use Low Gear", img: "W07-02P Use Low Gear (plaque) 24x18", category: "Warning" },
+  { name: "Grade Warning", img: "W07-03P XX% Grade (plaque) 30x24", category: "Warning" },
+  { name: "Grade Warning with Distance", img: "W07-03bP XX% Grade, XX Miles (plaque) 24x18", category: "Warning" },
+  { name: "Hill (Bicycle)", img: "W07-05 Hill (Bicycle) 30x30", category: "Warning" },
+  { name: "Hill Blocks View", img: "W07-06 Hill Blocks View 36x36", category: "Warning" },
+  { name: "Bump", img: "W08-01 Bump 36x36", category: "Warning" },
+  { name: "Dip", img: "W08-02 Dip 36x36", category: "Warning" },
+  { name: "Slippery When Wet", img: "W08-05 Slippery When Wet 36x36", category: "Warning" },
+  { name: "Loose Gravel", img: "W08-07 Loose Gravel 36x36", category: "Warning" },
+  { name: "Uneven Lanes", img: "W08-11 Uneven Lanes 36x36", category: "Warning" },
+  { name: "No Center Line", img: "W08-12 No Center Line 36x36", category: "Warning" },
+  { name: "Bridge Ices Before Road", img: "W08-13 Bridge Ices Before Road 36x36", category: "Warning" },
+  { name: "Fallen Rocks", img: "W08-14 Fallen Rocks 36x36", category: "Warning" },
+  { name: "Motorcycle Warning", img: "W08-15aP Motorcycle (plaque) 36x30", category: "Warning" },
+  { name: "Road May Flood", img: "W08-18 Road May Flood 36x36", category: "Warning" },
+  { name: "Fog Area", img: "W08-22 Fog Area 36x36", category: "Warning" },
+  { name: "No Shoulder", img: "W08-23 No Shoulder 36x36", category: "Warning" },
+  { name: "Road Ends Ahead", img: "W08-26 Road Ends Advance 36x36", category: "Warning" },
+  { name: "Street Ends Ahead", img: "W08-26a Street Ends Advance 36x36", category: "Warning" },
+  { name: "Lanes Merge", img: "W09-04 Lanes Merge 36x36", category: "Warning" },
+  { name: "Low Ground Clearance", img: "W10-05 Low Ground Clearance 36x36", category: "Warning" },
+  { name: "Bicycle Warning", img: "W11-01 Bicycle 36x36", category: "Warning" },
+  { name: "Pedestrian Warning", img: "W11-02 Pedestrian 36x36", category: "Warning" },
+  { name: "Deer Crossing", img: "W11-03 Large Animal - Deer 36x36", category: "Warning" },
+  { name: "Cattle Crossing", img: "W11-04 Large Animal - Cattle 36x36", category: "Warning" },
+  { name: "Farm Vehicle", img: "W11-05 Farm Vehicle 36x36", category: "Warning" },
+  { name: "Snowmobile Crossing", img: "W11-06 Snowmobile 36x36", category: "Warning" },
+  { name: "Equestrian Crossing", img: "W11-07 Equestrian 36x36", category: "Warning" },
+  { name: "Emergency Vehicle", img: "W11-08 Emergency Vehicle 36x36", category: "Warning" },
+  { name: "Handicapped Crossing", img: "W11-09 Handicapped 36x36", category: "Warning" },
+  { name: "Truck Warning", img: "W11-10 Truck 36x36", category: "Warning" },
+  { name: "Golf Cart Crossing", img: "W11-11 Golf Cart 36x36", category: "Warning" },
+  { name: "Horse-Drawn Vehicle", img: "W11-14 Horse-Drawn Vehicle 36x36", category: "Warning" },
+  { name: "Trail Crossing", img: "W11-15 Trail Crossing 36x36", category: "Warning" },
+  { name: "Trail Crossing Alt", img: "W11-15a Trail Crossing 36x36", category: "Warning" },
+  { name: "Bear Crossing", img: "W11-16 Large Animal - Bear 36x36", category: "Warning" },
+  { name: "Sheep Crossing", img: "W11-17 Large Animal - Sheep 36x36", category: "Warning" },
+  { name: "Bighorn Sheep Crossing", img: "W11-18 Large Animal - Bighorn Sheep 36x36", category: "Warning" },
+  { name: "Donkey Crossing", img: "W11-19 Large Animal - Donkey 36x36", category: "Warning" },
+  { name: "Elk Crossing", img: "W11-20 Large Animal - Elk 36x36", category: "Warning" },
+  { name: "Moose Crossing", img: "W11-21 Large Animal - Moose 36x36", category: "Warning" },
+  { name: "Wild Horse Crossing", img: "W11-22 Large Animal - Wild Horse 36x36", category: "Warning" },
+  { name: "Double Arrow", img: "W12-01 Double Arrow 30x30", category: "Warning" },
+  { name: "Low Clearance Advance", img: "W12-02 Low Clearance Advance 36x36", category: "Warning" },
+  { name: "Low Clearance Overhead", img: "W12-02a Low Clearance Overhead 84x24", category: "Warning" },
+  { name: "Low Clearance Lane Overhead", img: "W12-02b Low Clearance - Lane Overhead 102x24", category: "Warning" },
+  { name: "Advisory Speed", img: "W13-01aP Advisory Speed Confirmation (plaque) 72x24", category: "Warning" },
+  { name: "Advisory Exit Speed 180 Loop", img: "W13-08L Combination Horizontal Alignment- Advisory Exit Speed - 180-degree Loop 36x66", category: "Warning" },
+  { name: "Advisory Ramp Speed 180 Loop", img: "W13-09L Combination Horizontal Alignment- Advisory Ramp Speed - 180-degree Loop 36x66", category: "Warning" },
+  { name: "Advisory Exit Speed Turn", img: "W13-10L Combination Horizontal Alignment-Advisory Exit Speed - Turn 36x54", category: "Warning" },
+  { name: "Advisory Ramp Speed Turn", img: "W13-11R Combination Horizontal Alignment-Advisory Ramp Speed - Turn 36x54", category: "Warning" },
+  { name: "Advisory Exit Speed Rollover", img: "W13-12L Combination Horizontal Alignment-Advisory Exit Speed-Truck Rollover 36x66", category: "Warning" },
+  { name: "Advisory Ramp Speed Rollover", img: "W13-13R Combination Horizontal Alignment-Advisory Ramp Speed-Truck Rollover 36x66", category: "Warning" },
+  { name: "Dead End", img: "W14-01 Dead End 36x36", category: "Warning" },
+  { name: "Playground", img: "W15-01 Playground 36x36", category: "Warning" },
+  { name: "All Traffic Must Exit", img: "W19-05 All Traffic Must Exit 90x48", category: "Warning" },
+  { name: "Road Work Ahead", img: "W20-01 Road Work (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Street Work Ahead", img: "W20-01 Street Work (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Detour Ahead", img: "W20-02 Detour (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Road Closed Ahead", img: "W20-03 Road Closed (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Street Closed Ahead", img: "W20-03 Street Closed (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Flagger Ahead", img: "W20-07a Flagger Ahead 36x36", category: "Warning" },
+  { name: "Workers Ahead", img: "W21-01a Workers 36x36", category: "Warning" },
+  { name: "Road Machinery Ahead", img: "W21-03 Road Machinery Ahead 36x36", category: "Warning" },
+  { name: "Shoulder Closed Ahead", img: "W21-05bR Shoulder Closed (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Utility Work Ahead", img: "W21-07 Utility Work (with distance) Ahead 36x36", category: "Warning" },
+  { name: "Mowing Ahead", img: "W21-08 Mowing Ahead 36x36", category: "Warning" },
+  { name: "Blasting Zone Ahead", img: "W22-01 Blasting Zone Ahead 36x36", category: "Warning" },
+  { name: "New Signal Ahead", img: "W23-02a New Signal Operation Ahead 36x36", category: "Warning" },
+  { name: "Double Reverse Curve", img: "W24-01aL Double Reverse Curve (2 lanes) 36x36", category: "Warning" },
+];
+
+// ─── State ──────────────────────────────────────────────────────────────────
+
+let currentGame = null;
+let settings = { soundEnabled: true, randomFreeSpace: false, captureLocation: true };
+let history = [];
+let currentLocation = null;
+let watchId = null;
+let audioCtx = null;
+let mapInstance = null;
+let mapLeafletLoaded = false;
+
+// ─── Utilities ──────────────────────────────────────────────────────────────
+
+function svgSrc(imageName) {
+  return `./svgs/${encodeURIComponent(imageName)}.svg`;
+}
+
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function formatDate(isoStr) {
+  const d = new Date(isoStr);
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric',
+    hour: 'numeric', minute: '2-digit' });
+}
+
+// ─── Storage ────────────────────────────────────────────────────────────────
+
+function loadAll() {
+  try {
+    const s = localStorage.getItem('bingo_settings');
+    if (s) settings = { ...settings, ...JSON.parse(s) };
+  } catch(e) {}
+  try {
+    const g = localStorage.getItem('bingo_current_game');
+    if (g) currentGame = JSON.parse(g);
+  } catch(e) {}
+  try {
+    const h = localStorage.getItem('bingo_history');
+    if (h) history = JSON.parse(h);
+  } catch(e) {}
+}
+
+function saveSettings() {
+  localStorage.setItem('bingo_settings', JSON.stringify(settings));
+}
+
+function saveCurrentGame() {
+  if (currentGame) {
+    localStorage.setItem('bingo_current_game', JSON.stringify(currentGame));
+  } else {
+    localStorage.removeItem('bingo_current_game');
+  }
+}
+
+function saveHistory() {
+  localStorage.setItem('bingo_history', JSON.stringify(history));
+}
+
+function saveSetting(key, value) {
+  settings[key] = value;
+  saveSettings();
+}
+
+// ─── Game Logic ─────────────────────────────────────────────────────────────
+
+function createNewGame() {
+  const selected = shuffle(ROAD_SIGNS).slice(0, 25);
+  const freePos = settings.randomFreeSpace ? Math.floor(Math.random() * 25) : 12;
+  const cells = selected.map((sign, i) => ({
+    position: i,
+    signName: sign.name,
+    signImg: sign.img,
+    category: sign.category,
+    isFreeSpace: i === freePos,
+    isTapped: i === freePos,
+    tappedAt: i === freePos ? new Date().toISOString() : null,
+    latitude: null,
+    longitude: null,
+  }));
+  return {
+    id: uuidv4(),
+    createdAt: new Date().toISOString(),
+    completedAt: null,
+    hasBingo: false,
+    cells,
+  };
+}
+
+function checkBingo(cells) {
+  const s = [...cells].sort((a, b) => a.position - b.position);
+  // Rows
+  for (let r = 0; r < 5; r++) {
+    if (s.slice(r * 5, r * 5 + 5).every(c => c.isTapped)) return true;
+  }
+  // Columns
+  for (let col = 0; col < 5; col++) {
+    if ([0,1,2,3,4].map(r => s[col + r * 5]).every(c => c.isTapped)) return true;
+  }
+  // Diagonal TL→BR: 0,6,12,18,24
+  if ([0,1,2,3,4].map(i => s[i * 6]).every(c => c.isTapped)) return true;
+  // Diagonal TR→BL: 4,8,12,16,20
+  if ([0,1,2,3,4].map(i => s[4 + i * 4]).every(c => c.isTapped)) return true;
+  return false;
+}
+
+function tapCell(position) {
+  if (!currentGame) return;
+  if (currentGame.hasBingo) return; // board locked after bingo
+
+  const cell = currentGame.cells.find(c => c.position === position);
+  if (!cell) return;
+  if (cell.isTapped && cell.isFreeSpace) return; // can't untap free space
+
+  if (cell.isTapped) {
+    cell.isTapped = false;
+    cell.tappedAt = null;
+    cell.latitude = null;
+    cell.longitude = null;
+  } else {
+    cell.isTapped = true;
+    cell.tappedAt = new Date().toISOString();
+    if (settings.captureLocation && currentLocation) {
+      cell.latitude = currentLocation.lat;
+      cell.longitude = currentLocation.lng;
+    }
+    playTapSound();
+  }
+
+  if (!currentGame.hasBingo && checkBingo(currentGame.cells)) {
+    currentGame.hasBingo = true;
+    currentGame.completedAt = new Date().toISOString();
+    onBingo();
+  }
+
+  saveCurrentGame();
+  renderGrid();
+  updateCounter();
+}
+
+// ─── Sound ──────────────────────────────────────────────────────────────────
+
+function getAudioCtx() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+function playTone(freq, duration, volume) {
+  if (!settings.soundEnabled) return;
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'sine';
+    const now = ctx.currentTime;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(volume, now + 0.01);
+    gain.gain.setValueAtTime(volume, now + duration - 0.03);
+    gain.gain.linearRampToValueAtTime(0, now + duration);
+    osc.start(now);
+    osc.stop(now + duration);
+  } catch(e) {}
+}
+
+function playTapSound() {
+  playTone(440, 0.08, 0.25);
+}
+
+function playWinSound() {
+  playTone(523.25, 0.3, 0.5);
+  setTimeout(() => playTone(659.25, 0.3, 0.5), 350);
+  setTimeout(() => playTone(783.99, 0.5, 0.5), 700);
+}
+
+// ─── Location ───────────────────────────────────────────────────────────────
+
+function startLocationTracking() {
+  if (watchId !== null) return;
+  if (!navigator.geolocation) {
+    showLocationError('Location is not available. Make sure the app is served over HTTPS.');
+    return;
+  }
+  watchId = navigator.geolocation.watchPosition(
+    pos => { currentLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude }; },
+    err => {
+      if (err.code === 1) {
+        showLocationError('Location permission denied. Enable it in iPhone Settings → Safari → Location.');
+      } else if (err.code === 2) {
+        showLocationError('Location unavailable. Check that Location Services are on.');
+      }
+      console.warn('Location:', err.message);
+    },
+    { enableHighAccuracy: true }
+  );
+}
+
+function showLocationError(msg) {
+  settings.captureLocation = false;
+  saveSettings();
+  const toggle = document.getElementById('toggle-location');
+  if (toggle) toggle.checked = false;
+  alert(msg);
+}
+
+function stopLocationTracking() {
+  if (watchId !== null) {
+    navigator.geolocation.clearWatch(watchId);
+    watchId = null;
+  }
+}
+
+function onLocationToggle(enabled) {
+  settings.captureLocation = enabled;
+  saveSettings();
+  if (enabled) {
+    startLocationTracking();  // triggers permission prompt immediately
+  } else {
+    stopLocationTracking();
+  }
+}
+
+// ─── Confetti ───────────────────────────────────────────────────────────────
+
+function runConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  const colors = ['#ef4444','#3b82f6','#22c55e','#eab308','#f97316','#a855f7','#ec4899','#06b6d4'];
+  const now = Date.now();
+  const duration = 4000;
+  const particles = Array.from({ length: 300 }, (_, i) => ({
+    x: Math.random() * canvas.width,
+    y: canvas.height + 10,
+    vx: (Math.random() - 0.5) * 8,
+    vy: -(Math.random() * 15 + 10),
+    size: Math.random() * 4 + 8,
+    color: colors[i % colors.length],
+    rotation: Math.random() * 360,
+    rotSpeed: (Math.random() - 0.5) * 10,
+    gravity: 0.3,
+    delay: Math.random() * 800,
+    born: now,
+  }));
+
+  function frame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const t = Date.now();
+    const elapsed = t - now;
+    particles.forEach(p => {
+      if (t - p.born < p.delay) return;
+      p.vy += p.gravity;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rotation += p.rotSpeed;
+      const fade = elapsed > duration * 0.7 ? 1 - (elapsed - duration * 0.7) / (duration * 0.3) : 1;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, fade);
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    });
+    if (elapsed < duration) requestAnimationFrame(frame);
+    else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.style.display = 'none';
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+// ─── Win ────────────────────────────────────────────────────────────────────
+
+function onBingo() {
+  playWinSound();
+  runConfetti();
+
+  document.getElementById('bingo-banner').classList.add('show');
+  document.getElementById('btn-map').style.display = '';
+
+  // Archive to history
+  const entry = {
+    id: currentGame.id,
+    createdAt: currentGame.createdAt,
+    completedAt: currentGame.completedAt,
+    tappedCount: currentGame.cells.filter(c => c.isTapped).length,
+    hasBingo: true,
+    cells: currentGame.cells,
+  };
+  history.unshift(entry);
+  saveHistory();
+}
+
+// ─── Render ──────────────────────────────────────────────────────────────────
+
+function renderGrid() {
+  const grid = document.getElementById('grid');
+  if (!currentGame) { grid.innerHTML = ''; return; }
+
+  // Only rebuild if cell count changed (avoid full rerender on tap)
+  const existing = grid.querySelectorAll('.cell');
+  if (existing.length !== 25) {
+    grid.innerHTML = '';
+    currentGame.cells
+      .sort((a, b) => a.position - b.position)
+      .forEach(cell => grid.appendChild(buildCell(cell)));
+  } else {
+    // Update states only
+    currentGame.cells.sort((a, b) => a.position - b.position).forEach((cell, i) => {
+      const el = existing[i];
+      el.classList.toggle('tapped', cell.isTapped);
+    });
+  }
+}
+
+function buildCell(cell) {
+  const el = document.createElement('div');
+  el.className = 'cell' + (cell.isTapped ? ' tapped' : '') + (cell.isFreeSpace ? ' free-space' : '');
+  el.dataset.pos = cell.position;
+
+  const img = document.createElement('img');
+  img.src = svgSrc(cell.signImg);
+  img.alt = cell.signName;
+  img.draggable = false;
+  el.appendChild(img);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cell-overlay';
+  el.appendChild(overlay);
+
+  const check = document.createElement('div');
+  check.className = 'cell-check';
+  check.textContent = '✓';
+  check.style.cssText = 'color:white;font-size:24px;font-weight:900;text-shadow:0 1px 3px rgba(0,0,0,0.5)';
+  el.appendChild(check);
+
+  if (cell.isFreeSpace) {
+    const label = document.createElement('div');
+    label.className = 'free-label';
+    label.innerHTML = '<span>FREE</span>';
+    el.appendChild(label);
+  }
+
+  // Touch events
+  let pressTimer = null;
+  let moved = false;
+
+  el.addEventListener('touchstart', e => {
+    moved = false;
+    pressTimer = setTimeout(() => {
+      pressTimer = null;
+      openSignModal(cell);
+    }, 500);
+  }, { passive: true });
+
+  el.addEventListener('touchmove', () => {
+    moved = true;
+    if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+  }, { passive: true });
+
+  let touchHandled = false;
+
+  el.addEventListener('touchend', e => {
+    if (pressTimer && !moved) {
+      clearTimeout(pressTimer);
+      pressTimer = null;
+      e.preventDefault(); // stop the browser firing a click event after this
+      touchHandled = true;
+      tapCell(cell.position);
+    }
+  });
+
+  // Mouse fallback — skipped if a touch already handled this interaction
+  el.addEventListener('click', e => {
+    if (touchHandled) { touchHandled = false; return; }
+    tapCell(cell.position);
+  });
+  el.addEventListener('contextmenu', e => { e.preventDefault(); openSignModal(cell); });
+
+  return el;
+}
+
+function updateCounter() {
+  if (!currentGame) return;
+  const found = currentGame.cells.filter(c => c.isTapped).length;
+  document.getElementById('counter-text').textContent = `${found} / 25 Signs Found`;
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '';
+
+  if (!currentGame && history.length === 0) {
+    list.innerHTML = `<div class="history-empty">
+      <div class="empty-icon">🚗</div>
+      <p>No games yet.<br>Tap <strong>New Game</strong> to start!</p>
+    </div>`;
+    return;
+  }
+
+  // Active game row if exists
+  if (currentGame) {
+    const found = currentGame.cells.filter(c => c.isTapped).length;
+    const row = document.createElement('div');
+    row.className = 'game-row';
+    row.innerHTML = `
+      <div class="game-row-info">
+        <div class="game-row-date">Started ${formatDate(currentGame.createdAt)} • Active</div>
+        <div class="game-row-stats">${found} / 25 Signs Found</div>
+      </div>
+      ${currentGame.hasBingo ? '<div class="bingo-badge">BINGO!</div>' : ''}
+      <button class="delete-btn" id="delete-current-btn">✕</button>
+    `;
+    row.addEventListener('click', () => showGame());
+    row.querySelector('#delete-current-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      currentGame = null;
+      localStorage.removeItem('bingo_current_game');
+      renderHistory();
+    });
+    list.appendChild(row);
+  }
+
+  history.forEach((game, idx) => {
+    const row = document.createElement('div');
+    row.className = 'game-row';
+    row.innerHTML = `
+      <div class="game-row-info">
+        <div class="game-row-date">${formatDate(game.createdAt)}</div>
+        <div class="game-row-stats">${game.tappedCount} / 25 Signs Found</div>
+      </div>
+      ${game.hasBingo ? '<div class="bingo-badge">BINGO!</div>' : ''}
+      <button class="delete-btn" data-idx="${idx}">✕</button>
+    `;
+    row.querySelector('.delete-btn').addEventListener('click', e => {
+      e.stopPropagation();
+      deleteHistoryGame(idx);
+    });
+    list.appendChild(row);
+  });
+}
+
+// ─── Navigation ─────────────────────────────────────────────────────────────
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showHistory() {
+  renderHistory();
+  showView('history-view');
+}
+
+function showGame() {
+  if (!currentGame) return;
+  showView('game-view');
+  renderGrid();
+  updateCounter();
+  document.getElementById('bingo-banner').classList.toggle('show', currentGame.hasBingo);
+  if (settings.captureLocation) startLocationTracking();
+}
+
+function showSettings() {
+  document.getElementById('toggle-sound').checked = settings.soundEnabled;
+  document.getElementById('toggle-random-free').checked = settings.randomFreeSpace;
+  document.getElementById('toggle-location').checked = settings.captureLocation;
+  showView('settings-view');
+}
+
+function showAbout() {
+  showView('about-view');
+}
+
+function exitGame() {
+  stopLocationTracking();
+  showHistory();
+}
+
+function startNewGame() {
+  currentGame = createNewGame();
+  saveCurrentGame();
+  showGame();
+}
+
+// ─── Sign Modal ─────────────────────────────────────────────────────────────
+
+function openSignModal(cell) {
+  document.getElementById('sign-modal-img').src = svgSrc(cell.signImg);
+  document.getElementById('sign-modal-name').textContent = cell.signName;
+  document.getElementById('sign-modal-category').textContent = cell.category;
+  document.getElementById('sign-modal').classList.add('show');
+}
+
+function closeSignModal() {
+  document.getElementById('sign-modal').classList.remove('show');
+}
+
+// ─── Map ────────────────────────────────────────────────────────────────────
+
+function showMap() {
+  const modal = document.getElementById('map-modal');
+  modal.classList.add('show');
+
+  const game = currentGame || (history.length > 0 ? history[0] : null);
+  if (!game) return;
+
+  const pins = game.cells
+    .filter(c => c.isTapped && c.latitude != null && c.longitude != null)
+    .sort((a, b) => new Date(a.tappedAt) - new Date(b.tappedAt));
+
+  const mapEl = document.getElementById('leaflet-map');
+  const emptyEl = document.getElementById('map-empty');
+
+  if (pins.length === 0) {
+    mapEl.style.display = 'none';
+    emptyEl.style.display = 'flex';
+    return;
+  }
+
+  mapEl.style.display = 'block';
+  emptyEl.style.display = 'none';
+
+  if (!mapLeafletLoaded) {
+    // Load Leaflet dynamically
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+    document.head.appendChild(link);
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    script.onload = () => { mapLeafletLoaded = true; initMap(pins); };
+    document.head.appendChild(script);
+  } else {
+    initMap(pins);
+  }
+}
+
+function initMap(pins) {
+  if (!mapInstance) {
+    mapInstance = L.map('leaflet-map');
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      maxZoom: 19,
+    }).addTo(mapInstance);
+  } else {
+    mapInstance.eachLayer(layer => {
+      if (layer instanceof L.Marker) layer.remove();
+    });
+  }
+
+  pins.forEach((cell, i) => {
+    const isStart = i === 0;
+    const isFinish = i === pins.length - 1 && pins.length > 1;
+    const badge = isStart
+      ? '<div class="leaflet-pin-badge start">Started</div>'
+      : isFinish
+        ? '<div class="leaflet-pin-badge finish">Finished</div>'
+        : '';
+    const icon = L.divIcon({
+      html: `<div class="leaflet-pin-wrap">
+        <img src="${svgSrc(cell.signImg)}" alt="${cell.signName}">
+        ${badge}
+      </div>`,
+      iconSize: [50, 60],
+      iconAnchor: [25, 55],
+      className: '',
+    });
+    L.marker([cell.latitude, cell.longitude], { icon })
+      .bindPopup(`<strong>${cell.signName}</strong><br>${cell.category}`)
+      .addTo(mapInstance);
+  });
+
+  const bounds = L.latLngBounds(pins.map(c => [c.latitude, c.longitude]));
+  setTimeout(() => {
+    mapInstance.invalidateSize();
+    mapInstance.fitBounds(bounds.pad(0.3));
+  }, 100);
+}
+
+function closeMap() {
+  document.getElementById('map-modal').classList.remove('show');
+}
+
+// ─── Print ───────────────────────────────────────────────────────────────────
+
+function showPrint() {
+  // Build a fresh printable card from current game (or a random new one)
+  const game = currentGame || createNewGame();
+  const printGrid = document.getElementById('print-grid');
+  printGrid.innerHTML = '';
+
+  game.cells.sort((a, b) => a.position - b.position).forEach(cell => {
+    const div = document.createElement('div');
+    div.className = 'print-cell' + (cell.isFreeSpace ? ' print-free' : '');
+    if (cell.isFreeSpace) {
+      div.innerHTML = `<div class="print-name" style="font-size:18px;font-weight:900;color:#16a34a">FREE</div>`;
+    } else {
+      div.innerHTML = `
+        <img src="${svgSrc(cell.signImg)}" alt="${cell.signName}">
+        <div class="print-name">${cell.signName}</div>
+      `;
+    }
+    printGrid.appendChild(div);
+  });
+
+  window.print();
+}
+
+// ─── History Management ──────────────────────────────────────────────────────
+
+function deleteHistoryGame(idx) {
+  history.splice(idx, 1);
+  saveHistory();
+  renderHistory();
+}
+
+function confirmClearHistory() {
+  if (confirm('Clear all game history? This cannot be undone.')) {
+    history = [];
+    saveHistory();
+    renderHistory();
+    showHistory();
+  }
+}
+
+// ─── Init ───────────────────────────────────────────────────────────────────
+
+function init() {
+  loadAll();
+
+  // Register service worker + listen for updates
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js', { scope: './' }).then(reg => {
+      reg.addEventListener('updatefound', () => {
+        const newSW = reg.installing;
+        newSW.addEventListener('statechange', () => {
+          // New SW installed and waiting — an existing SW was already controlling the page
+          if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+            document.getElementById('update-banner').classList.add('show');
+          }
+        });
+      });
+    }).catch(() => {});
+
+    // When the new SW takes control (after skipWaiting), reload to serve fresh files
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      location.reload();
+    });
+  }
+
+  // Show splash, then transition to history
+  const splash = document.getElementById('splash');
+  setTimeout(() => {
+    splash.classList.add('fade-out');
+    setTimeout(() => {
+      showHistory();
+    }, 400);
+  }, 2000);
+
+  // Start location if enabled
+  if (settings.captureLocation) {
+    // Lazy start - will request permission on first game
+  }
+}
+
+init();
+</script>
+</body>
+</html>
