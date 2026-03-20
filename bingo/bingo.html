@@ -904,7 +904,7 @@
     <button class="nav-btn" onclick="closeMap()">‹ Back</button>
     <h1>Sign Locations</h1>
   </div>
-  <div class="map-notice">Map tiles require an internet connection</div>
+  <div class="map-notice" id="map-notice" style="display:none">Map tiles require an internet connection</div>
   <div id="leaflet-map"></div>
   <div id="map-empty" class="map-empty" style="display:none">
     <div class="empty-icon">📍</div>
@@ -1766,6 +1766,7 @@ function closeSignModal() {
 function showMap() {
   const modal = document.getElementById('map-modal');
   modal.classList.add('show');
+  document.getElementById('map-notice').style.display = navigator.onLine ? 'none' : '';
 
   const game = currentGame || (history.length > 0 ? history[0] : null);
   if (!game) return;
