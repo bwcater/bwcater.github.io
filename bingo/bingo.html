@@ -341,19 +341,19 @@
       min-height: 0;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding: 16px 12px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
     }
     .settings-section-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--gray-400);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       padding-left: 4px;
-      margin-bottom: -8px;
+      margin-bottom: -4px;
     }
     .settings-group {
       background: white;
@@ -364,7 +364,7 @@
     .settings-row {
       display: flex;
       align-items: center;
-      padding: 14px 16px;
+      padding: 11px 16px;
       gap: 14px;
       border-bottom: 1px solid var(--gray-100);
     }
@@ -372,7 +372,7 @@
     .settings-row-icon { font-size: 22px; width: 28px; text-align: center; }
     .settings-row-label { flex: 1; }
     .settings-row-label strong { font-size: 16px; display: block; }
-    .settings-row-label span { font-size: 13px; color: var(--gray-400); }
+    .settings-row-label span { font-size: 13px; color: var(--gray-400); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .toggle {
       appearance: none;
       -webkit-appearance: none;
@@ -837,7 +837,7 @@
         <div class="settings-row-icon">🎲</div>
         <div class="settings-row-label">
           <strong>Random Free Space</strong>
-          <span>Free cell at random position instead of center</span>
+          <span>Random position instead of center</span>
         </div>
         <input type="checkbox" class="toggle" id="toggle-random-free" onchange="saveSetting('randomFreeSpace', this.checked)">
       </div>
