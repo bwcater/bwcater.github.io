@@ -485,6 +485,16 @@ main.recordings-list {
     }
 }
 
+/* ---- Dark mode: 404 page ---- */
+
+html[data-theme="dark"] .intro > h1 {
+    color: #e8e8e8;
+}
+
+html[data-theme="dark"] .intro > h2 {
+    color: #888;
+}
+
 /* ---- Dark mode: Bootstrap overrides ---- */
 
 html[data-theme="dark"] .navbar-default {
