@@ -488,11 +488,11 @@ main.recordings-list {
 /* ---- Dark mode: 404 page ---- */
 
 html[data-theme="dark"] .intro > h1 {
-    color: #e8e8e8;
+    color: #e8e8e8 !important;
 }
 
 html[data-theme="dark"] .intro > h2 {
-    color: #888;
+    color: #888 !important;
 }
 
 /* ---- Dark mode: Bootstrap overrides ---- */
