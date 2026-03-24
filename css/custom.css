@@ -78,11 +78,19 @@
     color: #fff;
     max-width: 480px;
     margin: 0 auto;
+    text-align: left;
 }
 
 .hero-bio-mobile p {
     margin: 0;
     text-align: left;
+}
+
+/* Mobile: explicitly hide the overlay bio (only hero-bio-mobile should show) */
+@media (max-width: 767px) {
+    .hero-bio {
+        display: none !important;
+    }
 }
 
 /* Mobile: video sits below the image in a second row */
