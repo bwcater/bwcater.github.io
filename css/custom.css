@@ -34,7 +34,7 @@
     justify-self: end;
     text-align: right;
     margin-top: 8vw;
-    margin-right: 6%;
+    margin-right: 8%;
     z-index: 2;
 }
 
@@ -55,6 +55,36 @@
     line-height: 1.2;
 }
 
+.hero-bio {
+    margin-top: 0.75em;
+    color: #fff;
+    font-size: 1.4vw;
+    line-height: 1.5;
+    max-width: 28vw;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    display: none;
+}
+
+.hero-bio p {
+    margin: 0;
+    text-align: left;
+}
+
+.hero-bio-mobile {
+    display: block;
+    padding: 1.25rem 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #fff;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.hero-bio-mobile p {
+    margin: 0;
+    text-align: left;
+}
+
 /* Mobile: video sits below the image in a second row */
 .hero-video {
     grid-column: 1;
@@ -70,6 +100,15 @@
 
     .hero-text h2 {
         font-size: 3rem;
+    }
+
+    .hero-bio {
+        display: block;
+        font-size: 1.5rem;
+    }
+
+    .hero-bio-mobile {
+        display: none;
     }
 
     .hero-video {

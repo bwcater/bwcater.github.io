@@ -211,6 +211,8 @@
         <div class="hero-text">
             <h1>Wayne Cater</h1>
             <h2></h2>
+            <div class="hero-bio"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based creative into songwriting and playing multiple instruments, watercolor art, and software development. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
+</div>
         </div>
         <div class="hero-video">
             <iframe class="embedded-video-16-9" src="https://www.youtube.com/embed/PNsNO4xIrpI?si=ydmHEM1-YlZ9ZnQS"
@@ -219,13 +221,31 @@
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                 ></iframe>
         </div>
+        <div class="hero-bio-mobile"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based creative into songwriting and playing multiple instruments, watercolor art, and software development. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
+</div>
     </div>
 </div>
 
 <main>
-     <div class="homepage-content text-justify"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based singer-songwriter, guitarist, watercolor artist, software developer, and author. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
-</div> 
 </main>
+
+<script>
+function matchBioToTitle() {
+    var h1 = document.querySelector('.hero-text h1');
+    var bio = document.querySelector('.hero-bio');
+    if (!h1 || !bio) return;
+    if (window.innerWidth >= 768) {
+        var w = h1.offsetWidth + 'px';
+        bio.style.width = w;
+        bio.style.maxWidth = w;
+    } else {
+        bio.style.width = '';
+        bio.style.maxWidth = '';
+    }
+}
+matchBioToTitle();
+window.addEventListener('resize', matchBioToTitle);
+</script>
 
         <footer>
             <p class="copyright text-muted">©2016 - 2026 Wayne Cater, all rights reserved;</p>
