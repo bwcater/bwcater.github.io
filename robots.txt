@@ -1,3 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /downloads/
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /privacy/$
+Disallow: /search/
+Disallow: /index.json
+Disallow: /index.xml
+Disallow: /posts/index.xml
+Disallow: /recordings/index.xml
 Sitemap: https://waynecater.com/sitemap.xml
