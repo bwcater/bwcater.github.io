@@ -19,5 +19,17 @@ The App stores the following data locally on your Mac using SwiftData:
  Leaderboard entries — Player names and scores you choose to save Word list — Custom words you add or modify for gameplay  This data is stored only on your device and is never sent to any server or third party.</description>
     </item>
     
+    <item>
+      <title>Privacy Policy for Road Sign Bingo</title>
+      <link>https://waynecater.com/privacy/roadsignbingo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/privacy/roadsignbingo/</guid>
+      <description>Last updated: March 27, 2026
+Overview Road Sign Bingo (&amp;ldquo;the App&amp;rdquo;) is an iOS game developed by Wayne Cater. This policy describes how the App handles your data.
+Data Collection Road Sign Bingo does not collect, transmit, or share any personal data. All data stays on your device.
+If you grant location permission, the App records your location only at the moment you tap a road sign during gameplay. This location data is used solely to display a map of where you spotted signs after getting Bingo.</description>
+    </item>
+    
   </channel>
 </rss>
