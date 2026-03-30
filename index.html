@@ -211,9 +211,20 @@
         <div class="hero-text">
             <h1>Wayne Cater</h1>
             <h2></h2>
-            <div class="hero-bio"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based creative into songwriting and playing multiple instruments, watercolor art, and software development. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
+            <div class="hero-bio-group">
+                <div class="hero-bio"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based creative into songwriting and playing multiple instruments, watercolor art, and software development. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
 </div>
+                <div class="hero-video-desktop">
+                    <iframe class="embedded-video-16-9" src="https://www.youtube.com/embed/PNsNO4xIrpI?si=ydmHEM1-YlZ9ZnQS"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                        ></iframe>
+                </div>
+            </div>
         </div>
+        <div class="hero-bio-mobile"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based creative into songwriting and playing multiple instruments, watercolor art, and software development. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
+</div>
         <div class="hero-video">
             <iframe class="embedded-video-16-9" src="https://www.youtube.com/embed/PNsNO4xIrpI?si=ydmHEM1-YlZ9ZnQS"
                 title="YouTube video player" frameborder="0"
@@ -221,8 +232,6 @@
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
                 ></iframe>
         </div>
-        <div class="hero-bio-mobile"><p>Welcome! I&rsquo;m Wayne Cater — a Nashville-based creative into songwriting and playing multiple instruments, watercolor art, and software development. I write and record original music, share art and photography, and occasionally write about books, technology, and life. Browse around and enjoy!</p>
-</div>
     </div>
 </div>
 
@@ -232,15 +241,12 @@
 <script>
 function matchBioToTitle() {
     var h1 = document.querySelector('.hero-text h1');
-    var bio = document.querySelector('.hero-bio');
-    if (!h1 || !bio) return;
+    var group = document.querySelector('.hero-bio-group');
+    if (!h1 || !group) return;
     if (window.innerWidth >= 768) {
-        var w = h1.offsetWidth + 'px';
-        bio.style.width = w;
-        bio.style.maxWidth = w;
+        group.style.width = h1.offsetWidth + 'px';
     } else {
-        bio.style.width = '';
-        bio.style.maxWidth = '';
+        group.style.width = '';
     }
 }
 matchBioToTitle();

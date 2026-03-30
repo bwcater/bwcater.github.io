@@ -55,25 +55,31 @@
     line-height: 1.2;
 }
 
-.hero-bio {
+.hero-bio-group {
+    display: none;
     margin-top: 0.75em;
+    text-align: left;
+}
+
+.hero-bio {
     color: #fff;
     font-size: 1.4vw;
     line-height: 1.5;
-    max-width: 28vw;
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    display: none;
 }
 
 .hero-bio p {
     margin: 0;
     text-align: left;
+    padding-left: 2rem !important;
+    font-size: 1.75rem;
 }
 
 .hero-bio-mobile {
     display: block;
+    grid-row: 2;
     padding: 1.25rem 1rem;
-    font-size: 1rem;
+    font-size: 1.75rem;
     line-height: 1.6;
     color: #fff;
     max-width: 480px;
@@ -86,18 +92,39 @@
     text-align: left;
 }
 
-/* Mobile: explicitly hide the overlay bio (only hero-bio-mobile should show) */
+/* Mobile: explicitly hide the overlay bio group (only hero-bio-mobile should show) */
 @media (max-width: 767px) {
-    .hero-bio {
+    .hero-bio-group {
         display: none !important;
     }
 }
 
-/* Mobile: video sits below the image in a second row */
+/* Mobile: video sits below the bio in a third row */
 .hero-video {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 3;
     margin-top: 1.5rem;
+    max-width: 480px; /* match hero-bio-mobile */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-video .embedded-video-16-9,
+.hero-video-desktop .embedded-video-16-9 {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+/* Desktop-only video inside hero-text, below bio */
+.hero-video-desktop {
+    position: relative;
+    left: -2em;
+    display: none;
+    margin-top: 2rem;
+    text-align: left;
 }
 
 /* Desktop: video overlaid on image near bottom-right */
@@ -110,8 +137,17 @@
         font-size: 3rem;
     }
 
-    .hero-bio {
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .hero-bio-group {
         display: block;
+    }
+
+    .hero-bio {
         font-size: 1.5rem;
     }
 
@@ -120,19 +156,11 @@
     }
 
     .hero-video {
-        grid-row: 1;
-        align-self: end;
-        justify-self: end;
-        margin-top: 0;
-        margin-bottom: 10vw;
-        margin-right: 6%;
-        z-index: 2;
+        display: none;
     }
 
-    .hero-video .embedded-video-16-9 {
-        width: 40vw;
-        height: 22.5vw; /* 40 * 9/16 */
-        margin: 0;
+    .hero-video-desktop {
+        display: block;
     }
 }
 
