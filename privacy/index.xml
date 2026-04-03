@@ -31,5 +31,17 @@ Data Collection Road Sign Bingo does not collect, transmit, or share any persona
 If you grant location permission, the App records your location only at the moment you tap a road sign during gameplay. This location data is used solely to display a map of where you spotted signs after getting Bingo.</description>
     </item>
     
+    <item>
+      <title>Privacy Policy for DailyStepCount</title>
+      <link>https://waynecater.com/privacy/dailystepcount/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/privacy/dailystepcount/</guid>
+      <description>Privacy Policy — DailyStepCount Last updated: April 2, 2026
+OVERVIEW  DailyStepCount is designed with privacy as a core principle. The app does not collect, store, transmit, or share any personal data. Everything stays on your device.
+DATA COLLECTED  DailyStepCount does not collect any data. Specifically:
+ No personal information is collected (name, email, account, etc.) No location data is collected or accessed No device identifiers are collected No analytics or crash reporting services are used No advertising SDKs or tracking libraries are included  HEALTH DATA  DailyStepCount reads step count data from Apple HealthKit solely to display it on your home screen widget.</description>
+    </item>
+    
   </channel>
 </rss>
