@@ -17,6 +17,7 @@
 .hero-stack {
     display: grid;
     grid-template-columns: 100%;
+    overflow-x: hidden;
 }
 
 .hero-stack img {
@@ -81,7 +82,7 @@
     padding: 1.25rem 1rem;
     font-size: 1rem;
     line-height: 1.6;
-    color: #fff;
+    color: var(--text);
     max-width: 480px;
     margin: 0 auto;
     text-align: left;
@@ -161,6 +162,19 @@
 
     .hero-video-desktop {
         display: block;
+    }
+}
+
+/* Tablet: move video below the hero image instead of overlaying it */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .hero-video-desktop {
+        display: none;
+    }
+    .hero-video {
+        display: block;
+        max-width: 560px;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 }
 
