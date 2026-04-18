@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1c1c1e">
+  <title>Tessera</title>
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #ff9500;
+      --bg: #1c1c1e;
+      --surface: #2c2c2e;
+      --surface2: #3a3a3c;
+      --text: #f2f2f7;
+      --text2: #aeaeb2;
+      --gap: 3px;
+      --padding: 10px;
+      --grid-size: 3;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 12px 12px;
+      gap: 10px;
+      min-height: 100dvh;
+    }
+
+    /* ── Header ──────────────────────────────────────────────────────── */
+    header {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 12px;
+      min-height: 44px;
+      position: relative;
+    }
+
+    #move-counter {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    #status-text {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    #solved-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #30d158;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    #solved-label.flash {
+      animation: solvedFlash 0.5s ease-in-out 0s 4 alternate;
+    }
+
+    @keyframes solvedFlash {
+      from { opacity: 1; }
+      to   { opacity: 0.15; }
+    }
+
+    header .spacer { flex: 1; }
+
+    #btn-photo, #btn-colors {
+      background: var(--surface2);
+      color: var(--orange);
+      border: 1px solid var(--surface2);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #btn-photo:active, #btn-colors:active { opacity: 0.7; }
+
+    /* ── Puzzle board ─────────────────────────────────────────────────── */
+    main {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #puzzle-board {
+      width: min(92vw, 92vh, 480px);
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #puzzle-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--grid-size), 1fr);
+      gap: var(--gap);
+      padding: var(--padding);
+      position: relative;
+      touch-action: none;
+      user-select: none;
+    }
+
+    /* Win animations */
+    @keyframes winPulse {
+      0%   { transform: scale(1.0); }
+      60%  { transform: scale(1.07); }
+      100% { transform: scale(1.0); }
+    }
+
+    @keyframes shimmerSweep {
+      from { transform: translateX(-120%) skewX(-12deg); }
+      to   { transform: translateX(220%)  skewX(-12deg); }
+    }
+
+    #puzzle-grid.win-pulse {
+      animation: winPulse 280ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    #puzzle-board.win-shimmer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        100deg,
+        transparent 20%,
+        rgba(255,255,255,0.42) 50%,
+        rgba(255,255,255,0.62) 52%,
+        rgba(255,255,255,0.42) 54%,
+        transparent 80%
+      );
+      width: 60%;
+      height: 300%;
+      top: -100%;
+      animation: shimmerSweep 650ms ease-in-out forwards;
+      border-radius: 14px;
+    }
+
+    /* ── Tiles ────────────────────────────────────────────────────────── */
+    .tile {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      cursor: grab;
+      aspect-ratio: 1;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      transition: box-shadow 150ms ease, transform 150ms ease;
+      background-color: var(--surface);
+      background-repeat: no-repeat;
+    }
+
+    .tile.movable {
+      box-shadow: 0 2px 5px rgba(0,0,0,0.45);
+      transform: scale(1.03);
+      outline: 2px solid rgba(255,255,255,0.7);
+      outline-offset: -2px;
+    }
+
+    .tile-empty {
+      border-radius: 4px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* Tile number label — bottom right corner */
+    .tile-num {
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(51,255,51,0.88);
+      color: #000;
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    #puzzle-grid.hide-numbers .tile-num {
+      display: none;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .icon-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      padding: 6px 8px;
+      cursor: pointer;
+      border-radius: 8px;
+      color: var(--text2);
+      transition: color 150ms;
+    }
+    .icon-btn:active { opacity: 0.6; }
+    .icon-btn.active-blue { color: #0a84ff; }
+    .icon-btn.active-green { color: #30d158; }
+
+    /* Grid size picker */
+    #grid-picker {
+      display: flex;
+      gap: 6px;
+    }
+
+    .size-btn {
+      flex: 1;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid var(--surface2);
+      background: var(--surface);
+      color: var(--text2);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 150ms, color 150ms;
+    }
+
+    .size-btn.active {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+
+    /* Action button row */
+    #action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 10px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--surface2);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 120ms, opacity 120ms;
+    }
+
+    .action-btn:active { opacity: 0.7; }
+
+    .action-btn.primary {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+
+    .action-btn.danger {
+      background: #ff3b30;
+      color: #fff;
+      border-color: #ff3b30;
+    }
+
+    /* Branding */
+    #branding {
+      text-align: center;
+      padding: 4px 0 2px;
+    }
+    #branding a {
+      font-size: 12px;
+      color: var(--text2);
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    #branding a:hover { opacity: 0.8; }
+
+    /* Hide utility */
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <span id="move-counter" hidden></span>
+    <span id="status-text">Pick a photo to play</span>
+    <span id="solved-label" hidden>✓ Solved!</span>
+    <span class="spacer"></span>
+    <button id="btn-colors">🎨 Colors</button>
+    <button id="btn-photo">📷 Photo</button>
+    <input type="file" id="file-input" accept="image/*" hidden>
+  </header>
+
+  <!-- Puzzle board -->
+  <main>
+    <div id="puzzle-board">
+      <div id="puzzle-grid"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="icon-row">
+      <button class="icon-btn active-blue" id="btn-sound" title="Toggle sound">🔊</button>
+      <button class="icon-btn active-green" id="btn-numbers" title="Toggle tile numbers">#</button>
+    </div>
+
+    <div id="grid-picker">
+      <button class="size-btn active" data-size="3">3×3</button>
+      <button class="size-btn" data-size="4">4×4</button>
+    </div>
+
+    <div id="action-buttons">
+      <button class="action-btn primary" id="btn-start">Start</button>
+      <button class="action-btn" id="btn-new-game" hidden>New Game</button>
+      <button class="action-btn" id="btn-hint" hidden>Hint</button>
+      <button class="action-btn primary" id="btn-solve" hidden>Solve</button>
+      <button class="action-btn danger" id="btn-stop" hidden>Stop</button>
+    </div>
+  </footer>
+
+  <div id="branding"><a href="https://waynecater.com/apps">waynecater.com/apps</a></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
