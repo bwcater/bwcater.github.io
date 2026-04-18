@@ -18,5 +18,25 @@ Tessera, Latin for tile, is web based version of those little tile games of the 
 The premise is simple, slide the tiles into order to complete the puzzle.</description>
     </item>
     
+    <item>
+      <title>Road Sign Bingo</title>
+      <link>https://waynecater.com/posts/road-sign-bingo/</link>
+      <pubDate>Sun, 29 Mar 2026 09:00:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/road-sign-bingo/</guid>
+      <description>Road Sign Bingo, my first public iOS app release since 2013, is a game that turns everyday road trips into a scavenger hunt. You get a 5x5 bingo card filled with real road signs. As you spot them out the window, you tap them on your card. Get five in a row and you win!
+You can play on iPhone and iPad. Techinically I have seen it run on macOS 26.</description>
+    </item>
+    
+    <item>
+      <title>Typo The Game</title>
+      <link>https://waynecater.com/posts/typo-the-game/</link>
+      <pubDate>Sun, 15 Mar 2026 09:00:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/typo-the-game/</guid>
+      <description>When my kids were younger I created a Javascript based game to make learning and practicing typing fun. It was not as cool and full featured as this version below in Swift language.
+Typo the game runs on MacOS Sierra through Tahoe; It is free to download without needing to give out your email or other info. You can see it in action below. The video does not go into all the of the features.</description>
+    </item>
+    
   </channel>
 </rss>
