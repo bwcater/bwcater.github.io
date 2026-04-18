@@ -65,9 +65,6 @@
     }
 
     #solved-label {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       color: #30d158;
       font-size: 15px;
       font-weight: 700;
@@ -116,6 +113,9 @@
       justify-content: center;
       overflow: hidden;
       position: relative;
+      /* Promote entire board to one GPU compositing layer so tile
+         transforms are handled on the GPU without per-tile layer churn. */
+      transform: translateZ(0);
     }
 
     #puzzle-grid {
@@ -175,6 +175,10 @@
       transition: box-shadow 150ms ease, transform 150ms ease;
       background-color: var(--surface);
       background-repeat: no-repeat;
+      /* Stable will-change keeps each tile's compositing layer alive
+         so iOS never needs to promote/demote mid-game (which causes
+         the black-flash repaint). */
+      will-change: transform;
     }
 
     .tile.movable {

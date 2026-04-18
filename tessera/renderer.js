@@ -186,7 +186,7 @@ export class Renderer {
     const isMovable = game.isStarted && !game.isWon && game.canSlide(position);
 
     el.classList.toggle('movable', isMovable);
-    el.style.cssText = `width:${this.#tileSize}px;height:${this.#tileSize}px;will-change:transform;`;
+    el.style.cssText = `width:${this.#tileSize}px;height:${this.#tileSize}px;`;
 
     // Apply image background or gradient placeholder
     if (this.#tileCache.hasImage()) {

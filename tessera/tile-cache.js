@@ -4,7 +4,7 @@
 // crop the correct tile portion for each correctIndex.
 
 export class TileCache {
-  #imageUrl = null;   // object URL from createObjectURL
+  #imageUrl = null;   // object URL (may point to a downscaled canvas blob)
   #bgSize = null;     // { w, h } in px — the scaled image dimensions
   #bgOrigin = null;   // { x, y } in px — offset to center aspect-filled image
 
@@ -12,16 +12,11 @@ export class TileCache {
   // tileSize: CSS pixel tile width/height (square)
   // gridSize: 3 or 4
   setImage(file, tileSize, gridSize) {
-    // Revoke previous object URL to avoid memory leaks
     if (this.#imageUrl) URL.revokeObjectURL(this.#imageUrl);
-    this.#imageUrl = URL.createObjectURL(file);
-    this.#computeLayout(file, tileSize, gridSize);
-  }
-
-  // Call when tileSize or gridSize changes (grid resize / window resize).
-  // Requires setImage to have been called first.
-  updateLayout(file, tileSize, gridSize) {
-    this.#computeLayout(file, tileSize, gridSize);
+    this.#imageUrl = null;
+    this.#bgSize = null;
+    this.#bgOrigin = null;
+    this.#loadAndPrepare(file, tileSize, gridSize);
   }
 
   hasImage() {
@@ -50,30 +45,51 @@ export class TileCache {
     return this.#imageUrl;
   }
 
-  // Precompute aspect-fill layout so getStyle() is O(1) per tile
-  #computeLayout(file, tileSize, gridSize) {
-    if (!file || tileSize <= 0) return;
-
-    const img = new Image();
-    img.onload = () => {
-      const puzzleSize = tileSize * gridSize;
-      const scaleX = puzzleSize / img.naturalWidth;
-      const scaleY = puzzleSize / img.naturalHeight;
-      const scale = Math.max(scaleX, scaleY); // aspect-fill
-      const scaledW = img.naturalWidth * scale;
-      const scaledH = img.naturalHeight * scale;
-      const originX = (puzzleSize - scaledW) / 2;
-      const originY = (puzzleSize - scaledH) / 2;
-      this.#bgSize = { w: scaledW, h: scaledH };
-      this.#bgOrigin = { x: originX, y: originY };
-    };
-    img.src = this.#imageUrl;
-  }
-
   clear() {
     if (this.#imageUrl) URL.revokeObjectURL(this.#imageUrl);
     this.#imageUrl = null;
     this.#bgSize = null;
     this.#bgOrigin = null;
+  }
+
+  // Load image and downscale if needed before storing.
+  // iPhone photos can be 12MP+ — each tile holding the full texture in GPU
+  // memory causes iOS to evict layers and flash black. Capping at 2× the
+  // puzzle display size (retina) keeps GPU usage tiny without visible quality loss.
+  #loadAndPrepare(file, tileSize, gridSize) {
+    const rawUrl = URL.createObjectURL(file);
+    const img = new Image();
+
+    img.onload = () => {
+      const puzzleSize = tileSize * gridSize;
+      const scale = Math.max(puzzleSize / img.naturalWidth, puzzleSize / img.naturalHeight);
+      const scaledW = img.naturalWidth * scale;
+      const scaledH = img.naturalHeight * scale;
+      const originX = (puzzleSize - scaledW) / 2;
+      const originY = (puzzleSize - scaledH) / 2;
+
+      const applyLayout = (url) => {
+        this.#imageUrl = url;
+        this.#bgSize   = { w: scaledW, h: scaledH };
+        this.#bgOrigin = { x: originX, y: originY };
+      };
+
+      // 2× puzzle size is plenty for retina; beyond that we're just burning GPU memory.
+      const maxDim = puzzleSize * 2;
+      if (img.naturalWidth > maxDim || img.naturalHeight > maxDim) {
+        const factor = Math.min(maxDim / img.naturalWidth, maxDim / img.naturalHeight);
+        const canvas = document.createElement('canvas');
+        canvas.width  = Math.ceil(img.naturalWidth  * factor);
+        canvas.height = Math.ceil(img.naturalHeight * factor);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(rawUrl);
+        canvas.toBlob(blob => applyLayout(URL.createObjectURL(blob)), 'image/jpeg', 0.92);
+      } else {
+        applyLayout(rawUrl);
+      }
+    };
+
+    img.onerror = () => URL.revokeObjectURL(rawUrl);
+    img.src = rawUrl;
   }
 }

@@ -12,12 +12,25 @@ export class SoundManager {
   // Safe to call multiple times — only initializes once.
   async init() {
     if (this.#ctx) return;
-    this.#ctx = new AudioContext();
+    this.#ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Build buffers immediately — createBuffer works on a suspended context,
+    // and having them ready before the await means the first tile move
+    // can play sound without waiting for resume() to settle.
+    this.#clickBuffer = this.#makeClick();
+    this.#chimeBuffer = this.#makeChime();
+
+    // iOS requires a real source to be started synchronously within the
+    // user gesture to unlock the audio context — a silent 1-frame buffer
+    // satisfies this without being audible.
+    const unlock = this.#ctx.createBufferSource();
+    unlock.buffer = this.#ctx.createBuffer(1, 1, 22050);
+    unlock.connect(this.#ctx.destination);
+    unlock.start(0);
+
     if (this.#ctx.state === 'suspended') {
       await this.#ctx.resume();
     }
-    this.#clickBuffer = this.#makeClick();
-    this.#chimeBuffer = this.#makeChime();
   }
 
   playTileMove() {
