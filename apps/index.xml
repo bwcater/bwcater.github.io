@@ -37,5 +37,15 @@ Choose a picture and once you begin the picture is shuffled into chaos! Restore 
  Tile moves are tracked and the total displayed at the end.</description>
     </item>
     
+    <item>
+      <title>Solitaire</title>
+      <link>https://waynecater.com/apps/solitaire/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/apps/solitaire/</guid>
+      <description>Solitaire A clean, fast Klondike Solitaire built to play anywhere — on your desktop, tablet, or phone. No ads, no accounts, no installs required. Just open the page and play.
+How to play Move all 52 cards to the four foundation piles, one per suit, built up from Ace to King. In the tableau, stack cards in descending rank and alternating color. Flip cards from the stock pile when you&amp;rsquo;re stuck, and recycle the waste when you run out.</description>
+    </item>
+    
   </channel>
 </rss>

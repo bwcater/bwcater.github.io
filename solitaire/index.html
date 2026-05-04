@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Solitaire</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1c3b6e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Solitaire">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game">
+    <header id="game-header">
+      <h1>Solitaire</h1>
+      <div class="header-btns">
+        <button id="how-to-btn">How to Play</button>
+        <button id="prefs-btn" aria-label="Settings">⚙</button>
+        <button id="new-game-btn">New Game</button>
+      </div>
+    </header>
+
+    <div id="hud">
+      <button id="undo-btn" disabled>↩ Undo</button>
+      <div id="timer-display">0:00</div>
+      <div id="move-counter">0 moves</div>
+      <button id="auto-complete-btn" class="hidden">Auto Complete</button>
+    </div>
+
+    <div id="top-row">
+      <div id="stock"  class="pile" role="button" aria-label="Stock pile"></div>
+      <div id="waste"  class="pile" aria-label="Waste pile"></div>
+      <div aria-hidden="true"></div>
+      <div id="f0" class="pile foundation" aria-label="Spades foundation"></div>
+      <div id="f1" class="pile foundation" aria-label="Hearts foundation"></div>
+      <div id="f2" class="pile foundation" aria-label="Diamonds foundation"></div>
+      <div id="f3" class="pile foundation" aria-label="Clubs foundation"></div>
+    </div>
+
+    <div id="tableau">
+      <div id="col0" class="column"></div>
+      <div id="col1" class="column"></div>
+      <div id="col2" class="column"></div>
+      <div id="col3" class="column"></div>
+      <div id="col4" class="column"></div>
+      <div id="col5" class="column"></div>
+      <div id="col6" class="column"></div>
+    </div>
+  </div>
+
+  <!-- Win screen -->
+  <div id="win-screen" class="hidden">
+    <div class="win-box">
+      <div class="win-suits">♠ ♥ ♦ ♣</div>
+      <h2>You Win!</h2>
+      <div id="win-stats"></div>
+      <button id="play-again-btn">Play Again</button>
+    </div>
+  </div>
+
+  <!-- Time's up screen -->
+  <div id="times-up-screen" class="hidden">
+    <div class="win-box">
+      <div class="win-suits">⏱</div>
+      <h2>Time's Up!</h2>
+      <button id="new-game-after-timeout-btn">New Game</button>
+    </div>
+  </div>
+
+  <!-- How to Play -->
+  <div id="how-to-screen" class="hidden">
+    <div class="how-to-box">
+      <h2>How to Play</h2>
+      <ul>
+        <li><strong>Goal</strong> — Move all 52 cards to the four foundation piles, one per suit, built up from Ace to King.</li>
+        <li><strong>Tableau</strong> — Stack cards in descending rank and alternating color (red on black, black on red). Only a King may be placed on an empty column.</li>
+        <li><strong>Stock &amp; Waste</strong> — Click the stock pile (top-left) to flip cards to the waste. Only the top waste card can be played. When the stock is empty, click it to recycle the waste.</li>
+        <li><strong>Moving cards</strong> — Drag a card (or a face-up stack) to a valid tableau column or foundation, or click a card to auto-move it to the best available spot.</li>
+        <li><strong>Flipping</strong> — Click a face-down card on top of a column to flip it over.</li>
+      </ul>
+      <button id="close-how-to-btn">Got it</button>
+    </div>
+  </div>
+
+  <!-- Preferences -->
+  <div id="prefs-screen" class="hidden">
+    <div class="modal-box prefs-box">
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="game">Game</button>
+        <button class="tab-btn" data-tab="appearance">Appearance</button>
+        <button class="tab-btn" data-tab="stats">Stats</button>
+      </div>
+
+      <!-- Game tab -->
+      <div id="tab-game" class="tab-panel">
+        <div class="pref-row">
+          <label for="pref-draw-mode">Draw Mode</label>
+          <select id="pref-draw-mode">
+            <option value="1">Draw 1</option>
+            <option value="3">Draw 3</option>
+          </select>
+        </div>
+        <div class="pref-row">
+          <label for="pref-game-mode">Game Mode</label>
+          <select id="pref-game-mode">
+            <option value="standard">Standard</option>
+            <option value="timed">Timed Challenge</option>
+          </select>
+        </div>
+        <div class="pref-row" id="timed-options">
+          <label for="pref-time-limit">Time Limit</label>
+          <select id="pref-time-limit">
+            <option value="300">5 minutes</option>
+            <option value="600">10 minutes</option>
+            <option value="900">15 minutes</option>
+          </select>
+        </div>
+        <div class="pref-row pref-check">
+          <label for="pref-auto-complete">Auto-Complete button</label>
+          <input type="checkbox" id="pref-auto-complete">
+        </div>
+      </div>
+
+      <!-- Appearance tab -->
+      <div id="tab-appearance" class="tab-panel hidden">
+        <div class="pref-section">
+          <div class="pref-label">Card Back Color</div>
+          <div class="color-swatches" id="back-color-swatches"></div>
+        </div>
+        <div class="pref-row">
+          <label for="pref-initials">Card Initials (2 letters)</label>
+          <input type="text" id="pref-initials" maxlength="2" placeholder="CR" class="initials-input">
+        </div>
+        <div class="pref-section">
+          <div class="pref-label">Table Felt Color</div>
+          <div class="color-swatches" id="felt-color-swatches"></div>
+        </div>
+      </div>
+
+      <!-- Stats tab -->
+      <div id="tab-stats" class="tab-panel hidden">
+        <div class="stat-row"><span>Games Played</span><span id="stat-played">0</span></div>
+        <div class="stat-row"><span>Games Won</span><span id="stat-won">0</span></div>
+        <div class="stat-row"><span>Win Rate</span><span id="stat-winrate">—</span></div>
+        <div class="stat-row"><span>Best Time</span><span id="stat-best-time">—</span></div>
+        <div class="stat-row"><span>Best Moves</span><span id="stat-best-moves">—</span></div>
+        <div class="stat-row"><span>Avg Time</span><span id="stat-avg-time">—</span></div>
+        <div class="stat-row"><span>Avg Moves</span><span id="stat-avg-moves">—</span></div>
+        <button id="reset-stats-btn">Reset Stats</button>
+      </div>
+
+      <div class="modal-footer">
+        <button id="close-prefs-btn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

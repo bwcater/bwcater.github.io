@@ -6,7 +6,18 @@
     <description>Recent content in game on Wayne Cater</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Apr 2026 00:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 03 May 2026 00:00:00 -0500</lastBuildDate><atom:link href="https://waynecater.com/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Solitaire, a free web card game</title>
+      <link>https://waynecater.com/posts/solitaire/</link>
+      <pubDate>Sun, 03 May 2026 00:00:00 -0500</pubDate>
+      
+      <guid>https://waynecater.com/posts/solitaire/</guid>
+      <description>My wife enjoys solitaire on her iPad. I worked up this simple version for the web so she could play it without advertisements and from any device that could access the web from a browser. You can enjoy it too!
+ If you&amp;rsquo;ve never played, this may help you learn. It is included in the game just a button click away.
+Move all 52 cards to the four foundation piles, one per suit, built up from Ace to King.</description>
+    </item>
+    
     <item>
       <title>Tessera, the tile puzzle game</title>
       <link>https://waynecater.com/posts/tessera/</link>

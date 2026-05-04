@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Card background -->
+  <rect width="512" height="512" rx="64" ry="64" fill="#1c3b6e"/>
+
+  <!-- Gold outer border -->
+  <rect x="24" y="24" width="464" height="464" rx="48" ry="48"
+        fill="none" stroke="#c9a84c" stroke-width="12"/>
+
+  <!-- Gold inner border -->
+  <rect x="48" y="48" width="416" height="416" rx="36" ry="36"
+        fill="none" stroke="#c9a84c" stroke-width="6"/>
+
+  <!-- Four suits arranged in a 2×2 grid, centered -->
+  <!-- Spade ♠ top-left -->
+  <text x="148" y="218" text-anchor="middle" font-size="130"
+        font-family="serif" fill="#c9a84c" opacity="0.92">♠</text>
+  <!-- Heart ♥ top-right -->
+  <text x="364" y="218" text-anchor="middle" font-size="130"
+        font-family="serif" fill="#c9a84c" opacity="0.92">♥</text>
+  <!-- Diamond ♦ bottom-left -->
+  <text x="148" y="378" text-anchor="middle" font-size="130"
+        font-family="serif" fill="#c9a84c" opacity="0.92">♦</text>
+  <!-- Club ♣ bottom-right -->
+  <text x="364" y="378" text-anchor="middle" font-size="130"
+        font-family="serif" fill="#c9a84c" opacity="0.92">♣</text>
+</svg>
