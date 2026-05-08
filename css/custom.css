@@ -794,6 +794,15 @@ mark {
     }
 }
 
+/* ---- Post title: centered, but wrapped lines align left ---- */
+
+@media (max-width: 767px) {
+    main h2 {
+        display: inline-block;
+        text-align: left;
+    }
+}
+
 /* ---- Navbar font size (desktop) ---- */
 
 @media (max-width: 767px) {
