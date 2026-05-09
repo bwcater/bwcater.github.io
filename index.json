@@ -1,4 +1,10 @@
 [{
+    "title": "The Odyssey of Cross Platform Development",
+    "summary": "“Time is money”, more commonly attributed to Benjamin Franklin, is often the directive of the day! You’ve got that next development idea that you really have the itch to pursue and share with the world. Maybe you are doing it because of dollar signs! Perhaps you’re doing it because you want to try to change the world. Or could it be that you want to create a tool you can use yourself, and you also see others using?",
+    "tags": ["2026","technology"],
+    "url": "https://waynecater.com/posts/odyssey-of-cross-platform-dev/",
+    "date": "May 9, 2026"
+  },{
     "title": "Solitaire, a free web card game",
     "summary": "My wife enjoys solitaire on her iPad. I worked up this simple version for the web so she could play it without advertisements and from any device that could access the web from a browser. You can enjoy it too!\n If you’ve never played, this may help you learn. It is included in the game just a button click away.\nMove all 52 cards to the four foundation piles, one per suit, built up from Ace to King.",
     "tags": ["2026","game"],
