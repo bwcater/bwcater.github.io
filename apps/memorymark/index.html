@@ -4,21 +4,38 @@
         
 
 
-<meta name="description" content="Wayne Cater is a Nashville-based software developer, singer-songwriter, multi-instrumentalist, watercolor artist, and author of the children&#39;s book Looking For Friends In My Backyard.">
-<meta property="og:title" content="Privacies">
-<meta property="og:description" content="Wayne Cater is a Nashville-based software developer, singer-songwriter, multi-instrumentalist, watercolor artist, and author of the children&#39;s book Looking For Friends In My Backyard.">
-<meta property="og:url" content="https://waynecater.com/privacy/">
-<meta property="og:type" content="website">
+<meta name="description" content="An iOS app for making wallpapers">
+<meta property="og:title" content="MemoryMark">
+<meta property="og:description" content="An iOS app for making wallpapers">
+<meta property="og:url" content="https://waynecater.com/apps/memorymark/">
+<meta property="og:type" content="article">
 
-<meta property="og:image" content="https://waynecater.com/images/wayne2024.jpg">
+<meta property="og:image" content="https://waynecater.com/images/apps/memorymark.png">
 
-<link rel="canonical" href="https://waynecater.com/privacy/">
+<link rel="canonical" href="https://waynecater.com/apps/memorymark/">
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "\"MemoryMark\"",
+  "description": "\"An iOS app for making wallpapers\"",
+  "url": "https:\/\/waynecater.com\/apps\/memorymark\/",
+  "datePublished": "0001-01-01",
+  "dateModified": "0001-01-01",
+  "author": {
+    "@type": "Person",
+    "name": "Wayne Cater",
+    "url": "https:\/\/waynecater.com"
+  }
+}
+</script>
 
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Privacies</title>
+        <title>MemoryMark</title>
         
         <script>
     (function() {
@@ -98,9 +115,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <meta name="generator" content="Hugo 0.92.0" />
         
-            <link href="/privacy/index.xml" rel="alternate" type="application/rss&#43;xml" title="Wayne Cater" />
-            <link href="/privacy/index.xml" rel="feed" type="application/rss&#43;xml" title="Wayne Cater" />
-        
 
         
 
@@ -118,7 +132,7 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand visible-xs" href="#">Privacies</a>
+                    <a class="navbar-brand visible-xs" href="#">MemoryMark</a>
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -197,86 +211,70 @@
 
 <main>
 
-    <h2>Privacies</h2>
+    <div style="padding-top: 1rem;">
+        <h2>MemoryMark</h2>
+        <p class="visually-hidden">An iOS app for making wallpapers</p>
+        
 
-     <div class="item">
+    </div>
 
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/privacy/typothegame/">Privacy Policy for TypoTheGame</a></h4>
-    <h5>January 1, 0001</h5>
-    
-
-
+    <div align="start" class="content"><div style="text-align: center;"><img src="/images/apps/memorymark.png" width="50%"></div>
+<br>
+<h3 id="memorymark">MemoryMark</h3>
+<p>MemoryMark 1.00 was a super simple iOS app I wrote for friend / coworker named Joe back in 2012. The concept was to add a Bible verse to an image and build a wallpaper that Joe could view when using his phone to help memorize the verse. There have been no updates to MemoryMark since 2013 when it was released.</p>
+<p>Fastforward to 2026, MemoryMark 1.02 is coming! Rewritten in modern Swift / SwiftUI with new features, but with the same simple goal - make an image with a Bible verse you select, or input, and output it as a wallpaper!</p>
+<p>What it does</p>
+<ol>
+<li>Pick a background image — user selects a photo from their Camera Roll (or a built-in default blue
+background loads automatically)</li>
+<li>Enter scripture text — a text view lets the user type (or edit) any scripture passage; the    <br>
+last-used text is saved and reloads on next launch</li>
+<li>Generate the image — tapping &ldquo;Make Image&rdquo; composites the text onto the photo using
+CoreGraphics/CoreText, rendering white Helvetica text in the &ldquo;safe zone&rdquo; between the lock screen <br>
+clock and the home button area</li>
+<li>Save to Camera Roll — the finished image is saved to Photos, ready to be set as a lock screen or
+home screen wallpaper</li>
+</ol>
+<h3 id="features-in-the-swift-rewrite">Features in the Swift Rewrite</h3>
+<p>Backgrounds</p>
+<ul>
+<li>Color picker — solid color background</li>
+<li>Photo picker — pick any image from your library</li>
+<li>3 bundled thumbnails / images from version 1.0</li>
+</ul>
+<p>Scripture Text</p>
+<ul>
+<li>Typed/pasted input — text view with placeholder</li>
+<li>&ldquo;Pick a Verse&rdquo; button — sheet picker browses 45 KJV verses</li>
+<li>Double-tap to select all text in the view for quick replacement</li>
+<li>Last-used text saved and reloaded on next launch</li>
+</ul>
+<p>Image Rendering</p>
+<ul>
+<li>Auto-scaling font to fit the verse to the available text zone</li>
+<li>Auto-contrasting text color — samples average luminance of the text zone and picks black or white
+automatically</li>
+<li>Invert text color toggle to flip the auto-selected color when the automatic choice isn&rsquo;t to your liking</li>
+<li>Lock screen safe zone — text placed in the 38–62% vertical band, avoiding the clock/widgets at top
+and buttons at bottom</li>
+<li>Live Preview</li>
+</ul>
+<p>Help Screen</p>
+<ul>
+<li>&ldquo;How To&rdquo; sheet — 4-step card-based instructions</li>
+</ul>
+<br>
+<br>
+<p>View the <a href="/privacy/memorymark">privacy policy</a> for MemoryMark.
+<br>
+<br></p>
+<h4 id="update-coming-soon">Update Coming Soon!</h4>
+<!-- Get it on the
+#### [App Store℠](https://apps.apple.com/us/app/road-signs-bingo/id6761233541)
+-->
 </div>
-  <div class="item">
-
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/privacy/roadsignbingo/">Privacy Policy for Road Sign Bingo</a></h4>
-    <h5>January 1, 0001</h5>
-    
-
-
-</div>
-  <div class="item">
-
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/privacy/dailystepcount/">Privacy Policy for DailyStepCount</a></h4>
-    <h5>January 1, 0001</h5>
-    
-
-
-</div>
-  <div class="item">
-
-   
-    
-    
-    
-
-    
-    
-    
-    
-    
-    <h4><a href="/privacy/memorymark/">Privacy Policy for MemoryMark</a></h4>
-    <h5>January 1, 0001</h5>
-    
-
-
-</div>
- 
 
 </main>
-
-
-
 
         <footer>
             <p class="copyright text-muted">©2016 - 2026 Wayne Cater, all rights reserved;</p>

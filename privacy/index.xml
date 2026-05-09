@@ -43,5 +43,17 @@ DATA COLLECTED  DailyStepCount does not collect any data. Specifically:
  No personal information is collected (name, email, account, etc.) No location data is collected or accessed No device identifiers are collected No analytics or crash reporting services are used No advertising SDKs or tracking libraries are included  HEALTH DATA  DailyStepCount reads step count data from Apple HealthKit solely to display it on your home screen widget.</description>
     </item>
     
+    <item>
+      <title>Privacy Policy for MemoryMark</title>
+      <link>https://waynecater.com/privacy/memorymark/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://waynecater.com/privacy/memorymark/</guid>
+      <description>Last updated: May 7, 2026
+Overview MemoryMark is a simple, fully offline app that overlays scripture text onto images for use as device wallpaper. We have no servers, no accounts, and no connection to the internet. This policy explains the limited ways the app interacts with your device.
+ Data We Collect We do not collect any personal data.
+MemoryMark does not transmit any information off your device — ever. There are no analytics libraries, no crash reporters, no advertising SDKs, and no third-party services of any kind embedded in the app.</description>
+    </item>
+    
   </channel>
 </rss>
